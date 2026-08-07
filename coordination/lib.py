@@ -175,7 +175,10 @@ def slugify_id(company: str, use_case: str) -> str:
 
 
 def git(*args, check=True):
-    return subprocess.run(["git", *args], cwd=REPO_ROOT, capture_output=True, text=True, check=check)
+    return subprocess.run(
+        ["git", *args], cwd=REPO_ROOT, capture_output=True, check=check,
+        encoding="utf-8", errors="replace",
+    )
 
 
 def push_with_retry(commit_message: str, paths, max_retries=3):
