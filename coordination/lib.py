@@ -189,8 +189,13 @@ def push_with_retry(commit_message: str, paths, max_retries=3):
     for attempt in range(1, max_retries + 1):
         git("add", *paths)
         commit = git("commit", "-m", commit_message, check=False)
-        if commit.returncode != 0 and "nothing to commit" in (commit.stdout + commit.stderr):
-            return True, "nothing to commit"
+        if commit.returncode != 0:
+            combined = commit.stdout + commit.stderr
+            if "nothing to commit" in combined:
+                return True, "nothing to commit"
+            # 커밋 자체가 실패한 경우(예: git identity 미설정) push로 넘어가면 안 됨 —
+            # push가 우연히 성공(Everything up-to-date)해서 거짓 성공을 보고하는 버그 방지
+            return False, f"commit 실패: {combined.strip()}"
         push = git("push", "origin", "main", check=False)
         if push.returncode == 0:
             return True, push.stdout
