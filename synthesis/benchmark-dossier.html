@@ -147,6 +147,7 @@ table.priority{background:#fff;border:1px solid var(--line);font-size:.9rem}tabl
 .evidence-lab{margin-top:5rem}.evidence-head{display:flex;justify-content:space-between;gap:2rem;align-items:end;margin-bottom:1.2rem}.evidence-head h2{font-size:clamp(1.8rem,3vw,2.7rem);margin:0}.evidence-head p{max-width:600px;color:var(--sub);margin:0}
 .filters{display:grid;grid-template-columns:1fr auto;gap:.7rem;margin:1rem 0 1.4rem}.filters input{width:100%;padding:.85rem 1rem;border:1px solid var(--line);background:#fff;font:inherit}.filter-buttons{display:flex;gap:.35rem}.filter-buttons button{border:1px solid var(--line);background:#fff;padding:.7rem .85rem;cursor:pointer;font-weight:700}.filter-buttons button.active{background:#15242d;color:#fff;border-color:#15242d}
 #evidence-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}.evidence-item{background:#fff;border:1px solid var(--line)}.evidence-item[open]{grid-column:1/-1}.evidence-item summary{list-style:none;cursor:pointer;padding:1rem 1.15rem;display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:.8rem}.evidence-item summary::-webkit-details-marker{display:none}.evidence-item summary:after{content:"＋";color:var(--sub);font-size:1.2rem}.evidence-item[open] summary:after{content:"−"}.evidence-item summary .badge{font:800 .72rem var(--mono);border:1px solid currentColor;border-radius:99px;padding:.15rem .35rem;text-align:center}.evidence-item summary b{font-size:1rem}.evidence-item summary small{display:block;color:var(--sub);font-weight:400;margin-top:.15rem}.evidence-body{border-top:1px solid var(--line);padding:1.25rem 1.4rem}.evidence-body .case{display:block!important;border:0;padding:0;margin:0;box-shadow:none}.evidence-body .case-head{display:none}.evidence-body .source{background:var(--panel2)}
+.source-shortcut{font-size:.75rem;font-weight:800;color:var(--copper);text-decoration:none;border-bottom:1px solid currentColor;white-space:nowrap}.source-shortcut:hover{color:var(--ink)}.evidence-item.a-group{border-left:4px solid var(--a)}.a-group-mark{display:inline-block;margin-left:.45rem;padding:.08rem .35rem;background:var(--alt-bg);color:var(--a);font:800 .62rem var(--mono)}
 .metric-type{display:inline-block!important;margin:.35rem 0 0!important;padding:.12rem .38rem;border:1px solid var(--line);border-radius:2px;color:var(--sub)!important;font:700 .62rem var(--mono)!important;letter-spacing:.02em}.metric-type.target{color:var(--copper)!important;border-color:#d8a58f}.metric-type.survey{color:var(--b)!important}
 .result-count{color:var(--sub);font:700 .76rem var(--mono);margin:.5rem 0}.longlist-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);padding:0 1rem}table.long{min-width:780px}
 footer{border-top:1px solid var(--line);margin-top:5rem}
@@ -235,70 +236,49 @@ footer{border-top:1px solid var(--line);margin-top:5rem}
     별도로 마케팅 자료 대비 실제 재현 가능성을 재검증(Reality Check)한 항목이다.</p>
   </div>
 
-  <div class="section-title" id="executive">회의용 핵심 결론 — 25건을 세아제강 실행안으로 변환</div>
-  <div class="notice"><b>한 문장 결론:</b> 성공 사례의 공통점은 거대한 자율 Agent가 아니라, 제한된 공통업무를
-  기존 업무 흐름 안에 넣고 기준선·정확도·절감시간을 측정한 뒤 단계적으로 확산했다는 점이다.</div>
+  <div class="section-title" id="executive">1. 왜 이 벤치마킹을 했는가</div>
+  <div class="notice"><b>조사 목적:</b> 생성AI가 실제 관리업무에서 어디까지 적용됐고, 어떤 성과가 확인됐으며,
+  세아제강이 무엇부터 안전하게 시작해야 하는지를 찾기 위해 조사했다. 단순한 기업 사례 수집이 아니라
+  <b>적용 업무·확산 방식·정량성과·실패 위험·원문 근거</b>를 함께 비교하는 것이 목적이다.</div>
   <div class="decision-grid">
-    <div class="decision-card"><h3>1. 무엇을 벤치마킹할 것인가</h3><p>Nippon Steel·DENSO·NTT Docomo·Toshiba의
-    챔피언, 교육, 공통 KPI, 사용로그 기반 확산 절차를 우선 참고한다.</p></div>
-    <div class="decision-card"><h3>2. 어떤 업무부터 시작할 것인가</h3><p>정확한 근거 제시가 가능하고 반복량을 측정할 수 있는
-    규정문의, Invoice 검증, 결산·KPI 자료 취합을 1차 후보로 삼는다.</p></div>
-    <div class="decision-card"><h3>3. 무엇을 그대로 복제하지 않을 것인가</h3><p>폐쇄형 GPU 인프라, 현업 자유제작 Agent 수 경쟁,
-    별도 챗봇 UI, 무차별 실시간 알림은 선행조건과 총비용을 검증하기 전 복제하지 않는다.</p></div>
-    <div class="decision-card"><h3>4. 무엇으로 투자 여부를 판단할 것인가</h3><p>라이선스 수나 Agent 수가 아니라
-    처리시간·정확도·예외율·채택률·건당 운영비의 실측치로 확대 또는 중단을 결정한다.</p></div>
+    <div class="decision-card"><h3>조사 범위</h3><p>제조·철강·에너지·소재 기업 등 약 40개사를 1차 스크리닝하고, 그중 25건을 상세 조사했다.</p></div>
+    <div class="decision-card"><h3>선정 질문</h3><p>세아제강 관리부문의 반복업무에 적용 가능한가, 성과를 측정할 수 있는가, 통제 가능한가를 물었다.</p></div>
+    <div class="decision-card"><h3>조사 결과의 용도</h3><p>“AI를 도입할 것인가”가 아니라 “어떤 업무를 어떤 순서와 조건으로 시험할 것인가”를 정하는 근거다.</p></div>
+    <div class="decision-card"><h3>읽는 순서</h3><p>출처 등급과 업무 분류를 먼저 보고, 세아제강 A군 사례를 상세 검토한 뒤 권고 순위를 판단한다.</p></div>
   </div>
 
-  <div class="section-title" id="seah-priority">세아제강 권고 우선순위</div>
-  <table class="priority">
-    <tr><th>순위</th><th>후보 업무</th><th>선정 이유</th><th>벤치마크</th></tr>
-    <tr><td>1</td><td><b>인사·총무 규정 문의</b></td><td>반복 빈도가 높고 근거 문서·개정일을 답변과 함께 제시 가능</td><td>Tata Steel HR</td></tr>
-    <tr><td>2</td><td><b>Invoice 문서 추출·검증</b></td><td>처리시간·정확도·예외율 측정이 쉽고 AI 추출+룰 검증으로 통제 가능</td><td>Dow, Tata Steel</td></tr>
-    <tr><td>3</td><td><b>결산·KPI 자료 취합</b></td><td>대량 Excel·문서 취합의 리드타임을 직접 측정 가능</td><td>Toshiba, Panasonic</td></tr>
-    <tr><td>4</td><td>영업 제안자료 초안</td><td>잠재효과가 크지만 제품·가격·고객 데이터 정비가 선행돼야 함</td><td>Fujitsu</td></tr>
-    <tr><td>보류</td><td>계약·세무 최종판단</td><td>오류 영향이 크므로 검색·초안·조항 표시까지만 제한</td><td>POSCO, Tata Contract</td></tr>
-  </table>
-
-  <div class="section-title" id="roadmap">12주 파일럿과 의사결정 Gate</div>
-  <div class="flow"><div class="step">1~2주 · 업무량/시간/오류 기준선</div><span class="arrow">→</span>
-  <div class="step">3~4주 · 데이터/권한/최신성 정리</div><span class="arrow">→</span>
-  <div class="step">5~10주 · 2~3개 파일럿</div><span class="arrow">→</span>
-  <div class="step">11~12주 · 확대/보완/중단</div></div>
-  <div class="decision-grid">
-    <div class="decision-card"><h3>필수 KPI</h3><ul><li>건당 처리시간과 사람의 실제 작업시간</li><li>정확도·예외처리율·재작업률</li><li>월간 활성사용률과 사용자 만족도</li><li>건당 AI·인프라·운영비</li></ul></div>
-    <div class="decision-card"><h3>필수 거버넌스</h3><ul><li>원문 근거 링크와 기준일 표시</li><li>RBAC·승인·감사로그·오답 신고</li><li>담당 오너와 변경·폐기 기준</li><li>현업 자유배포 전 중앙 검증</li></ul></div>
-  </div>
-  <div class="notice">등급은 출처 유형만 나타낸다. A라도 기업 자체 발표일 수 있으며 독립 검증을 의미하지 않는다.
-  성과는 <b>목표·전망 / 기업 자체 측정 / 설문 / 독립 검증</b>으로 별도 구분한다. Gemini Reality Check는
-  원문에서 확인된 사실이 아니라 도입 전 검증해야 할 가설이다.</div>
-
-  <div class="decision-cockpit" aria-label="경영 의사결정 보드">
-    <section class="cockpit-panel">
-      <h2>이번 회의에서 결정할 4가지</h2>
-      <div class="signal"><strong>범위</strong><p>규정 문의, Invoice 검증, 결산·KPI 취합 중 2~3개 파일럿을 승인한다.</p></div>
-      <div class="signal"><strong>측정</strong><p>도입 전에 처리시간·오류·예외·비용 기준선을 먼저 고정한다.</p></div>
-      <div class="signal"><strong>통제</strong><p>근거 링크, 권한, 승인, 감사로그가 없는 Agent는 운영 배포하지 않는다.</p></div>
-      <div class="signal"><strong>Gate</strong><p>12주 뒤 확대·보완·중단을 사용량이 아니라 실측 사업성과로 결정한다.</p></div>
-    </section>
-    <section class="cockpit-panel">
-      <h2>복제하면 안 되는 성공담</h2>
-      <ul class="kill-list">
-        <li><b>POSCO</b> — 폐쇄형 인프라의 총비용·활용률 미확인</li>
-        <li><b>Dow</b> — OCR 오류율과 예외처리 비용 미공개</li>
-        <li><b>TotalEnergies</b> — 별도 UI의 UX 이탈 가능성</li>
-        <li><b>tesa</b> — 무차별 알림으로 인한 피로 위험</li>
-        <li><b>Panasonic</b> — 데이터 인프라 비용 대비 편익 검증 필요</li>
-        <li><b>Tata ZEN</b> — 현업 자유제작 확대 시 거버넌스 붕괴 위험</li>
-      </ul>
-    </section>
-  </div>
-
-  <div class="section-title">증거를 읽는 두 개의 축</div>
+  <div class="section-title">2. 약 40개 사례를 어떻게 검증했는가</div>
+  <p>출처의 성격에 따라 A/B/C 등급을 부여했다. 이 등급은 <b>기업의 우수성이나 세아제강 적합도 등급이 아니라 출처 신뢰도</b>다.
+  따라서 아래의 “세아제강 벤치마킹 A군”과 혼동하지 않아야 한다.</p>
   <div class="evidence-model">
     <article><span class="grade A">A</span><b> 기업 공식 1차 출처</b><p>사실 확인에는 가장 유리하지만 기업 자체 발표이므로 독립 검증과는 다르다.</p></article>
     <article><span class="grade B">B</span><b> 솔루션사 고객 사례</b><p>구현 맥락은 구체적이나 공급자 관점의 선택·과장이 개입될 수 있다.</p></article>
     <article><span class="grade C">C</span><b> 언론·2차 자료</b><p>탐색용 근거다. 투자 판단 전에 공식 원문과 측정 정의를 재확인한다.</p></article>
   </div>
+  <div class="notice">정량 수치는 출처 등급과 별도로 <b>목표치·전망 / 측정치·기업 발표 / 설문 응답치</b>로 표시했다.
+  A등급 원문이라도 목표치일 수 있으며, B등급이라도 실제 운영 로그가 포함될 수 있다.</div>
+
+  <div class="section-title">3. 사례는 어떤 유형으로 나뉘는가</div>
+  <div class="decision-grid">
+    <div class="decision-card"><h3>전사 확산·운영모델</h3><p>라이선스보다 챔피언, 교육, 단계적 확산, 공통 KPI를 어떻게 설계했는가.</p></div>
+    <div class="decision-card"><h3>인사·총무·지식검색</h3><p>규정과 사내 지식을 근거와 함께 찾아 반복 문의에 답하는가.</p></div>
+    <div class="decision-card"><h3>재무·구매·문서처리</h3><p>Invoice, 계약서, 결산자료 등 구조·비구조 문서를 추출하고 검증하는가.</p></div>
+    <div class="decision-card"><h3>영업·기획·사무생산성</h3><p>제안 초안, 분석, 회의·메일 요약 등 지식노동의 준비시간을 줄이는가.</p></div>
+  </div>
+
+  <div class="section-title">4. 세아제강이 먼저 볼 벤치마킹 A군</div>
+  <p>약 40개사 가운데 아래 8건을 <b>업무 적합성·측정 가능성·통제 가능성</b>이 높은 핵심 사례로 선정했다.
+  출처등급 A/B/C와 별개인 “세아제강 적합도 A군”이다. 기업명을 누르면 아래 상세 사례로 이동한다.</p>
+  <table class="priority shortlist">
+    <tr><th>벤치마킹 축</th><th>A군 사례</th><th>세아제강이 볼 지점</th></tr>
+    <tr><td>확산 운영</td><td><a href="#nippon-steel">Nippon Steel</a> · <a href="#denso">DENSO</a></td><td>소규모 검증→챔피언·모델직장→단계적 확산</td></tr>
+    <tr><td>규정 문의</td><td><a href="#tata-hr">Tata Steel HR</a></td><td>근거 문서 기반 반복문의 자동화와 응답시간</td></tr>
+    <tr><td>Invoice 검증</td><td><a href="#tata-invoice">Tata Steel Invoice</a> · <a href="#dow">Dow</a></td><td>AI 추출+룰 검증, 정확도·예외율·재작업 측정</td></tr>
+    <tr><td>결산·KPI 취합</td><td><a href="#toshiba">Toshiba</a> · <a href="#panasonic">Panasonic</a></td><td>대량 문서·데이터 취합 리드타임 단축</td></tr>
+    <tr><td>영업 제안 초안</td><td><a href="#fujitsu">Fujitsu</a></td><td>기존 제품·고객 데이터와 연결된 초안 작성</td></tr>
+  </table>
+  <div class="notice"><b>조건부 참고:</b> POSCO와 Tata Steel 계약분석은 계약·세무 최종판단이 아니라
+  검색·조항 표시·초안 보조 범위에서만 검토한다.</div>
 
   <div class="source-sections">
 
@@ -909,11 +889,28 @@ footer{border-top:1px solid var(--line);margin-top:5rem}
   </div>
 
   <section class="evidence-lab" id="evidence">
-    <div class="evidence-head"><div><div class="g-title">EVIDENCE REGISTER</div><h2>25건 증거대장</h2></div><p>기업명·업무·키워드로 검색하거나 출처 등급으로 거르십시오. 항목을 열면 정량 수치, 해석, 세아제강 관점, 원문 링크가 모두 표시됩니다.</p></div>
+    <div class="evidence-head"><div><div class="g-title">DETAILED BENCHMARKS</div><h2>5. 사례를 하나씩 살펴보면</h2></div><p>세아제강 A군 8건을 먼저 배치했다. 제목 오른쪽의 원문 링크는 항상 표시하며, 항목을 열면 정량 수치·해석·세아제강 관점을 확인할 수 있다.</p></div>
     <div class="filters"><input id="case-search" type="search" placeholder="예: Invoice, 철강, 영업, 거버넌스" aria-label="사례 검색"><div class="filter-buttons" aria-label="등급 필터"><button class="active" data-grade="ALL">전체</button><button data-grade="A">A</button><button data-grade="B">B</button><button data-grade="C">C</button></div></div>
     <div class="result-count" id="result-count">25 CASES</div>
     <div id="evidence-grid"></div>
   </section>
+
+  <div class="section-title" id="seah-priority">6. 그래서 세아제강의 권고 우선순위는</div>
+  <table class="priority">
+    <tr><th>순위</th><th>후보 업무</th><th>선정 이유</th><th>직접 벤치마크</th></tr>
+    <tr><td>1</td><td><b>인사·총무 규정 문의</b></td><td>반복 빈도가 높고 근거 문서·개정일을 답변과 함께 제시할 수 있다.</td><td><a href="#tata-hr">Tata Steel HR</a></td></tr>
+    <tr><td>2</td><td><b>Invoice 문서 추출·검증</b></td><td>처리시간·정확도·예외율을 측정하기 쉽고 AI 추출+룰 검증으로 통제 가능하다.</td><td><a href="#dow">Dow</a>, <a href="#tata-invoice">Tata Steel</a></td></tr>
+    <tr><td>3</td><td><b>결산·KPI 자료 취합</b></td><td>대량 Excel·문서 취합의 전후 리드타임을 직접 비교할 수 있다.</td><td><a href="#toshiba">Toshiba</a>, <a href="#panasonic">Panasonic</a></td></tr>
+    <tr><td>4</td><td><b>영업 제안자료 초안</b></td><td>잠재효과가 크지만 제품·가격·고객 데이터 정비를 먼저 확인해야 한다.</td><td><a href="#fujitsu">Fujitsu</a></td></tr>
+    <tr><td>보류</td><td><b>계약·세무 최종판단</b></td><td>오류 영향이 크므로 검색·초안·조항 표시까지만 제한하고 최종판단은 사람이 맡는다.</td><td><a href="#posco">POSCO</a>, <a href="#tata-contract">Tata Contract</a></td></tr>
+  </table>
+
+  <div class="section-title" id="roadmap">7. 12주 파일럿과 의사결정 Gate</div>
+  <div class="flow"><div class="step">1~2주 · 업무량/시간/오류 기준선</div><span class="arrow">→</span><div class="step">3~4주 · 데이터/권한/최신성 정리</div><span class="arrow">→</span><div class="step">5~10주 · 2~3개 파일럿</div><span class="arrow">→</span><div class="step">11~12주 · 확대/보완/중단</div></div>
+  <div class="decision-cockpit" aria-label="실행 조건과 주의사항">
+    <section class="cockpit-panel"><h2>판단 KPI</h2><div class="signal"><strong>효율</strong><p>건당 처리시간과 사람의 실제 작업시간</p></div><div class="signal"><strong>품질</strong><p>정확도·예외처리율·재작업률</p></div><div class="signal"><strong>채택</strong><p>월간 활성사용률과 실제 업무 사용률</p></div><div class="signal"><strong>비용</strong><p>건당 AI·인프라·운영비</p></div></section>
+    <section class="cockpit-panel"><h2>사례에서 확인할 위험</h2><ul class="kill-list"><li><b>POSCO</b> — 폐쇄형 인프라의 총비용·활용률</li><li><b>Dow</b> — OCR 오류율과 예외처리 비용</li><li><b>TotalEnergies</b> — 별도 UI의 UX 이탈</li><li><b>tesa</b> — 무차별 알림 피로</li><li><b>Panasonic</b> — 데이터 인프라 비용 대비 편익</li><li><b>Tata ZEN</b> — 현업 자유제작 Agent의 거버넌스 붕괴</li></ul></section>
+  </div>
 
   <!-- ============ Long list ============ -->
   <div class="section-title" id="longlist">1차 스크리닝 40개사 롱리스트</div>
@@ -961,7 +958,8 @@ footer{border-top:1px solid var(--line);margin-top:5rem}
 <script>
 (() => {
   const grid = document.querySelector('#evidence-grid');
-  const cases = [...document.querySelectorAll('.source-sections .case')];
+  const aGroup = new Set(['nippon-steel','denso','tata-hr','tata-invoice','dow','toshiba','panasonic','fujitsu']);
+  const cases = [...document.querySelectorAll('.source-sections .case')].sort((a,b) => Number(aGroup.has(b.id)) - Number(aGroup.has(a.id)));
   const gradeOf = el => el.querySelector('.tag.A,.tag.B,.tag.C')?.textContent.trim() || 'C';
   cases.forEach(card => {
     const title = card.querySelector('h2')?.textContent.trim() || card.id;
@@ -969,10 +967,16 @@ footer{border-top:1px solid var(--line);margin-top:5rem}
     const grade = gradeOf(card);
     const details = document.createElement('details');
     details.className = 'evidence-item';
+    details.id = card.id;
+    card.removeAttribute('id');
+    if (aGroup.has(details.id)) details.classList.add('a-group');
     details.dataset.grade = grade;
     details.dataset.search = (title + ' ' + subtitle + ' ' + card.textContent).toLowerCase();
     const summary = document.createElement('summary');
-    summary.innerHTML = `<span class="badge ${grade}">${grade}</span><span><b>${title}</b><small>${subtitle}</small></span>`;
+    const firstSource = card.querySelector('a.source');
+    const aMark = aGroup.has(details.id) ? '<span class="a-group-mark">세아 A군</span>' : '';
+    const sourceLink = firstSource ? `<a class="source-shortcut" href="${firstSource.href}" target="_blank" rel="noopener">원문 바로가기 ↗</a>` : '<span class="source-shortcut">원문 미수집</span>';
+    summary.innerHTML = `<span class="badge ${grade}">${grade}</span><span><b>${title}</b>${aMark}<small>${subtitle}</small></span>${sourceLink}`;
     const body = document.createElement('div');
     body.className = 'evidence-body';
     card.querySelectorAll('.stat').forEach(stat => {
@@ -1012,7 +1016,16 @@ footer{border-top:1px solid var(--line);margin-top:5rem}
     filter();
   }));
   search.addEventListener('input', filter);
+  document.addEventListener('click', event => {
+    if (event.target.closest('.source-shortcut')) event.stopPropagation();
+  });
+  function openHash(){
+    const target = document.querySelector(location.hash);
+    if (target?.classList.contains('evidence-item')) target.open = true;
+  }
+  window.addEventListener('hashchange', openHash);
   filter();
+  openHash();
 })();
 </script>
 </body>
