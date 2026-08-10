@@ -101,6 +101,15 @@ main{padding:2.4rem clamp(1.2rem,4vw,3.5rem) 6rem; max-width:920px;}
 
 /* secondary section muted */
 .secondary .case{opacity:.94;}
+.decision-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1rem 0;}
+.decision-card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.1rem 1.25rem;}
+.decision-card h3{margin:0 0 .45rem;font-size:1rem;color:var(--copper);}
+.decision-card p,.decision-card li{font-size:.9rem;}
+.priority{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.86rem;}
+.priority th,.priority td{border-bottom:1px solid var(--line);padding:.65rem .6rem;text-align:left;vertical-align:top;}
+.priority th{color:var(--steel);font-family:var(--mono);font-size:.72rem;text-transform:uppercase;}
+.notice{background:#252117;border:1px solid #5e512c;border-radius:8px;padding:1rem 1.2rem;color:#d8c98f;margin:1rem 0;}
+@media(max-width:700px){.decision-grid{grid-template-columns:1fr;}}
 
 /* long list table */
 table.long{width:100%; border-collapse:collapse; font-size:.85rem; margin-top:1rem;}
@@ -120,11 +129,18 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
   <div class="meta">25건 상세 · 링크 전체 포함<br>2026-08-10 · Claude/Codex/Gemini</div>
 
   <div class="toc-group">
+    <div class="g-title">회의용 종합 판단</div>
+    <a href="#executive">핵심 결론</a>
+    <a href="#seah-priority">세아제강 우선과제</a>
+    <a href="#roadmap">12주 실행안·KPI</a>
+  </div>
+
+  <div class="toc-group">
     <div class="g-title">전사 확산·운영모델</div>
-    <a href="#nippon-steel"><span class="g A">A</span>Nippon Steel</a>
-    <a href="#denso"><span class="g A">A</span>DENSO</a>
-    <a href="#ntt-docomo"><span class="g A">A</span>NTT Docomo</a>
-    <a href="#toshiba"><span class="g A">A</span>Toshiba</a>
+    <a href="#nippon-steel"><span class="g B">B</span>Nippon Steel</a>
+    <a href="#denso"><span class="g B">B</span>DENSO</a>
+    <a href="#ntt-docomo"><span class="g B">B</span>NTT Docomo</a>
+    <a href="#toshiba"><span class="g B">B</span>Toshiba</a>
     <a href="#lg"><span class="g A">A</span>LG전자</a>
     <a href="#posco"><span class="g B">B</span>POSCO</a>
   </div>
@@ -140,7 +156,7 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
 
   <div class="toc-group">
     <div class="g-title">영업</div>
-    <a href="#fujitsu"><span class="g A">A</span>Fujitsu</a>
+    <a href="#fujitsu"><span class="g B">B</span>Fujitsu</a>
     <a href="#thyssenkrupp-schulte"><span class="g B">B</span>thyssenkrupp Schulte</a>
     <a href="#schneider"><span class="g B">B</span>Schneider Electric</a>
   </div>
@@ -158,7 +174,7 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
 
   <div class="toc-group">
     <div class="g-title">경영기획·사무생산성</div>
-    <a href="#panasonic"><span class="g A">A</span>Panasonic Connect</a>
+    <a href="#panasonic"><span class="g B">B</span>Panasonic Connect</a>
     <a href="#campari"><span class="g B">B</span>Campari Group</a>
   </div>
 
@@ -186,11 +202,48 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
     별도로 마케팅 자료 대비 실제 재현 가능성을 재검증(Reality Check)한 항목이다.</p>
   </div>
 
+  <div class="section-title" id="executive">회의용 핵심 결론 — 25건을 세아제강 실행안으로 변환</div>
+  <div class="notice"><b>한 문장 결론:</b> 성공 사례의 공통점은 거대한 자율 Agent가 아니라, 제한된 공통업무를
+  기존 업무 흐름 안에 넣고 기준선·정확도·절감시간을 측정한 뒤 단계적으로 확산했다는 점이다.</div>
+  <div class="decision-grid">
+    <div class="decision-card"><h3>1. 무엇을 벤치마킹할 것인가</h3><p>Nippon Steel·DENSO·NTT Docomo·Toshiba의
+    챔피언, 교육, 공통 KPI, 사용로그 기반 확산 절차를 우선 참고한다.</p></div>
+    <div class="decision-card"><h3>2. 어떤 업무부터 시작할 것인가</h3><p>정확한 근거 제시가 가능하고 반복량을 측정할 수 있는
+    규정문의, Invoice 검증, 결산·KPI 자료 취합을 1차 후보로 삼는다.</p></div>
+    <div class="decision-card"><h3>3. 무엇을 그대로 복제하지 않을 것인가</h3><p>폐쇄형 GPU 인프라, 현업 자유제작 Agent 수 경쟁,
+    별도 챗봇 UI, 무차별 실시간 알림은 선행조건과 총비용을 검증하기 전 복제하지 않는다.</p></div>
+    <div class="decision-card"><h3>4. 무엇으로 투자 여부를 판단할 것인가</h3><p>라이선스 수나 Agent 수가 아니라
+    처리시간·정확도·예외율·채택률·건당 운영비의 실측치로 확대 또는 중단을 결정한다.</p></div>
+  </div>
+
+  <div class="section-title" id="seah-priority">세아제강 권고 우선순위</div>
+  <table class="priority">
+    <tr><th>순위</th><th>후보 업무</th><th>선정 이유</th><th>벤치마크</th></tr>
+    <tr><td>1</td><td><b>인사·총무 규정 문의</b></td><td>반복 빈도가 높고 근거 문서·개정일을 답변과 함께 제시 가능</td><td>Tata Steel HR</td></tr>
+    <tr><td>2</td><td><b>Invoice 문서 추출·검증</b></td><td>처리시간·정확도·예외율 측정이 쉽고 AI 추출+룰 검증으로 통제 가능</td><td>Dow, Tata Steel</td></tr>
+    <tr><td>3</td><td><b>결산·KPI 자료 취합</b></td><td>대량 Excel·문서 취합의 리드타임을 직접 측정 가능</td><td>Toshiba, Panasonic</td></tr>
+    <tr><td>4</td><td>영업 제안자료 초안</td><td>잠재효과가 크지만 제품·가격·고객 데이터 정비가 선행돼야 함</td><td>Fujitsu</td></tr>
+    <tr><td>보류</td><td>계약·세무 최종판단</td><td>오류 영향이 크므로 검색·초안·조항 표시까지만 제한</td><td>POSCO, Tata Contract</td></tr>
+  </table>
+
+  <div class="section-title" id="roadmap">12주 파일럿과 의사결정 Gate</div>
+  <div class="flow"><div class="step">1~2주 · 업무량/시간/오류 기준선</div><span class="arrow">→</span>
+  <div class="step">3~4주 · 데이터/권한/최신성 정리</div><span class="arrow">→</span>
+  <div class="step">5~10주 · 2~3개 파일럿</div><span class="arrow">→</span>
+  <div class="step">11~12주 · 확대/보완/중단</div></div>
+  <div class="decision-grid">
+    <div class="decision-card"><h3>필수 KPI</h3><ul><li>건당 처리시간과 사람의 실제 작업시간</li><li>정확도·예외처리율·재작업률</li><li>월간 활성사용률과 사용자 만족도</li><li>건당 AI·인프라·운영비</li></ul></div>
+    <div class="decision-card"><h3>필수 거버넌스</h3><ul><li>원문 근거 링크와 기준일 표시</li><li>RBAC·승인·감사로그·오답 신고</li><li>담당 오너와 변경·폐기 기준</li><li>현업 자유배포 전 중앙 검증</li></ul></div>
+  </div>
+  <div class="notice">등급은 출처 유형만 나타낸다. A라도 기업 자체 발표일 수 있으며 독립 검증을 의미하지 않는다.
+  성과는 <b>목표·전망 / 기업 자체 측정 / 설문 / 독립 검증</b>으로 별도 구분한다. Gemini Reality Check는
+  원문에서 확인된 사실이 아니라 도입 전 검증해야 할 가설이다.</div>
+
   <!-- ============ 전사 확산·운영모델 ============ -->
   <div class="section-title">전사 확산 · 운영모델</div>
 
   <div class="case" id="nippon-steel">
-    <div class="case-head"><h2>Nippon Steel</h2><span class="tag A">A</span><span class="tag owner">Claude</span></div>
+    <div class="case-head"><h2>Nippon Steel</h2><span class="tag B">B</span><span class="tag owner">Claude</span></div>
     <p class="case-sub">Microsoft 365 Copilot 단계적 전사 확산 — 철강 동종업계</p>
     <div class="stat-row">
       <div class="stat">300→4,400→11,000<span>라이선스 확대 추이</span></div>
@@ -214,11 +267,11 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
   </div>
 
   <div class="case" id="denso">
-    <div class="case-head"><h2>DENSO</h2><span class="tag A">A</span><span class="tag owner">Claude</span></div>
+    <div class="case-head"><h2>DENSO</h2><span class="tag B">B</span><span class="tag owner">Claude</span></div>
     <p class="case-sub">M365 Copilot 사무·기술직 3만 명 전사 대중화</p>
     <div class="stat-row">
       <div class="stat">300→6,000→30,000<span>단계적 확산 규모</span></div>
-      <div class="stat">이용률 99%<span>2026.3 기준</span></div>
+      <div class="stat">이용률 99%<span>2025.11 · 월 1회 이상 사용 포함</span></div>
       <div class="stat">월 12시간<span>1인당 업무시간 절감</span></div>
     </div>
     <p>DENSO(글로벌 약 16만 명 규모)는 "생성AI를 당연하게 쓰는 조직문화·업무방식 전환"을 목표로
@@ -228,11 +281,13 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
     그 결과를 근거로 다음 단계 확산을 결정하는 증거기반 단계적 확산 방식을 취했다.</p>
     <p>초기 단계 기준 1인당 월 12시간 업무시간 절감 효과가 확인됐고, 설계부문에서는 축적된 데이터에서
     새로운 인사이트를 얻어 설계 품질이 향상됐다. 2026년 3월 기준 3만 명 규모 사무직 대상 이용률
-    99%를 달성했다는 파트너사(JBS) 보고도 확인된다. "카이젠(개선)" 철학과 결합해 개인별 소폭 절감이
+    99%를 달성했다는 파트너사(JBS) 보고도 확인된다. 단, 이 수치는 한 번이라도 사용한 직원을 포함하며
+    활용 깊이는 측정하지 않은 지표다. "카이젠(개선)" 철학과 결합해 개인별 소폭 절감이
     조직 전체로 누적되는 문화 조성을 강조한다.</p>
     <p><b>세아제강 관점</b>: 원 문서 후보 업무 Pool 전반(회의요약, 자료번역, 정보검색 등 범용 사무생산성)과
     대응한다. "이용률 99%"는 단순 라이선스 배포가 아니라 실제 정착에 성공한 드문 사례로, 세아제강이
-    "도입 후 방치" 리스크를 피하는 데 참고할 만한 확산 방법론이다. 자동차부품 제조업이라는 업종
+    "도입 후 방치" 리스크를 피하는 데 참고할 만한 확산 방법론이다. 다만 99%를 고활용률로 해석하지 말고
+    빈도·업무별 사용률을 별도 측정해야 한다. 자동차부품 제조업이라는 업종
     유사성(세아제강과 같은 전통 제조업 관리부문 구조)이 있어 철강 이외 산업 참고사례 중 관련성이
     가장 높다.</p>
     <div class="source-list">
@@ -242,7 +297,7 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
   </div>
 
   <div class="case" id="ntt-docomo">
-    <div class="case-head"><h2>NTT Docomo</h2><span class="tag A">A</span><span class="tag owner">Claude</span></div>
+    <div class="case-head"><h2>NTT Docomo</h2><span class="tag B">B</span><span class="tag owner">Claude</span></div>
     <p class="case-sub">M365 Copilot 전사확산 — KPI 사전설계형 운영모델</p>
     <div class="stat-row">
       <div class="stat">26,700<span>라이선스 전사배포</span></div>
@@ -266,7 +321,7 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
   </div>
 
   <div class="case" id="toshiba">
-    <div class="case-head"><h2>Toshiba</h2><span class="tag A">A</span><span class="tag owner">Claude</span></div>
+    <div class="case-head"><h2>Toshiba</h2><span class="tag B">B</span><span class="tag owner">Claude</span></div>
     <p class="case-sub">개인 생산성 → 부서 Process 생산성 전환</p>
     <div class="stat-row">
       <div class="stat">10,000명<span>Copilot 배포 대상</span></div>
@@ -329,7 +384,7 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
     연계하여, 직원들의 자연어 질문에 사내 규정을 대조해 즉시 답변을 제공하고 단순 반복 행정 문의
     업무를 축소하는 것을 목표로 한다고 발표했다.</p>
     <div class="critique">
-      <div class="label">Gemini 현실 검증</div>
+      <div class="label">Gemini 검증 가설 · 원문에서 확인된 사실 아님</div>
       <ol>
         <li><b>사내 폐쇄형 인프라의 성능 한계와 GPU 장비 장벽</b> — 데이터·기밀 유출 방지를 위해 사내
         전용으로 튜닝된 소형 오픈소스 언어모델(sLLM)은 GPT-4o나 Gemini 1.5 Pro 같은 초거대 퍼블릭
@@ -389,12 +444,13 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
 
   <div class="case" id="tata-invoice">
     <div class="case-head"><h2>Tata Steel — Invoice·GST 분류</h2><span class="tag A">A</span><span class="tag owner">Claude</span></div>
-    <p>Back-office 전담 Agent 군이 Invoice 처리(자동 데이터 추출·검증)와 GST(인도 재화용역세)
-    공제/불공제 분류를 자동 수행한다. 재무/세무팀의 반복적 문서 처리·판단 업무를 대체한다.</p>
+    <p>공식 발표는 Back-office Agent 군이 지능형 Invoice 처리와 GST(인도 재화용역세) 공제/불공제
+    분류를 지원한다고 설명한다. 자동 데이터 추출·검증의 세부 방식, 처리량, 정확도, 시간 절감폭은
+    공개하지 않았다.</p>
     <p><b>세아제강 관점</b>: 후보업무 Pool "재무·회계 – Invoice 검증" 항목과 정확히 대응하며,
     "Compare/Check" 패턴 — Dow의 Freight Invoice 검증 사례와 유사한 축으로, 철강 대기업의 또 다른
     레퍼런스라는 점에서 교차 검증 가치가 있다. AI Level은 L3(워크플로우 처리 참여)로 단순 검색이
-    아니라 실제 분류·판단까지 수행한다.</p>
+    아니라 워크플로우 일부에 참여하는 방향이다. 다만 실제 자동집행 범위는 추가 확인이 필요하다.</p>
     <a class="source" href="https://www.tatasteel.com/newsroom/press-releases/india/2026/tata-steel-partners-with-google-cloud-to-deploy-a-unified-agentic-ai-across-its-global-value-chain/" target="_blank" rel="noopener">Tata Steel 공식 뉴스룸</a>
   </div>
 
@@ -433,13 +489,13 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
     운영모델 벤치마킹 관점에서 가치가 크다. 세아제강처럼 개발인력이 제한적인 제조업 관리부문에 특히
     시사점이 있다(비개발자 Agent 제작).</p>
     <div class="critique">
-      <div class="label">Gemini 현실 검증 — "300개 Agent"의 실체</div>
+      <div class="label">Gemini 검증 가설 · Tata Steel에서 실제 발생했다고 확인된 사실 아님</div>
       <ol>
-        <li><b>'300개 에이전트'의 거품</b> — 단 9개월 만에 300개의 에이전트를 양산했다는 것은 이들의
-        95% 이상이 데이터베이스나 ERP 시스템에 직접 명령을 내리고 실시간 피드백을 주는 자율 집행형
-        에이전트(L3~L4)가 아니라는 것을 의미한다. 현업 부서에서 템플릿 형태로 제공된 프롬프트와
+        <li><b>'300개 에이전트'의 수준 검증 필요</b> — 단 9개월 만에 300개의 에이전트를 배포했으므로,
+        각 Agent가 데이터베이스나 ERP에 명령을 내리는 자율 집행형(L3~L4)인지 단순 검색·응답형(L2)인지
+        별도 분류가 필요하다. 일부는 현업 부서에서 템플릿 형태로 제공된 프롬프트와
         사내 매뉴얼 PDF 몇 장을 임베딩하여 만든 단순 특화형 검색 챗봇(L2) 수준의 결과물일 가능성이
-        매우 높다.</li>
+        있을 수 있으나 공개자료만으로 그 비중을 확인할 수 없다.</li>
         <li><b>토큰 비용과 API 가버넌스의 누수</b> — 현업 실무자 전체가 로우코드 플랫폼(ZEN AI)을 통해
         무분별하게 에이전트를 조립해 테스트하면, 시스템 호출 비용(LLM Token Cost)이 기하급수적으로
         폭증한다. 에이전트의 오출력(Hallucination)으로 잘못된 세금 코드가 매핑되는 등 기계적 실수를
@@ -476,11 +532,11 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
   <div class="section-title">영업</div>
 
   <div class="case" id="fujitsu">
-    <div class="case-head"><h2>Fujitsu</h2><span class="tag A">A</span><span class="tag owner">Claude</span></div>
+    <div class="case-head"><h2>Fujitsu</h2><span class="tag B">B</span><span class="tag owner">Claude</span></div>
     <p class="case-sub">Kozuchi AI Agent — 영업 제안서 자동생성</p>
     <div class="stat-row">
       <div class="stat">67%↑<span>영업 생산성</span></div>
-      <div class="stat">3.5만 명+<span>적용 대상</span></div>
+      <div class="stat">약 3.8만 명<span>관련 AI 도구 적용 기반</span></div>
     </div>
     <p>Fujitsu 영업 조직은 방대한 제품 포트폴리오와 사내 곳곳에 흩어진 전문지식 때문에, 특히 신입
     영업사원이 제안서를 작성하는 데 반복적·수작업적 시간을 과도하게 썼다. Azure AI Foundry의
@@ -536,12 +592,13 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
   <div class="case" id="totalenergies">
     <div class="case-head"><h2>TotalEnergies</h2><span class="tag B">B</span><span class="tag owner">Gemini(deep dive)</span></div>
     <p class="case-sub">'BuyerCompanion' — 소액구매 자동 규격화</p>
-    <div class="stat-row"><div class="stat">10%↓<span>조달비용 (홍보자료 수치)</span></div></div>
+    <div class="stat-row"><div class="stat">10%↓<span>특정 구매 예상치 · 실측 아님</span></div></div>
     <p>TotalEnergies는 구매 에이전트 'BuyerCompanion'을 배포하여 글로벌 15,000명 임직원의 5만 유로
     이하 소액 조달 업무 시 규격을 자동 구조화하고 기존 마스터 단가 계약을 자율 체크함으로써, 구매
-    리드타임을 축소하고 조달 비용의 10%를 절감했다고 발표했다.</p>
+    리드타임을 축소하고 특정 구매에서 조달 비용 10%를 절감할 수 있을 것으로 예상한다고 발표했다.
+    프랑스에서 운영 중이나 실측 절감액은 공개되지 않았고, 15,000명은 향후 지원 가능 규모다.</p>
     <div class="critique">
-      <div class="label">Gemini 현실 검증</div>
+      <div class="label">Gemini 검증 가설 · 원문에서 확인된 사실 아님</div>
       <ol>
         <li><b>임직원의 챗봇 UI 혐오와 극도의 귀찮음</b> — 소액 구매가 발생하는 현업 임직원은 구매
         업무가 본업이 아니다. AI 비서 채팅창에 품목 스펙을 장황하게 타이핑하는 과정 자체가 시간
@@ -572,12 +629,12 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
   <div class="case" id="tesa">
     <div class="case-head"><h2>tesa</h2><span class="tag B">B</span><span class="tag owner">Gemini(deep dive)</span></div>
     <p class="case-sub">Supply Risk Agent — 실시간 리스크 감시</p>
-    <div class="stat-row"><div class="stat">11개 공장<span>글로벌 생산공장 대상</span></div></div>
+    <div class="stat-row"><div class="stat">11개 생산거점<span>회사 규모 · Agent 적용 공장 수 미공개</span></div></div>
     <p>tesa SE는 공급사 인근 기후 이변, 지정학 위기, 공급업체 부도 등 글로벌 리스크 뉴스를 실시간으로
-    자동 감시하고 알림을 쏘아주는 'Supply Risk Agent'를 구축하여, 11개 글로벌 생산 공장의 중단
-    리스크를 선제 방어했다고 발표했다.</p>
+    자동 감시하고 알림을 쏘아주는 'Supply Risk Agent'를 구축했다고 발표했다. 회사는 11개 생산거점을
+    운영하지만 Agent가 11개 전 공장에 배포됐다는 명시는 원문에 없다.</p>
     <div class="critique">
-      <div class="label">Gemini 현실 검증</div>
+      <div class="label">Gemini 검증 가설 · 원문에서 확인된 사실 아님</div>
       <ol>
         <li><b>'늑대소년 신드롬'과 알림 피로</b> — 전 세계 뉴스·기상·금융 리스크를 모니터링하는 AI는
         매일 엄청난 노이즈 데이터를 수집한다. 국지성 폭우나 경미한 파업 뉴스에도 기계적으로 알림을
@@ -613,14 +670,15 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
     <div class="case-head"><h2>Dow</h2><span class="tag B">B</span><span class="tag owner">Gemini(deep dive)</span></div>
     <p class="case-sub">Freight Invoice 검증 자동화</p>
     <div class="stat-row">
-      <div class="stat">4,000건/일<span>글로벌 출하 인보이스</span></div>
-      <div class="stat">수백만 달러<span>연간 절감 (홍보자료 수치)</span></div>
+      <div class="stat">처리량 미공개<span>연결 원문에 4,000건/일 근거 없음</span></div>
+      <div class="stat">수백만 달러<span>첫해 예상 절감 · 실측 아님</span></div>
     </div>
-    <p>Dow는 매일 발생하는 4,000건의 글로벌 출하 인보이스 중 전자 데이터 연동이 안 되는 20%의 무작위
-    PDF 송장을 Copilot Studio 기반 에이전트로 48시간 만에 구축하여 단 수 분 만에 검증하고 연간
-    수백만 달러를 절감했다고 발표했다.</p>
+    <p>Dow는 운임률·미지급 비용·Invoice 금액을 협상조건과 대조해 불일치를 표시하고, 이메일로 들어오는
+    PDF Invoice의 불일치를 자동 탐지·라우팅하는 두 Agent를 운영한다고 발표했다. 연결된 원문은
+    일 4,000건, PDF 20%, 48시간 구축을 제시하지 않으므로 해당 수치는 제외했다. 수백만 달러도
+    첫해 예상 절감액이며 실측 성과가 아니다.</p>
     <div class="critique">
-      <div class="label">Gemini 현실 검증</div>
+      <div class="label">Gemini 검증 가설 · 원문에서 확인된 사실 아님</div>
       <ol>
         <li><b>'48시간 만에 구현'이라는 데모의 덫</b> — 이는 정형화된 깨끗한 PDF 몇 장을 대상으로 한
         일회성 데모일 뿐이다. 실제 글로벌 운송사·통관사가 보내는 PDF는 수백 가지 포맷과 손글씨
@@ -659,14 +717,15 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
   <div class="section-title">경영기획 · 전사 사무생산성</div>
 
   <div class="case" id="panasonic">
-    <div class="case-head"><h2>Panasonic Connect</h2><span class="tag A">A</span><span class="tag owner">Gemini(deep dive)</span></div>
+    <div class="case-head"><h2>Panasonic Connect</h2><span class="tag B">B</span><span class="tag owner">Gemini(deep dive)</span></div>
     <p class="case-sub">데이터 레이크하우스 + LLM — 계약·수주 문서 자동취합</p>
-    <div class="stat-row"><div class="stat">2주일→2~3시간<span>업무 리드타임 98%↓</span></div></div>
-    <p>Panasonic Connect는 데이터 레이크하우스와 LLM을 결합하여, 기존 사무직 및 엔지니어링 팀이
-    대량의 비정형 계약서 및 수주 문서를 취합하고 SAP ERP에 수동 전송하는 데 2주일씩 걸리던 수작업
-    프로세스를 단 2~3시간 만에 완료(업무 리드타임 98% 단축)하는 데 성공했다고 발표했다.</p>
+    <div class="stat-row"><div class="stat">2주일→2~3시간<span>1만건 계약·MSA 처리 · 환산 시 약 98%↓</span></div></div>
+    <p>Panasonic은 SharePoint의 공급업체 계약·MSA 1만 건에서 만료일 등 주요 필드를 추출하는 작업을
+    Databricks SharePoint connector, serverless compute, Document Intelligence로 자동화해 기존 2주에서
+    2~3시간으로 단축했다고 발표했다. 약 98%는 두 기간을 바탕으로 환산한 값이며 원문 표기 수치가 아니다.
+    SAP 데이터 수집 성과는 별도 사례(최대 테이블 2시간→2분)로 계약문서 처리와 구분해야 한다.</p>
     <div class="critique">
-      <div class="label">Gemini 현실 검증</div>
+      <div class="label">Gemini 검증 가설 · 원문에서 확인된 사실 아님</div>
       <ol>
         <li><b>'LLM 만능주의'가 감추고 있는 거대한 인프라 비용</b> — 많은 기업이 "GPT나 Gemini
         라이선스만 사면 우리도 2시간 만에 정리되겠구나"라고 착각한다. 2주를 2시간으로 압축한 진짜
@@ -707,10 +766,12 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
       <div class="stat">81%<span>생산성 향상 응답</span></div>
       <div class="stat">86%<span>업무품질 향상 응답</span></div>
     </div>
-    <p>이메일/회의 준비 등 일반 사무업무에 M365 Copilot과 Viva를 적용해, 세아제강 L1 사례와 가장
-    유사한 형태의 범용 사무생산성 개선을 이뤘다.</p>
+    <p>이메일·회의 준비 등 일반 사무업무에 M365 Copilot과 Viva를 적용했다. 초기 사용자 설문에서
+    주 2시간 절감, 생산성 향상 81%, 업무품질 향상 86%가 보고됐으며 월간 Copilot 이용률은 90% 이상이다.
+    모두 고객사례 내 자체 보고·설문 수치로 독립 측정 결과는 아니다.</p>
     <p><b>세아제강 관점</b>: 가장 기본적인 "L1 사무생산성" 대표 사례 — 화려하지 않지만 세아제강이
-    가장 부담 없이 시작할 수 있는 수준의 사례다.</p>
+    가장 부담 없이 시작할 수 있는 수준의 사례다. 다만 설문 응답과 실제 로그 기반 절감시간을 분리하고,
+    회의요약·메일초안 등 업무별 사용량을 함께 측정해야 한다.</p>
     <a class="source" href="https://www.microsoft.com/en/customers/story/19797-campari-microsoft-viva" target="_blank" rel="noopener">Microsoft 공식 고객 사례</a>
   </div>
 
@@ -722,7 +783,7 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
     <div class="case-head"><h2>ABB Group</h2><span class="tag B">B</span><span class="tag owner">Claude(batch1)</span></div>
     <p class="case-sub">Genix Copilot — 탄소배출·설비상태 질의응답</p>
     <div class="stat-row">
-      <div class="stat">O&M 40%↓</div><div class="stat">생산효율 30%↑</div><div class="stat">서비스콜 80%↓</div>
+      <div class="stat">O&M 최대 35%↓</div><div class="stat">생산효율 30%↑</div><div class="stat">서비스콜 약 80%↓</div>
     </div>
     <p>Azure OpenAI Service 기반, 기존 Genix 산업 IoT/분석 스위트에 통합. 예시 질의: "전 공장의
     탄소배출 현황은?" → Copilot이 배출 한도 임박 공장을 식별하고 대응 방안 제시. 단순 검색을 넘어
