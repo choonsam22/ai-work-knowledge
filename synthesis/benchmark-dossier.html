@@ -119,6 +119,39 @@ table.long td.co{font-weight:700; white-space:nowrap;}
 table.long tr.done td{color:var(--sub);}
 
 footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
+
+/* ===== 2026 decision-first redesign ===== */
+:root{
+  --bg:#f3f1ec; --panel:#ffffff; --panel2:#f7f6f2; --line:#d8d4ca;
+  --ink:#172027; --sub:#667078; --copper:#a44d2c; --steel:#315d78;
+  --a:#18704b; --b:#8a6510; --c:#a13d34; --critique-bg:#fff4ed;
+  --critique-line:#dc9b76; --alt-bg:#edf6f1; --alt-line:#7eae95;
+}
+body{background:var(--bg);font-size:15px;}
+.layout{display:block;}
+.toc{position:sticky;z-index:20;top:0;width:100%;height:auto;overflow:visible;padding:.7rem clamp(1rem,4vw,4rem);border:0;border-bottom:1px solid var(--line);background:rgba(255,255,255,.96);display:flex;align-items:center;gap:1.5rem;}
+.toc h1{font-size:.95rem;white-space:nowrap;margin:0}.toc .meta{margin:0;font-size:.65rem;white-space:nowrap}.toc-group{display:none;margin:0}.toc-group:first-of-type{display:flex;gap:.3rem;margin-left:auto}.toc-group:first-of-type .g-title{display:none}.toc-group:first-of-type a{font-size:.78rem;color:var(--ink);border:1px solid var(--line);padding:.35rem .65rem;background:#fff}
+main{max-width:1240px;margin:0 auto;padding:0 clamp(1rem,4vw,4rem) 7rem;}
+.page-head{margin:0 -4rem 0;padding:5.5rem 4rem 4.4rem;background:#15242d;color:#fff;border:0;position:relative;overflow:hidden}
+.page-head:after{content:"25 CASES / 40 SCREENED";position:absolute;right:4rem;top:3.7rem;font:700 clamp(2.2rem,6vw,5rem)/1 var(--mono);color:rgba(255,255,255,.055);white-space:nowrap}
+.page-head h1{font-size:clamp(2.3rem,5vw,4.8rem);line-height:1.03;letter-spacing:-.055em;max-width:760px;margin:0 0 1.4rem}.page-head p{max-width:800px;color:#c7d0d5;font-size:1rem;line-height:1.8}
+.section-title{font-family:var(--sans);text-transform:none;letter-spacing:-.02em;font-size:clamp(1.5rem,2.5vw,2.3rem);font-weight:800;color:var(--ink);margin:5rem 0 1.5rem;padding:0;border:0}
+#executive{margin-top:4rem}.notice{border-radius:0;border-left:5px solid var(--copper);background:#fff;padding:1.25rem 1.4rem;color:var(--ink);font-size:1.02rem}
+.decision-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:1.4rem 0}.decision-card{border:0;border-radius:0;background:#fff;padding:1.45rem}.decision-card h3{font-size:1rem;color:var(--steel);margin:0 0 .45rem}.decision-card p{margin:0}
+table.priority{background:#fff;border:1px solid var(--line);font-size:.9rem}table.priority th{background:#15242d;color:#fff;padding:.8rem}table.priority td{padding:.85rem;border-bottom:1px solid var(--line)}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.flow .step{background:#fff;border:0;border-radius:0;padding:1.15rem;text-align:left}.flow .arrow{display:none}
+.decision-cockpit{display:grid;grid-template-columns:1.2fr .8fr;gap:1.2rem;margin:2rem 0 5rem}.cockpit-panel{background:#fff;border:1px solid var(--line);padding:1.5rem}.cockpit-panel h2{font-size:1.1rem;margin:0 0 1rem}.signal{display:grid;grid-template-columns:84px 1fr;gap:1rem;padding:.85rem 0;border-top:1px solid var(--line)}.signal:first-of-type{border-top:0}.signal strong{color:var(--steel)}.signal p{margin:0;color:var(--sub)}
+.kill-list{margin:0;padding:0;list-style:none}.kill-list li{padding:.8rem 0;border-top:1px solid var(--line)}.kill-list li:first-child{border:0}.kill-list b{color:var(--copper)}
+.evidence-model{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:1rem 0 4rem}.evidence-model article{background:#fff;padding:1.25rem}.evidence-model .grade{font:800 1.5rem var(--mono)}.evidence-model p{margin:.4rem 0 0;color:var(--sub);font-size:.86rem}
+.source-sections>.section-title{display:none}.source-sections>.case{display:none}
+.evidence-lab{margin-top:5rem}.evidence-head{display:flex;justify-content:space-between;gap:2rem;align-items:end;margin-bottom:1.2rem}.evidence-head h2{font-size:clamp(1.8rem,3vw,2.7rem);margin:0}.evidence-head p{max-width:600px;color:var(--sub);margin:0}
+.filters{display:grid;grid-template-columns:1fr auto;gap:.7rem;margin:1rem 0 1.4rem}.filters input{width:100%;padding:.85rem 1rem;border:1px solid var(--line);background:#fff;font:inherit}.filter-buttons{display:flex;gap:.35rem}.filter-buttons button{border:1px solid var(--line);background:#fff;padding:.7rem .85rem;cursor:pointer;font-weight:700}.filter-buttons button.active{background:#15242d;color:#fff;border-color:#15242d}
+#evidence-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}.evidence-item{background:#fff;border:1px solid var(--line)}.evidence-item[open]{grid-column:1/-1}.evidence-item summary{list-style:none;cursor:pointer;padding:1rem 1.15rem;display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:.8rem}.evidence-item summary::-webkit-details-marker{display:none}.evidence-item summary:after{content:"＋";color:var(--sub);font-size:1.2rem}.evidence-item[open] summary:after{content:"−"}.evidence-item summary .badge{font:800 .72rem var(--mono);border:1px solid currentColor;border-radius:99px;padding:.15rem .35rem;text-align:center}.evidence-item summary b{font-size:1rem}.evidence-item summary small{display:block;color:var(--sub);font-weight:400;margin-top:.15rem}.evidence-body{border-top:1px solid var(--line);padding:1.25rem 1.4rem}.evidence-body .case{display:block!important;border:0;padding:0;margin:0;box-shadow:none}.evidence-body .case-head{display:none}.evidence-body .source{background:var(--panel2)}
+.metric-type{display:inline-block!important;margin:.35rem 0 0!important;padding:.12rem .38rem;border:1px solid var(--line);border-radius:2px;color:var(--sub)!important;font:700 .62rem var(--mono)!important;letter-spacing:.02em}.metric-type.target{color:var(--copper)!important;border-color:#d8a58f}.metric-type.survey{color:var(--b)!important}
+.result-count{color:var(--sub);font:700 .76rem var(--mono);margin:.5rem 0}.longlist-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);padding:0 1rem}table.long{min-width:780px}
+footer{border-top:1px solid var(--line);margin-top:5rem}
+@media(max-width:760px){.toc .meta{display:none}.toc-group:first-of-type{display:none}.page-head{margin:0 -1rem;padding:4rem 1.2rem 3rem}.page-head:after{display:none}.decision-grid,.decision-cockpit,.evidence-model,#evidence-grid,.flow{grid-template-columns:1fr}.evidence-item[open]{grid-column:auto}.filters{grid-template-columns:1fr}.filter-buttons{overflow-x:auto}.evidence-head{display:block}}
+@media print{.toc,.filters{display:none}.page-head{margin:0;padding:2rem;color:#000;background:#fff;border-bottom:2px solid #000}.page-head p{color:#333}.evidence-item{break-inside:avoid}.evidence-item summary:after{display:none}body{background:#fff}main{max-width:none;padding:0}.decision-cockpit{break-inside:avoid}}
 </style>
 </head>
 <body>
@@ -238,6 +271,36 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
   <div class="notice">등급은 출처 유형만 나타낸다. A라도 기업 자체 발표일 수 있으며 독립 검증을 의미하지 않는다.
   성과는 <b>목표·전망 / 기업 자체 측정 / 설문 / 독립 검증</b>으로 별도 구분한다. Gemini Reality Check는
   원문에서 확인된 사실이 아니라 도입 전 검증해야 할 가설이다.</div>
+
+  <div class="decision-cockpit" aria-label="경영 의사결정 보드">
+    <section class="cockpit-panel">
+      <h2>이번 회의에서 결정할 4가지</h2>
+      <div class="signal"><strong>범위</strong><p>규정 문의, Invoice 검증, 결산·KPI 취합 중 2~3개 파일럿을 승인한다.</p></div>
+      <div class="signal"><strong>측정</strong><p>도입 전에 처리시간·오류·예외·비용 기준선을 먼저 고정한다.</p></div>
+      <div class="signal"><strong>통제</strong><p>근거 링크, 권한, 승인, 감사로그가 없는 Agent는 운영 배포하지 않는다.</p></div>
+      <div class="signal"><strong>Gate</strong><p>12주 뒤 확대·보완·중단을 사용량이 아니라 실측 사업성과로 결정한다.</p></div>
+    </section>
+    <section class="cockpit-panel">
+      <h2>복제하면 안 되는 성공담</h2>
+      <ul class="kill-list">
+        <li><b>POSCO</b> — 폐쇄형 인프라의 총비용·활용률 미확인</li>
+        <li><b>Dow</b> — OCR 오류율과 예외처리 비용 미공개</li>
+        <li><b>TotalEnergies</b> — 별도 UI의 UX 이탈 가능성</li>
+        <li><b>tesa</b> — 무차별 알림으로 인한 피로 위험</li>
+        <li><b>Panasonic</b> — 데이터 인프라 비용 대비 편익 검증 필요</li>
+        <li><b>Tata ZEN</b> — 현업 자유제작 확대 시 거버넌스 붕괴 위험</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="section-title">증거를 읽는 두 개의 축</div>
+  <div class="evidence-model">
+    <article><span class="grade A">A</span><b> 기업 공식 1차 출처</b><p>사실 확인에는 가장 유리하지만 기업 자체 발표이므로 독립 검증과는 다르다.</p></article>
+    <article><span class="grade B">B</span><b> 솔루션사 고객 사례</b><p>구현 맥락은 구체적이나 공급자 관점의 선택·과장이 개입될 수 있다.</p></article>
+    <article><span class="grade C">C</span><b> 언론·2차 자료</b><p>탐색용 근거다. 투자 판단 전에 공식 원문과 측정 정의를 재확인한다.</p></article>
+  </div>
+
+  <div class="source-sections">
 
   <!-- ============ 전사 확산·운영모델 ============ -->
   <div class="section-title">전사 확산 · 운영모델</div>
@@ -843,12 +906,21 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
   </div>
   </div>
 
+  </div>
+
+  <section class="evidence-lab" id="evidence">
+    <div class="evidence-head"><div><div class="g-title">EVIDENCE REGISTER</div><h2>25건 증거대장</h2></div><p>기업명·업무·키워드로 검색하거나 출처 등급으로 거르십시오. 항목을 열면 정량 수치, 해석, 세아제강 관점, 원문 링크가 모두 표시됩니다.</p></div>
+    <div class="filters"><input id="case-search" type="search" placeholder="예: Invoice, 철강, 영업, 거버넌스" aria-label="사례 검색"><div class="filter-buttons" aria-label="등급 필터"><button class="active" data-grade="ALL">전체</button><button data-grade="A">A</button><button data-grade="B">B</button><button data-grade="C">C</button></div></div>
+    <div class="result-count" id="result-count">25 CASES</div>
+    <div id="evidence-grid"></div>
+  </section>
+
   <!-- ============ Long list ============ -->
   <div class="section-title" id="longlist">1차 스크리닝 40개사 롱리스트</div>
   <p style="color:var(--sub); font-size:.88rem;">위 25건으로 이어지지 않은 나머지 항목. 5개사는
   출처 링크를 확보했고, 23개사는 회사명·업무영역만 기록된 1차 스크리닝 단계라 링크를 임의로
   붙이지 않고 "미수집"으로 표시했다.</p>
-  <table class="long">
+  <div class="longlist-wrap"><table class="long">
     <tr><th>기업</th><th>Benchmark Point</th><th>출처</th></tr>
     <tr class="done"><td class="co">JFE Shoji</td><td>문서작성·정보정리·번역·Excel 등 관리업무 생성AI 활용</td><td><a href="https://www.jfe-shoji.co.jp/sustainability/diversity/" target="_blank" rel="noopener">JFE 상사 지속가능경영</a></td></tr>
     <tr class="done"><td class="co">Toyota</td><td>Office Productivity, 지식전승, 고객관계 등 전사 AI 프로그램</td><td><a href="https://global.toyota/en/newsroom/corporate/42805724.html" target="_blank" rel="noopener">Toyota Global Newsroom</a></td></tr>
@@ -878,7 +950,7 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
     <tr><td class="co">Estée Lauder</td><td>소비자/시장 Insight 수집·분석</td><td>링크 미수집</td></tr>
     <tr><td class="co">XP Inc.</td><td>내부감사 생산성 향상</td><td>링크 미수집</td></tr>
     <tr><td class="co">Capita</td><td>전사 Copilot/Agent 기반 업무시간 절감</td><td>링크 미수집</td></tr>
-  </table>
+  </table></div>
 
   <footer>
     조사: Claude(21건 종합·큐레이션) · Codex(LG전자) · Gemini agy(POSCO, Reality Check 5건) ·
@@ -886,5 +958,62 @@ footer{color:var(--sub); font-size:.78rem; text-align:center; padding:2rem 0;}
   </footer>
 </main>
 </div>
+<script>
+(() => {
+  const grid = document.querySelector('#evidence-grid');
+  const cases = [...document.querySelectorAll('.source-sections .case')];
+  const gradeOf = el => el.querySelector('.tag.A,.tag.B,.tag.C')?.textContent.trim() || 'C';
+  cases.forEach(card => {
+    const title = card.querySelector('h2')?.textContent.trim() || card.id;
+    const subtitle = card.querySelector('.case-sub')?.textContent.trim() || '상세 벤치마크';
+    const grade = gradeOf(card);
+    const details = document.createElement('details');
+    details.className = 'evidence-item';
+    details.dataset.grade = grade;
+    details.dataset.search = (title + ' ' + subtitle + ' ' + card.textContent).toLowerCase();
+    const summary = document.createElement('summary');
+    summary.innerHTML = `<span class="badge ${grade}">${grade}</span><span><b>${title}</b><small>${subtitle}</small></span>`;
+    const body = document.createElement('div');
+    body.className = 'evidence-body';
+    card.querySelectorAll('.stat').forEach(stat => {
+      const context = (stat.textContent + ' ' + (card.querySelector('.case-sub')?.textContent || '')).toLowerCase();
+      const label = document.createElement('em');
+      label.className = 'metric-type';
+      if (/목표|전망|예상|expected|planned|계획|잠재/.test(context)) {
+        label.textContent = '목표치·전망'; label.classList.add('target');
+      } else if (/설문|survey/.test(context)) {
+        label.textContent = '설문 응답치'; label.classList.add('survey');
+      } else {
+        label.textContent = '측정치·기업 발표';
+      }
+      stat.appendChild(label);
+    });
+    body.appendChild(card);
+    details.append(summary, body);
+    grid.appendChild(details);
+  });
+  document.querySelectorAll('.source-sections > .section-title').forEach(el => el.remove());
+  const search = document.querySelector('#case-search');
+  const buttons = [...document.querySelectorAll('[data-grade]')];
+  let grade = 'ALL';
+  function filter(){
+    const query = search.value.trim().toLowerCase();
+    let shown = 0;
+    document.querySelectorAll('.evidence-item').forEach(item => {
+      const visible = (grade === 'ALL' || item.dataset.grade === grade) && (!query || item.dataset.search.includes(query));
+      item.hidden = !visible;
+      if (visible) shown++;
+    });
+    document.querySelector('#result-count').textContent = `${shown} / ${cases.length} CASES`;
+  }
+  buttons.forEach(button => button.addEventListener('click', () => {
+    grade = button.dataset.grade;
+    buttons.forEach(b => b.classList.toggle('active', b === button));
+    filter();
+  }));
+  search.addEventListener('input', filter);
+  filter();
+})();
+</script>
 </body>
 </html>
