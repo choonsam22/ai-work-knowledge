@@ -1,6 +1,11 @@
 # 관리부문, AI로 무엇이 바뀌는가
 ### 국내외 AI 생산성 벤치마킹 — 세아제강 관리부문 적용 검토
 
+> **모든 출처는 [source-index.md](./source-index.md)에 빠짐없이 정리돼 있다.** 40개사
+> 롱리스트 전체, 심층조사 25건 각각의 정확한 출처 링크, 그리고 링크를 아직 확보하지 못한
+> 항목까지 "링크 미수집"으로 투명하게 표시했다. 이 문서의 각 문단에는 해당 부분의 출처를
+> 인라인 링크로 병기했다.
+
 ---
 
 ## 1. 조사 개요
@@ -56,22 +61,22 @@ Google 등)의 고객 사례 형태로 나오며, 홍보 목적이 강하다. �
 사내 "챔피언"을 임명해 우수 활용사례를 전도하게 하고, 모델 직장에 라이선스를 우선
 배포해 성공사례를 먼저 만든 뒤 확산했다. 전사에 한 번에 뿌리지 않았다. 4,400명 확대 후
 한 달간 Teams 회의 AI 메모 활용이 2만 건, 메일 요약이 4,500건 발생했고, 연간으로는
-수만 시간의 업무 효율화를 기대하고 있다(Microsoft 공식 고객 사례, 출처 신뢰도 A).
+수만 시간의 업무 효율화를 기대하고 있다([Microsoft 공식 고객 사례](https://www.microsoft.com/ja-jp/customers/story/23624-nippon-steel-corporation-microsoft-365-copilot), 출처 신뢰도 A).
 
 **DENSO**는 사무직 3만 명을 대상으로 300명→6,000명→30,000명 순으로 확산했고, 2026년 3월
 기준 이용률 99%를 달성했다. "도입은 했는데 아무도 안 쓴다"는 흔한 실패를 피한 드문
-사례다. 초기 단계에서 1인당 월 12시간의 업무시간 절감 효과가 확인됐다(Microsoft 공식
-고객 사례, A등급).
+사례다. 초기 단계에서 1인당 월 12시간의 업무시간 절감 효과가 확인됐다([Microsoft 공식
+고객 사례](https://www.microsoft.com/ja-jp/customers/story/19426-denso-corporation-microsoft-365-copilot), A등급 / [JBS 파트너사 보도](https://www.jbs.co.jp/news/2026/0312-2)로 이용률 99% 교차 확인).
 
 **Toshiba**는 Copilot 활용 로그를 Viva Insights의 업무 패턴 데이터와 결합해, "개인이
 잘 쓰는 것"을 넘어 "부서 전체의 업무 프로세스를 개선하는 것"으로 발전시켰다. 총무부서의
 직원 설문 7만 건 분석 작업이 기존 3개월에서 하루로 단축된 사례가 대표적이다. 직원 1인당
-월 5.6시간이 절감됐다(Microsoft 공식 고객 사례, A등급).
+월 5.6시간이 절감됐다([Microsoft 공식 고객 사례](https://www.microsoft.com/en/customers/story/23123-toshiba-corporation-microsoft-viva-insights), A등급).
 
 **NTT Docomo**는 26,700 라이선스를 전사 배포하면서 "1인당 월 10시간 생산성 창출"이라는
 공통 KPI를 먼저 설계한 뒤 배포했다. 신규 이용자가 1만 2천 명 포함됐음에도 배포 1개월 만에
 월간 활성 이용자(MAU) 90%를 유지했는데, 이는 KPI와 온보딩 체계를 먼저 갖춘 결과로 해석된다
-(Microsoft 공식 고객 사례, A등급).
+([Microsoft 공식 고객 사례](https://www.microsoft.com/ja-jp/customers/story/26409-ntt-docomo-microsoft-365-e5), A등급).
 
 이 네 사례가 공통적으로 말하는 것은, **전사 확산의 성패는 라이선스 수가 아니라 확산
 절차(챔피언 제도·모델 부서·사전 KPI 설계)에 달려 있다**는 점이다.
@@ -85,12 +90,12 @@ Google 등)의 고객 사례 형태로 나오며, 홍보 목적이 강하다. �
 **LG전자**는 사내 챗봇 'LGenie'를 자체 언어모델 EXAONE과 Azure/ChatGPT/Gemini 등 외부
 모델을 결합한 전사 에이전트 플랫폼으로 발전시키고 있으며, 개발·영업·SCM·구매·마케팅
 전 업무 영역을 아우르는 것을 목표로 한다. 회사는 "향후 2~3년 내 전사 생산성 30% 향상"을
-공식 목표로 제시했다(LG전자 공식 뉴스룸, A등급). 다만 이 수치는 **아직 실측된 성과가
+공식 목표로 제시했다([LG전자 공식 뉴스룸: CEO 전략 발표](https://www.lg.com/global/newsroom/news/corporate/lg-electronics-ceo-sets-strategic-direction-for-profit-driven-growth-prioritizing-speed-and-action/), A등급 / [DX 관련 보충자료](https://www.lg.com/global/newsroom/lg-story/beyond-news/dx-for-the-company-innovation-in-the-way-you-work/)). 다만 이 수치는 **아직 실측된 성과가
 아니라 목표치**이며, Codex의 검증에 따르면 사용자 수·업무별 절감시간 등 구체적인 실적은
 공개되지 않았다. 로드맵 참고용으로는 유효하지만, ROI 비교 근거로 인용해서는 안 된다.
 
 **POSCO**는 사내 폐쇄형 LLM 'P-GPT'를 인사·세무·법무 시스템과 연계해 37개 그룹사, 2만여
-명을 대상으로 서비스하고 있다고 발표했다(POSCO 공식 자료 기반, B등급). 그러나 Gemini의
+명을 대상으로 서비스하고 있다고 발표했다([포스코그룹 공식 뉴스룸](https://newsroom.posco.com/kr/%ED%8F%AC%EC%8A%A4%EC%BD%94-%EA%B2%BD%EC%98%81%EC%A7%80%EC%9B%90-gpt-%EC%A0%84%EB%A9%B4-%EC%98%A4%ED%94%88ai-%EA%B8%B0%EB%B0%98-%EC%8A%A4%EB%A7%88%ED%8A%B8%EC%9B%8C%ED%81%AC-%EC%8B%9C/), B등급). 그러나 Gemini의
 재검증 결과, 이 방식에는 세 가지 현실적 장벽이 있다. 첫째, 사내 폐쇄형 소형 언어모델은
 성능이 상용 초거대 모델에 못 미쳐, 이를 보완하려면 수십억 원대의 GPU 서버 투자가 지속적으로
 필요하다. 둘째, 세무·법무처럼 오류 하나가 과징금이나 소송으로 이어질 수 있는 영역에서
@@ -112,25 +117,25 @@ AI가 낡은 규정을 인용하는 환각(hallucination) 위험이 있다. 셋�
 **Fujitsu**는 멀티에이전트 오케스트레이션(Kozuchi Composite AI)으로 사내에 흩어진 지식을
 종합해 고객 맞춤 제안서를 자동 생성하는 시스템을 구축했다. 신입 영업사원에게는 제품정보와
 전략 가이드를 제공하는 지식검색 도구 역할도 겸한다. 그 결과 영업 생산성이 67% 향상됐고,
-적용 대상은 3만 5천 명 이상이다(Microsoft 공식 고객 사례, A등급) — 조사한 사례 중 가장
+적용 대상은 3만 5천 명 이상이다([Microsoft 공식 고객 사례](https://www.microsoft.com/en/customers/story/21885-fujitsu-azure-ai-foundry) / [Semantic Kernel 기술블로그](https://devblogs.microsoft.com/semantic-kernel/customer-case-study-fujitsu-kozuchi-ai-agent-powered-by-semantic-kernel/), A등급) — 조사한 사례 중 가장
 구체적인 수치다. 다만 Fujitsu는 자체 AI 개발 역량을 가진 IT 기업이므로, 세아제강이 이
 구조를 그대로 이식하기보다는 "제안서 초안 자동생성 + 사내 지식검색" 기능만 상용 도구로
 단순화하는 접근이 현실적이다.
 
 **thyssenkrupp Schulte**는 철강 유통 자회사로, Dynamics 365 Sales와 M365 Copilot을 결합해
-영업 반복업무를 줄였다(Microsoft 공식 고객 사례, B등급). 구체적인 정량 수치는 공개되지
+영업 반복업무를 줄였다([Microsoft 공식 고객 사례](https://www.microsoft.com/en/customers/story/18919-thyssenkrupp-schulte-dynamics-365-sales), B등급). 구체적인 정량 수치는 공개되지
 않았지만, 철강 유통업이라는 업종 특성이 세아제강과 가장 유사하다는 점에서 참고가치가 높다.
 
 ### 구매·공급망
 
 **TotalEnergies**는 'BuyerCompanion' Agent를 배포해 5만 유로 이하 소액구매의 규격을 자동
 구조화하고 기존 단가계약을 자동으로 대조하도록 했다. 조달비용 10% 절감을 발표했다
-(Microsoft 공식 자료, B등급). 그러나 Gemini는 임직원들이 챗봇 UI 자체를 귀찮아해 이탈하는
+([Microsoft 공식 고객 사례](https://www.microsoft.com/en/customers/story/25505-totalenergies-agents), B등급). 그러나 Gemini는 임직원들이 챗봇 UI 자체를 귀찮아해 이탈하는
 현상을 지적하며, 세아제강이 유사한 시스템을 만든다면 챗봇 포털 로그인 방식보다 기존 업무
 흐름(메일 등) 안에 자연스럽게 개입하는 방식이 현실적이라고 조언한다.
 
 **tesa**는 뉴스·기후 정보를 실시간으로 감시해 11개 글로벌 생산공장의 공급망 리스크를
-선제적으로 알리는 'Supply Risk Agent'를 구축했다(Microsoft 공식 사례, B등급). Gemini는
+선제적으로 알리는 'Supply Risk Agent'를 구축했다([Microsoft 공식 고객 사례](https://www.microsoft.com/en/customers/story/25507-tesa-se-microsoft-copilot), B등급). Gemini는
 이런 실시간 알림 시스템이 오탐지가 반복되면 "늑대소년 신드롬"처럼 직원들이 알림을
 무시하게 되는 알림 피로(alert fatigue) 위험이 있다고 지적하며, 알림의 정밀도 관리가
 성패를 가른다고 짚었다.
@@ -139,11 +144,11 @@ AI가 낡은 규정을 인용하는 환각(hallucination) 위험이 있다. 셋�
 
 **Dow**는 매일 발생하는 4,000건의 출하 인보이스 중 시스템 연동이 안 되는 20%의 비정형
 PDF 송장을 Copilot Studio 기반 에이전트로 자동 검증해 연간 수백만 달러를 절감했다고
-발표했다(Microsoft 공식 사례, B등급). Gemini는 OCR과 LLM 파싱 과정에서 발생할 수 있는
+발표했다([Microsoft 공식 고객 사례](https://www.microsoft.com/en/customers/story/19829-dow-microsoft-365-copilot), B등급). Gemini는 OCR과 LLM 파싱 과정에서 발생할 수 있는
 오류율과 오탐 알람이 실제 운영 부담이 될 수 있다고 지적한다.
 
 **Tata Steel**은 Google Cloud와 협력한 Agentic AI 전략의 일환으로 Invoice 처리와 GST
-세금분류를 자동화하는 Agent를 운영 중이다(공식 뉴스룸, A등급). 정성적 효과 위주로
+세금분류를 자동화하는 Agent를 운영 중이다([Tata Steel 공식 뉴스룸](https://www.tatasteel.com/newsroom/press-releases/india/2026/tata-steel-partners-with-google-cloud-to-deploy-a-unified-agentic-ai-across-its-global-value-chain/), A등급). 정성적 효과 위주로
 소개돼 있으나, Dow 사례와 짝을 이루어 "Invoice 자동화"가 재무·회계 영역에서 가장
 보편적인 첫 적용 대상임을 보여준다.
 
@@ -151,18 +156,18 @@ PDF 송장을 Copilot Studio 기반 에이전트로 자동 검증해 연간 수�
 
 **Panasonic Connect**는 데이터 레이크하우스와 LLM을 결합해, 비정형 계약·수주 문서를
 취합하고 SAP ERP에 수동으로 입력하던 프로세스를 2주일에서 2~3시간으로 단축했다(98%
-단축, Databricks·Microsoft 공식 사례). Gemini는 이 드라마틱한 성과 뒤에는 데이터
+단축, [Databricks 공식 고객 사례](https://www.databricks.com/customers/panasonic/lakeflow-connect), A등급). Gemini는 이 드라마틱한 성과 뒤에는 데이터
 레이크하우스 구축이라는 상당한 선행 인프라 투자가 숨어 있다는 점을 짚으며, 이 비용을
 감안하지 않고 성과만 벤치마킹하면 오판할 수 있다고 경고한다.
 
 **Campari Group**은 M365 Copilot과 Viva를 활용해 이메일 작성, 회의 준비 등 가장 기본적인
-사무생산성을 개선했다. 주당 2시간 절감, 생산성 향상 응답 81%를 기록했다(Microsoft 공식
-사례, B등급). 화려하지 않지만 세아제강이 가장 부담 없이 시작할 수 있는 수준의 사례다.
+사무생산성을 개선했다. 주당 2시간 절감, 생산성 향상 응답 81%를 기록했다([Microsoft 공식
+고객 사례](https://www.microsoft.com/en/customers/story/19797-campari-microsoft-viva), B등급). 화려하지 않지만 세아제강이 가장 부담 없이 시작할 수 있는 수준의 사례다.
 
 ### 인사·총무 / 법무·컴플라이언스
 
 **Tata Steel**의 HR 헬프데스크 Digital Assistant(TDA)는 반복적인 직원 문의의 70% 이상을
-사람 개입 없이 자동으로 해결한다(공식 뉴스룸, A등급) — 인사·총무 영역에서 조사한 사례 중
+사람 개입 없이 자동으로 해결한다([Tata Steel 공식 뉴스룸](https://www.tatasteel.com/newsroom/press-releases/india/2026/tata-steel-partners-with-google-cloud-to-deploy-a-unified-agentic-ai-across-its-global-value-chain/), A등급) — 인사·총무 영역에서 조사한 사례 중
 수치가 가장 명확하다. 같은 회사의 Contract Analysis Agent는 계약 조항의 리스크를
 분석하는 역할을 하지만(B등급), 법무 영역에서는 이 사례가 유일해 근거가 상대적으로 약하다는
 한계가 있다.
@@ -227,15 +232,19 @@ Agent가 아니라 단순 검색 챗봇 수준일 가능성이 높고, 현업이
 
 ## 부록 안내
 
-본문에 포함하지 않은 9건은 아래 사유로 부록에 별도 정리했다.
+본문에 포함하지 않은 9건과 1차 스크리닝 40개사 전체는 **[source-index.md](./source-index.md)에
+누락 없이 전부 실려 있다** (출처 링크·정량효과·등급 포함). 본문 제외 사유만 요약하면:
 
 - **출처 등급 C(근거 부족)**: Rio Tinto(재무부서 Copilot), Hyundai Steel(SAIP), China
-  Baowu(xIn³Plat) — 모두 1차 공식 출처 확인이 안 됐다.
+  Baowu(xIn³Plat) — 모두 1차 공식 출처 확인이 안 됐다. (링크는 source-index.md A-5 참고 —
+  근거가 약할 뿐 링크 자체는 있음)
 - **현장·엔지니어링 성격이 강해 관리부문 사례로 보기 어려움**: ABB Group(Genix Copilot),
   Sandvik(Manufacturing Copilot), thyssenkrupp Automation Engineering(Siemens
   Industrial Copilot).
 - **CS/고객대응 성격이 강함**: Tata Steel 불만데이터 분석 라우팅 Agent.
-- 이 외 1차 스크리닝한 40개사 롱리스트 전체는 별도 표로 첨부 가능하다.
+- **40개사 롱리스트 중 23개사**는 1차 스크리닝 단계에서 회사명·업무영역만 기록되고 개별
+  출처 링크는 아직 수집되지 않았다 — source-index.md B절에 "링크 미수집"으로 명시했으며,
+  임의로 링크를 만들어 붙이지 않았다.
 
 ---
 
