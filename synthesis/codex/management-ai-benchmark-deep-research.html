@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>관리부문 AI 벤치마킹 — 심층 재조사본</title>
+<style>
+:root{--ink:#18202b;--muted:#5c6675;--line:#d9dee7;--paper:#fff;--soft:#f4f6f8;--navy:#17365d;--blue:#2764a5;--amber:#8a5a00;--green:#276442;--red:#8b2f2f}*{box-sizing:border-box}body{margin:0;background:#e9edf2;color:var(--ink);font:15px/1.72 system-ui,-apple-system,"Segoe UI",sans-serif}.page{max-width:1180px;margin:24px auto;background:var(--paper);padding:54px 62px}.eyebrow{color:var(--blue);font-weight:700;letter-spacing:.08em}.hero{border-bottom:3px solid var(--navy);padding-bottom:30px}h1{font-size:40px;line-height:1.18;margin:8px 0 18px;color:var(--navy)}h2{font-size:27px;color:var(--navy);margin:54px 0 18px}h3{font-size:21px;margin:34px 0 12px}h4{font-size:16px;margin:22px 0 7px}.lead{font-size:19px;max-width:900px}.meta{color:var(--muted)}.notice{background:#fff7e5;border-left:5px solid #d69718;padding:18px 22px;margin:24px 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.stat{background:var(--soft);padding:18px}.stat b{display:block;font-size:25px;color:var(--navy)}table{border-collapse:collapse;width:100%;margin:18px 0 28px;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:11px 10px;vertical-align:top;text-align:left}th{background:var(--soft);color:var(--navy)}.case{border-top:5px solid var(--navy);margin-top:52px;padding-top:24px}.casehead{display:grid;grid-template-columns:2.2fr 1fr;gap:24px}.badge{display:inline-block;border:1px solid var(--line);padding:3px 9px;margin:2px 4px 2px 0;border-radius:999px;font-size:12px}.verified{color:var(--green);font-weight:700}.caution{color:var(--amber);font-weight:700}.reject{color:var(--red);font-weight:700}.facts{background:var(--soft);padding:18px 22px}.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}.flow{display:flex;gap:7px;align-items:stretch;flex-wrap:wrap;margin:14px 0}.flow span{background:var(--soft);padding:10px 12px;border:1px solid var(--line)}.flow i{align-self:center;color:var(--muted)}ul{padding-left:20px}.comment{min-height:108px;border:2px dashed #aeb7c3;padding:14px 18px;color:var(--muted);margin-top:22px}.source a{color:var(--blue);word-break:break-all}.small{font-size:13px;color:var(--muted)}@media(max-width:800px){.page{padding:28px 22px;margin:0}.grid,.two,.casehead{grid-template-columns:1fr}h1{font-size:31px}}@media print{body{background:#fff}.page{margin:0;max-width:none}.case{break-before:page}.comment{min-height:80px}}
+</style></head><body><main class="page">
+<section class="hero"><div class="eyebrow">CODEX 독립 조사본 · 2026-08-10</div><h1>관리부문 AI 벤치마킹<br>사례의 실체와 적용 전제</h1><p class="lead">특정 클라우드의 우수성을 설명하는 문서가 아니라, 공개 근거가 충분한 사례를 업무 단위로 해체한 검증 문서다. 성과·목표·예상·미공개를 구분하고, 세아제강 적용 결론은 사용자의 후속 코멘트를 위해 의도적으로 비워두었다.</p><p class="meta">범위: 구매·공급망, 전사 지식, 영업, 재무회계, 경영기획 · 주요 사례 8건 + 보강 사례 4건</p></section>
+<div class="notice"><b>핵심 정정.</b> 기존 문서의 GCP 중심 프레임은 제거했다. Tata Steel만 Google Cloud 기반이며, 나머지는 Microsoft, Databricks, 자체/멀티모델 구조다. 또한 ‘홍보자료에 적힌 수치’와 ‘실측된 운영성과’를 동일하게 다루지 않는다.</div>
+<section><h2>1. 한눈에 보는 검증 결과</h2><div class="grid"><div class="stat"><b>12건</b>심층·보강 사례</div><div class="stat"><b>5개</b>업무영역</div><div class="stat"><b>4단계</b>근거 구분: 실측·진술·목표·미공개</div></div>
+<table><thead><tr><th>사례</th><th>업무</th><th>가장 강한 근거</th><th>정확한 해석</th><th>플랫폼</th></tr></thead><tbody>
+<tr><td>tesa</td><td>구매 리스크</td><td>매일 내·외부 데이터 분석, 자동 알림</td><td>탐지·알림 성과, 회피손실 금액은 미공개</td><td>Microsoft + Agent Factory</td></tr>
+<tr><td>LG전자</td><td>전사 AX</td><td>2~3년 내 생산성 30% 목표</td><td class="caution">실적이 아니라 공식 목표</td><td>EXAONE + Azure/OpenAI/Gemini</td></tr>
+<tr><td>POSCO</td><td>전사 지식·업무</td><td>37개사·2만명·3,500+ 사용자 제작 에이전트</td><td>도입규모는 확인, 시간·ROI 미공개</td><td>Private RAG + 멀티 LLM</td></tr>
+<tr><td>Fujitsu</td><td>영업 제안</td><td>제안서 생산성 67% 향상</td><td>공식 고객사례, 산식·표본은 미공개</td><td>Azure AI + Kozuchi</td></tr>
+<tr><td>Dow</td><td>운임 인보이스</td><td>첫해 수백만 달러 절감 예상</td><td class="caution">예상치이며 4,000건/20%는 공식본문 미확인</td><td>Copilot Studio</td></tr>
+<tr><td>Tata Steel</td><td>재무·세무</td><td>300+ 에이전트, invoice/GST 운영</td><td>운영범위 확인, 재무 절감액 미공개</td><td>Google Cloud + 사내 TDA</td></tr>
+<tr><td>Panasonic</td><td>데이터 처리</td><td>SharePoint 비정형 처리 2주→약 3시간</td><td class="verified">업무 정의를 정정함</td><td>Databricks</td></tr>
+<tr><td>Hyundai Steel</td><td>지식검색</td><td>HIP에 SAIP 적용</td><td class="caution">벤더 자료만 확인, 정량성과 없음</td><td>S2W SAIP</td></tr>
+</tbody></table></section>
+
+<section><h2>2. 사례별 심층분석</h2>
+<article class="case"><div class="casehead"><div><span class="badge">구매</span><span class="badge">공급망</span><h3>tesa Supply Risk Agent — “실시간”보다 중요한 것은 매일의 조기경보 운영</h3></div><div class="facts"><b>근거 수준 A</b><br>Microsoft 공식 고객사례<br><span class="small">2025-10-28</span></div></div>
+<p>tesa는 11개 생산거점과 100개국 이상 사업을 운영한다. 공식 자료가 확인하는 구조는 구매 부문의 멀티에이전트가 <b>매일</b> 내부·외부 데이터를 분석해 공급업체 재무곤란이나 환경재해를 조기에 찾아 자동 알림을 제공하는 것이다. 따라서 “실시간 뉴스 스트리밍”이라고 단정하기보다 <b>daily monitoring</b>이라고 쓰는 것이 정확하다.</p>
+<div class="flow"><span>외부 재해·기업위험 신호</span><i>→</i><span>내부 공급업체·품목 연결</span><i>→</i><span>관련성·영향도 판정</span><i>→</i><span>구매 담당자 자동 알림</span><i>→</i><span>사람의 대응 결정</span></div>
+<div class="two"><div><h4>확인된 운영 기반</h4><ul><li>50개 이상 후보를 발굴해 사업영향·구현용이성 기준으로 9개를 우선화.</li><li>Agent Factory라는 내부 전문조직이 현업과 공동 개발·확산.</li><li>약 90명의 AI ambassador와 실무 워크숍 운영.</li><li>Copilot 등록사용자의 약 90%가 매일 활성 사용.</li></ul></div><div><h4>확인되지 않은 것</h4><ul><li>감지 정확도·오탐률·평균 선행시간.</li><li>실제 공급중단 회피 건수와 금액.</li><li>대체공급처 추천·발주 변경까지 자동 실행하는지.</li><li>공급업체의 2·3차 tier 가시성.</li></ul></div></div>
+<p><b>면밀히 볼 지점:</b> 뉴스 수집 자체는 어렵지 않다. 핵심은 뉴스의 장소·기업·원재료를 실제 공급업체/품목/BOM과 매핑해 “우리에게 중요한가”를 판정하는 데이터 연결이다. KPI도 기사 수가 아니라 유효경보율, 평균 사전경보일수, 대응완료시간, 회피손실로 설계해야 한다.</p><div class="comment">세아제강 코멘트:</div>
+<p class="source">출처: <a href="https://www.microsoft.com/en/customers/story/25507-tesa-se-microsoft-copilot">Microsoft Customer Story — tesa SE</a></p></article>
+
+<article class="case"><div class="casehead"><div><span class="badge">전사</span><span class="badge">멀티모델</span><h3>LG전자 LGenie — 30%는 성과가 아니라 경영 목표</h3></div><div class="facts"><b>근거 수준 A</b><br>LG전자 공식 뉴스룸·IR</div></div>
+<p>LGenie는 복지정보·회의실 예약 등 일상지원 챗봇에서 전사 AI 에이전트 플랫폼으로 발전 중이다. EXAONE을 중심으로 Azure AI Services, ChatGPT, Gemini 등 외부 기술을 함께 쓴다. 적용 영역은 개발·영업·SCM·구매·마케팅으로 제시됐다. 회사가 말한 “2~3년 내 30%”는 <b>전사 생산성 향상 목표</b>이지 사용자별 실측치가 아니다.</p>
+<table><tr><th>확인된 것</th><th>해석상 주의</th></tr><tr><td>전사 공식 목표, 대상 업무영역, 멀티모델 방향</td><td>생산성의 분모·산식·기준연도 미공개</td></tr><tr><td>제품개발에서 고정비 절감·일정 단축의 가시적 성과 언급</td><td>절감액·단축일수·대상 프로젝트 미공개</td></tr><tr><td>외부 모델을 섞는 구조</td><td>모든 요청을 모든 모델에 보내는 구조라는 뜻은 아님</td></tr></table>
+<p><b>면밀히 볼 지점:</b> 이 사례의 벤치마킹 가치는 ROI 숫자가 아니라, 단일 자체모델 고집보다 업무·보안·비용에 맞춰 모델을 조합하고 CEO가 AX를 프로세스 재설계 과제로 선언한 운영방식에 있다.</p><div class="comment">세아제강 코멘트:</div>
+<p class="source">출처: <a href="https://www.lg.com/global/newsroom/news/corporate/lg-electronics-ceo-sets-strategic-direction-for-profit-driven-growth-prioritizing-speed-and-action/">LG Global Newsroom — CEO Strategy</a> · <a href="https://www.lge.co.kr/story/newsroom/235830">LG전자 한국 뉴스룸 — 2026 주주총회</a></p></article>
+
+<article class="case"><div class="casehead"><div><span class="badge">전사 지식</span><span class="badge">업무연계</span><h3>POSCO P-GPT — “폐쇄형 자체 LLM”로만 설명하면 부정확하다</h3></div><div class="facts"><b>근거 수준 A/B</b><br>POSCO 공식 뉴스룸</div></div>
+<p>P-GPT는 RAG 기반 보안환경에서 사내 지식·업무시스템을 생성형 AI와 연결한다. 2025년 말 공식 발표 기준 37개 그룹사, 약 2만 명이 사용하고 직원이 만든 에이전트 3,500개 이상이 등록됐다. 최신 2.1은 ChatGPT뿐 아니라 Gemini 3와 Claude를 추가한 <b>멀티 LLM</b> 구조다. 따라서 “성능 낮은 사내 소형모델을 GPU로 직접 운영”한다고 단정한 기존 비판은 공식 근거보다 앞서간 추정이다.</p>
+<div class="two"><div><h4>강한 신호</h4><ul><li>도입 회사·사용자·에이전트 수가 공개됨.</li><li>보고서, 분석, 지식검색, 회의록, 번역 등 실제 사무범위가 명시됨.</li><li>에이전트 제작을 중앙 IT만이 아니라 사용자에게 열어 확산.</li></ul></div><div><h4>실제 위험</h4><ul><li>3,500개 에이전트의 중복·저사용·품질편차.</li><li>세무·법무 지식의 유효일 관리와 근거 인용.</li><li>업무시스템 쓰기 권한에 대한 승인·감사로그.</li><li>사용자 수가 곧 생산성 효과를 뜻하지 않음.</li></ul></div></div>
+<p><b>면밀히 볼 지점:</b> 폐쇄형 대 퍼블릭 API의 이분법보다 데이터 경계, 모델 라우팅, RAG 인덱스, 권한계승, 에이전트 수명주기 관리로 나눠 평가해야 한다.</p><div class="comment">세아제강 코멘트:</div>
+<p class="source">출처: <a href="https://newsroom.posco.com/kr/%ED%8F%AC%EC%8A%A4%EC%BD%94dx-%EC%A0%9C%EB%AF%B8%EB%82%98%EC%9D%B43-%EB%93%B1-%EB%A9%80%ED%8B%B0-llm-%ED%83%91%EC%9E%AC%ED%95%9C-%EA%B8%B0%EC%97%85%EC%9A%A9-%EC%97%85%EB%AC%B4-%ED%94%8C%EB%9E%AB/">POSCO Group Newsroom — P-GPT 2.1</a></p></article>
+
+<article class="case"><div class="casehead"><div><span class="badge">영업</span><span class="badge">제안서</span><h3>Fujitsu — 제안서 생산성 67%, 그러나 38,000명이 모두 이 에이전트를 쓴다는 뜻은 아니다</h3></div><div class="facts"><b>근거 수준 A</b><br>Microsoft 고객사례·기술블로그</div></div>
+<p>AI 에이전트는 사용자의 요청을 해석하고 여러 내부 출처에서 최신 제품·전략 지식을 찾아 고객별 제안서 기반을 만든다. Kozuchi Composite AI와 Semantic Kernel이 여러 전문 에이전트를 조정하고 Azure AI Search가 검색을 맡는다. 공식 수치는 <b>제안서 작성 생산성 67% 향상</b>이다. 다만 약 38,000명은 이 에이전트 하나의 확정 사용자 수가 아니라 Fujitsu AI 도구들이 닿는 사용자 규모로 표현돼 있다.</p>
+<p><b>성과의 빈칸:</b> 67% 산식, 기존·개선 시간, 표본 수, 초안 이후 사람의 수정시간, 수주율 변화는 공개되지 않았다. 따라서 “작성속도” 성과는 강하지만 “영업성과”까지 입증됐다고 볼 수 없다.</p>
+<p><b>면밀히 볼 지점:</b> 제안서 자동생성보다 먼저 승인된 제품사양·가격·납기·레퍼런스 문서의 최신성을 관리해야 한다. 잘못된 가격이나 납기를 그럴듯하게 쓰면 생산성 향상이 손실로 바뀐다.</p><div class="comment">세아제강 코멘트:</div>
+<p class="source">출처: <a href="https://www.microsoft.com/en/customers/story/21885-fujitsu-azure-ai-foundry">Microsoft Customer Story — Fujitsu</a> · <a href="https://devblogs.microsoft.com/agent-framework/customer-case-study-fujitsu-composite-ai-and-semantic-kernel/">Semantic Kernel 기술사례</a></p></article>
+
+<article class="case"><div class="casehead"><div><span class="badge">물류</span><span class="badge">인보이스</span><h3>Dow — 절감 “실적”이 아니라 첫해 수백만 달러 절감 예상</h3></div><div class="facts"><b>근거 수준 B</b><br>Microsoft 공식 고객사례</div></div>
+<p>Dow는 두 종류의 공급망 에이전트를 소개했다. 질의응답형 에이전트는 계약 운임, 발생비용, 인보이스율을 비교해 차이를 표시한다. 자율형 에이전트는 이메일로 들어온 PDF 인보이스를 처리하고 불일치를 찾아 수정 경로로 보낸다. 공식 표현은 수십억 달러 규모 연간 운송비에서 <b>첫해 수백만 달러를 절감할 것으로 예상</b>한다는 것이다.</p>
+<div class="notice"><b>검증 정정:</b> “매일 4,000건, 20% 비정형 PDF”는 확인한 Microsoft 공식 본문에 없다. 별도 1차 자료가 확보되기 전에는 핵심 수치로 사용하지 않는다.</div>
+<p><b>통제 설계:</b> 계약운임 버전, 유류할증·통화·구간·중량조건을 결정론적 규칙으로 계산하고, OCR/LLM은 문서에서 필드를 추출하는 역할로 제한해야 한다. KPI는 탐지액이 아니라 실제 회수액, 오탐률, 건당 검토시간, 미해결 체류시간이다.</p><div class="comment">세아제강 코멘트:</div><p class="source">출처: <a href="https://www.microsoft.com/en/customers/story/19829-dow-microsoft-365-copilot">Microsoft Customer Story — Dow</a></p></article>
+
+<article class="case"><div class="casehead"><div><span class="badge">재무</span><span class="badge">세무</span><h3>Tata Steel — Invoice·GST는 실제 운영범위, 그러나 절감효과는 미공개</h3></div><div class="facts"><b>근거 수준 A</b><br>Tata Steel 공식 발표·연차보고서</div></div>
+<p>Tata Steel과 Google Cloud는 2026년 통합 Agentic AI를 글로벌 가치사슬에 배포한다고 발표했다. 백오피스 범위에는 지능형 인보이스 처리, GST 공제/비공제 분류, 계약분석이 명시됐다. FY2025-26 연차보고서는 300개가 넘는 에이전트 도입과 invoice processing·audit·commercial intelligence·HR 개선을 확인하며, 주요 데이터와 KPI 정의의 98% 표준화도 밝혔다.</p>
+<table><tr><th>무엇이 검증됐나</th><th>무엇은 아직 아닌가</th></tr><tr><td>300+ 에이전트, 재무·세무·계약 적용, TDA의 agentic 전환</td><td>300개 모두 자율 실행형이라는 증거</td></tr><tr><td>98% 주요 데이터/KPI 표준화</td><td>인보이스 처리시간·오류율·세액효과</td></tr><tr><td>Google Cloud와 공식 파트너십</td><td>성과가 특정 LLM만의 효과라는 인과</td></tr></table>
+<p><b>면밀히 볼 지점:</b> GST 분류는 언어모델의 상식이 아니라 공급유형·세금코드·법인·예외규정·증빙의 결합 문제다. AI 추천 뒤 세무담당 승인과 규정 버전·근거 문장 저장이 필요하다.</p><div class="comment">세아제강 코멘트:</div><p class="source">출처: <a href="https://www.tatasteel.com/newsroom/press-releases/india/2026/tata-steel-partners-with-google-cloud-to-deploy-a-unified-agentic-ai-across-its-global-value-chain/">Tata Steel 공식 보도자료</a> · <a href="https://www.tatasteel.com/media/25904/tatasteel-iar-2025-26.pdf">FY2025-26 Integrated Report</a></p></article>
+
+<article class="case"><div class="casehead"><div><span class="badge">데이터</span><span class="badge">SAP</span><h3>Panasonic — 서로 다른 두 성과를 분리해야 한다</h3></div><div class="facts"><b>근거 수준 A/B</b><br>Databricks 공식 세션</div></div>
+<p>확인 가능한 공개자료에는 두 개의 다른 개선이 있다. 첫째 SAP 데이터 지연을 2시간에서 약 2분으로 줄인 데이터 수집 개선. 둘째 SharePoint의 비정형 데이터 처리 작업을 2주에서 약 3시간으로 줄인 개선이다. 기존 문서처럼 “계약·수주문서를 모아 SAP에 입력하는 전체 프로세스가 2주→2~3시간”이라고 합치는 것은 과장 가능성이 크다.</p>
+<div class="flow"><span>SAP·Workday·SharePoint</span><i>→</i><span>Lakeflow/AutoCDC</span><i>→</i><span>Unity Catalog 거버넌스</span><i>→</i><span>AI Query로 비정형 구조화</span><i>→</i><span>분석·업무 활용</span></div>
+<p><b>면밀히 볼 지점:</b> 이 성과는 LLM 단독효과가 아니라 데이터 수집 방식, 증분처리, 카탈로그, 서버리스 처리의 합성 결과다. 따라서 AI PoC 예산과 데이터 플랫폼 현대화 예산을 분리해야 한다.</p><div class="comment">세아제강 코멘트:</div><p class="source">출처: <a href="https://www.databricks.com/dataaisummit/session/two-hours-two-minutes-panasonics-global-scale-engineering-data">Databricks Data + AI Summit — Panasonic</a></p></article>
+
+<article class="case"><div class="casehead"><div><span class="badge">철강</span><span class="badge">지식검색</span><h3>Hyundai Steel HIP/SAIP — 흥미로운 국내 동종업계 신호, 각주 수준 유지</h3></div><div class="facts"><b>근거 수준 C</b><br>S2W 벤더 발표</div></div>
+<p>S2W는 Hyundai Steel의 HIP에 자사 SAIP를 공급했고, 제철·제강 전문용어와 내부문서를 활용한 지식검색·경영지원 챗봇을 구현했다고 밝혔다. 온톨로지 기반 LLM과 RAG 보안구조를 강조한다. 다만 현재 확인된 직접 자료는 공급사 S2W의 발표이며 Hyundai Steel 공식 뉴스룸의 상세 성과자료는 찾지 못했다.</p>
+<p><b>문서 처리 원칙:</b> 국내 철강 경쟁사의 방향성 참고로는 포함하되, 생산성 수치나 성공사례의 주 근거로 승격하지 않는다. 사용자 수, 정확도, 절감시간, 운영부서, 구축비가 확인될 때 재평가한다.</p><div class="comment">세아제강 코멘트:</div><p class="source">출처: <a href="https://s2w.inc/en/news/detail/475">S2W 공급사 발표</a> · <a href="https://s2w.inc/ko/product/pd01">S2W SAIP 제품사례</a></p></article>
+</section>
+
+<section><h2>3. 경영기획·재무회계 보강 사례</h2>
+<table><thead><tr><th>사례</th><th>업무와 성과</th><th>벤치마킹 포인트</th><th>근거 한계</th></tr></thead><tbody>
+<tr><td><b>U.S. Venture / U.S. AutoForce</b></td><td>은행·카드 명세 조정. 4주 설정 후 월 30시간 이상 절감, 담당자 기준 시간 80% 감소.</td><td>Excel 작업면 안에서 ERP 거래와 명세를 대조하고 예외를 처리.</td><td>거래량·오매칭률·비용 미공개.</td></tr>
+<tr><td><b>Graebel</b></td><td>AP 인보이스 이메일 수신→필드 추출→Dynamics 등록→문서 라우팅. 성공률 약 75% 접근.</td><td>100% 자동화보다 정상건 자동·예외건 사람처리 모델이 현실적.</td><td>정확한 시간·인원·금액 절감 미공개.</td></tr>
+<tr><td><b>Willmott Dixon</b></td><td>Financial Reconciliation Agent가 조정규칙 적용, 보고서와 생성형 요약 작성.</td><td>결정론적 회계규칙과 자연어 설명을 분리하는 구조.</td><td>정량성과 없음.</td></tr>
+<tr><td><b>Poloplast</b></td><td>수요계획과 사업성과계획 통합, 인보이스·데이터 이관 자동화. Copilot 요약은 시험 중.</td><td>경영기획 AI 전에 공통 계획차원·버전·실적 데이터 정렬이 선행.</td><td>AI가 예측정확도를 높였다는 증거 없음.</td></tr>
+</tbody></table>
+<h3>재무회계에서 반복되는 성공 구조</h3><div class="flow"><span>정형 규칙·마스터</span><i>+</i><span>문서 추출</span><i>→</i><span>자동 매칭·검증</span><i>→</i><span>신뢰도 기반 예외 큐</span><i>→</i><span>담당자 승인</span><i>→</i><span>감사로그·성과측정</span></div>
+<p>가장 재현성이 높은 시작점은 자유로운 질의응답이 아니라 <b>인보이스 검증, 은행·카드 조정, 계정조정, 증빙 분류</b>다. 입력과 기대결과가 비교적 명확하고, 기존 수작업 시간·오류·예외 건수를 기준선으로 잡을 수 있기 때문이다.</p>
+<h3>경영기획에서 구분해야 할 세 층</h3><ol><li><b>계산층:</b> 계획모델, 원가·수익성 계산, 시나리오 수치. 규칙·통계·최적화가 담당.</li><li><b>근거층:</b> ERP·판매·원재료·환율·시장 데이터와 확정된 KPI 정의.</li><li><b>설명층:</b> 차이 원인 요약, 회의자료 초안, 질문 응답. 생성형 AI가 담당.</li></ol><p>생성형 AI가 계산층까지 임의로 맡으면 숫자 재현성과 감사가능성이 무너진다. 경영기획의 안전한 첫 단계는 확정 수치를 바꾸는 것이 아니라, 수치와 근거를 연결해 설명을 빠르게 만드는 것이다.</p>
+<div class="comment">세아제강 코멘트 — 경영기획·재무회계에서 더 보고 싶은 업무:</div>
+</section>
+
+<section><h2>4. 사례를 비교할 때 반드시 물어야 할 질문</h2>
+<table><thead><tr><th>분류</th><th>질문</th><th>답이 없을 때의 처리</th></tr></thead><tbody>
+<tr><td>성과</td><td>실측인가, 담당자 진술인가, 목표·예상인가?</td><td>목표를 ROI 근거로 사용하지 않음.</td></tr>
+<tr><td>범위</td><td>한 업무·한 팀인가, 전사 전체인가?</td><td>확대 해석 금지.</td></tr>
+<tr><td>기준선</td><td>기존 시간·건수·오류율과 측정기간은?</td><td>효과 수치를 참고치로 강등.</td></tr>
+<tr><td>정확도</td><td>자동처리율과 오처리율을 함께 공개했는가?</td><td>사람 검토비용을 별도 추정.</td></tr>
+<tr><td>데이터</td><td>ERP·문서·마스터가 얼마나 표준화됐는가?</td><td>AI 구축비와 데이터 정비비를 분리.</td></tr>
+<tr><td>통제</td><td>승인, 권한, 근거링크, 감사로그가 있는가?</td><td>쓰기·전기 기능을 허용하지 않음.</td></tr>
+<tr><td>비용</td><td>라이선스·토큰·통합·운영·변경관리비가 포함됐는가?</td><td>벤더 절감액만으로 ROI 계산 금지.</td></tr>
+</tbody></table></section>
+
+<section><h2>5. 사용자 코멘트 대기 영역</h2><p>이 문서는 사례의 사실관계와 조건을 정리하는 단계까지만 수행했다. 아래에는 세아제강 관점의 판단을 의도적으로 비워둔다.</p><div class="comment" style="min-height:240px">세아제강에 적용할 가치가 높은 사례 / 제외할 사례 / 현업 제약 / 우선 검증하고 싶은 KPI:</div></section>
+<footer><h2>출처 원칙</h2><p class="small">A: 회사·고객사의 공식 발표 또는 연차보고서. B: 공식 벤더 고객사례로 사실은 확인되나 산식·비용 등 핵심 세부가 부족. C: 공급사 보도자료 등 단일 이해관계 출처만 확인. 모든 링크는 본문 사례 하단에 직접 연결했다. 공개되지 않은 정보는 추정으로 채우지 않았다.</p></footer>
+</main></body></html>
