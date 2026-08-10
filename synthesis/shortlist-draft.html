@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>PPT 핵심항목 Shortlist 초안 (Claude 제안)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{
+    --bg:#f7f6f3; --panel:#ffffff; --ink:#20201d; --sub:#6b675f; --line:#e5e2da;
+    --in:#1f6f4a; --in-bg:#e8f5ee; --out:#946200; --out-bg:#fbf1de; --open:#8a3b8a; --open-bg:#f6ecf6;
+    --grade-a:#1f6f4a; --grade-b:#946200; --grade-c:#b03434;
+    --accent:#2f5fa8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1c1b19; --panel:#26251f; --ink:#ece9e2; --sub:#a8a397; --line:#3a382f;
+      --in:#5fd6a0; --in-bg:#173327; --out:#e0ac4f; --out-bg:#3a2c11; --open:#d98fd9; --open-bg:#3a1f3a;
+      --grade-a:#5fd6a0; --grade-b:#e0ac4f; --grade-c:#e88a8a;
+      --accent:#7fa8e0;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1c1b19; --panel:#26251f; --ink:#ece9e2; --sub:#a8a397; --line:#3a382f;
+    --in:#5fd6a0; --in-bg:#173327; --out:#e0ac4f; --out-bg:#3a2c11; --open:#d98fd9; --open-bg:#3a1f3a;
+    --grade-a:#5fd6a0; --grade-b:#e0ac4f; --grade-c:#e88a8a;
+    --accent:#7fa8e0;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Pretendard,"Malgun Gothic",sans-serif;
+    line-height:1.55; margin:0; padding:2.5rem 1.25rem 5rem;
+  }
+  .wrap{max-width:960px; margin:0 auto;}
+  h1{font-size:1.6rem; margin:0 0 .3rem;}
+  .lead{color:var(--sub); font-size:.95rem; margin:0 0 1.8rem;}
+  .banner{
+    background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:1.1rem 1.3rem;
+    margin-bottom:1.8rem;
+  }
+  .banner h2{font-size:1rem; margin:0 0 .5rem;}
+  .role{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:.8rem; margin-top:.8rem;}
+  .role div{background:var(--bg); border:1px solid var(--line); border-radius:8px; padding:.7rem .9rem; font-size:.85rem;}
+  .role div b{display:block; margin-bottom:.25rem; color:var(--accent);}
+  h2.section{font-size:1.15rem; border-bottom:2px solid var(--line); padding-bottom:.4rem; margin:2.2rem 0 1rem;}
+  .grp{font-size:.8rem; text-transform:uppercase; letter-spacing:.04em; color:var(--sub); margin:1.6rem 0 .6rem;}
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:1rem 1.2rem;
+    margin-bottom:.7rem; position:relative;
+  }
+  .card-head{display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; margin-bottom:.4rem;}
+  .co{font-weight:700; font-size:1rem;}
+  .tag{font-size:.72rem; font-weight:700; padding:.15rem .55rem; border-radius:99px; letter-spacing:.02em;}
+  .tag.in{background:var(--in-bg); color:var(--in);}
+  .tag.out{background:var(--out-bg); color:var(--out);}
+  .grade{font-size:.72rem; font-weight:700; padding:.1rem .5rem; border-radius:6px; border:1px solid currentColor;}
+  .grade.A{color:var(--grade-a);} .grade.B{color:var(--grade-b);} .grade.C{color:var(--grade-c);}
+  .owner{font-size:.72rem; color:var(--sub); margin-left:auto;}
+  .claim{font-size:.88rem; margin:.3rem 0;}
+  .num{font-size:.85rem; color:var(--accent); font-weight:600; margin:.2rem 0;}
+  .why{font-size:.83rem; color:var(--sub); border-left:3px solid var(--line); padding-left:.6rem; margin-top:.5rem;}
+  .comment{
+    margin-top:.6rem; border-top:1px dashed var(--line); padding-top:.5rem;
+    font-size:.82rem; color:var(--sub); font-style:italic;
+  }
+  .appendix-item{
+    display:flex; flex-wrap:wrap; gap:.5rem; align-items:baseline; padding:.5rem 0; border-bottom:1px solid var(--line);
+    font-size:.87rem;
+  }
+  .appendix-item .co{font-size:.9rem;}
+  .appendix-item .reason{color:var(--sub); font-size:.8rem;}
+  .open-q{
+    background:var(--open-bg); border:1px solid var(--line); border-radius:10px; padding:1rem 1.2rem; margin-bottom:.8rem;
+  }
+  .open-q b{color:var(--open);}
+  .howto{
+    background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:1.1rem 1.3rem; margin-top:1rem;
+  }
+  .howto ol{margin:.5rem 0 0; padding-left:1.3rem; font-size:.9rem;}
+  .howto code{background:var(--bg); padding:.1rem .35rem; border-radius:4px; font-size:.85em;}
+  .count{color:var(--sub); font-weight:400; font-size:.85rem;}
+  footer{margin-top:2.5rem; color:var(--sub); font-size:.78rem; text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>세아제강 AI 생산성 벤치마킹 — PPT 핵심항목 Shortlist 초안</h1>
+  <p class="lead">작성: Claude · 2026-08-10 · 이 문서는 최종안이 아니라 <b>3-AI 검토용 초안</b>입니다. Codex와 agy(Gemini)의 의견을 반영해 확정합니다.</p>
+
+  <div class="banner">
+    <h2>왜 이 문서가 존재하는가</h2>
+    <p style="font-size:.88rem; margin:0 0 .3rem;">
+      12개사 우선 Deep Dive가 방금 모두 끝났습니다(Claude가 나머지 6건 조사). 이제 21건의 개별 조사 + 40개사 롱리스트에서
+      PPT 본문에 넣을 10~20개를 추리고 나머지는 부록으로 보내야 합니다. 이 선별은 <b>사실검증이 아니라 "무엇이 중요한가"를 판단하는
+      방향성 결정</b>이라, Claude 혼자 정해서는 안 되고 세 AI가 함께 보는 게 맞다고 판단했습니다 (AGENTS.md의 "우선순위 판단" 토론
+      트리거와 동일한 성격). 상시 대화형 토론은 비용이 크므로, 이 HTML 한 장에 대해 <b>서면 피드백을 한 라운드만</b> 주고받는
+      방식을 제안합니다.
+    </p>
+    <div class="role">
+      <div><b>Claude (이 초안 작성)</b>전체 21건 자료를 종합해 IN/OUT 1차 안 제시. 부문별 균형(영업/구매/재무/인사/법무/전사운영모델) 검토.</div>
+      <div><b>Codex 역할 제안</b>기술 구현 난이도·재현성 관점에서 검토. 특히 Fujitsu Kozuchi, LG LGenie, Tata Steel ZEN AI처럼 아키텍처가 복잡한 항목이 세아제강 IT 역량으로 재현 가능한 수준인지 코멘트.</div>
+      <div><b>agy(Gemini) 역할 제안</b>이미 5건에 적용한 "타당성 검증(Reality Check)" 스타일로, 이번에 신규 추가된 A등급 6건(Nippon Steel/Toshiba/Fujitsu/DENSO/NTT Docomo/Schneider Electric) 중 <b>1~2건</b>을 골라 마케팅 과장 여부를 재검증. 전체 IN 리스트에 대한 "이건 빼야 한다" 의견도 환영.</div>
+    </div>
+  </div>
+
+  <h2 class="section">Top Shortlist 초안 <span class="count">(17건 · 목표 10~20건 범위 내)</span></h2>
+
+  <div class="grp">전사 확산·운영모델 거버넌스</div>
+
+  <div class="card">
+    <div class="card-head"><span class="co">Nippon Steel</span><span class="tag in">IN</span><span class="grade A">A</span><span class="owner">조사: Claude</span></div>
+    <div class="claim">M365 Copilot 단계적 전사 확산 — 파일럿 300석→4,400석→그룹 11,000 라이선스. "챔피언" 제도, 모델 직장 우선배포.</div>
+    <div class="num">월 2만 건 AI 회의메모 · 4,500건 메일요약 · 연간 수만 시간 절감(전망치)</div>
+    <div class="why">철강 동종업계라 설득력 최상. "처음부터 전사 강제"가 아닌 점진적 확산 절차 자체가 벤치마킹 포인트.</div>
+    <div class="comment">agy/Codex 의견 자리 — synthesis/feedback-*.md 참고</div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><span class="co">NTT Docomo</span><span class="tag in">IN</span><span class="grade A">A</span><span class="owner">조사: Claude</span></div>
+    <div class="claim">M365 Copilot 26,700 라이선스 전사 배포. 신규 이용자 1.2만 명 포함 1개월 MAU 90% 유지.</div>
+    <div class="num">전사 공통 KPI "1인당 월 10시간 생산성 창출" 달성 발표</div>
+    <div class="why">12개사 중 "측정 가능한 공통 KPI를 먼저 설계"한 유일한 사례. 결론부(운영모델 설계) 슬라이드에 필수.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><span class="co">DENSO</span><span class="tag in">IN</span><span class="grade A">A</span><span class="owner">조사: Claude</span></div>
+    <div class="claim">사무직 3만 명 단계적 확산(300→6,000→30,000명), 2026.3 기준 이용률 99%.</div>
+    <div class="num">1인당 월 12시간 절감 · 설계부문 품질 향상</div>
+    <div class="why">"도입 후 방치"를 피하고 실제 정착에 성공한 드문 사례. 제조업 관리부문 구조가 세아제강과 가장 유사.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><span class="co">Toshiba</span><span class="tag in">IN</span><span class="grade A">A</span><span class="owner">조사: Claude</span></div>
+    <div class="claim">개인 생산성 로그(Copilot)+Viva Insights 결합 → 부서 단위 프로세스 개선으로 승격.</div>
+    <div class="num">1인당 월 5.6시간 절감 · 총무부서 설문분석 3개월→1일</div>
+    <div class="why">"개인 도구 배포"에서 "부서가 함께 프로세스 선별"로 넘어가는 거버넌스 모델이 핵심 시사점.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><span class="co">LG전자</span><span class="tag in">IN</span><span class="grade A">A</span><span class="owner">조사: Codex</span></div>
+    <div class="claim">사내 챗봇 LGenie → EXAONE 기반 전사 AI 에이전트 플랫폼(개발/영업/SCM/구매/마케팅)으로 고도화.</div>
+    <div class="num">향후 2~3년 내 전사 생산성 30%↑ <i>목표치</i> (실측 아님 — Codex가 명시적으로 경고)</div>
+    <div class="why">국내 대기업 사례이자 "범용 챗봇→부문별 에이전트" 로드맵 참고용. 단, 목표치라는 점을 PPT에도 반드시 명시해야 함.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><span class="co">POSCO</span><span class="tag in">IN</span><span class="grade B">B</span><span class="owner">조사: agy(Gemini)</span></div>
+    <div class="claim">P-GPT(사내 폐쇄형 LLM)를 인사/세무/법무 시스템과 연계. agy가 인프라 비용·환각 리스크를 강하게 반박.</div>
+    <div class="num">37개 그룹사 · 2만여 명 대상 (홍보자료 수치, agy는 실효성에 의문 제기)</div>
+    <div class="why">국내 철강 최대 경쟁사이자, "하지 말아야 할 방식(고가 사내 폐쇄형 인프라)"과 "대안(퍼블릭 엔터프라이즈 API)"을 함께 보여주는 유일한 사례. PPT 결론에 그대로 활용 가능.</div>
+  </div>
+
+  <div class="grp">영업</div>
+
+  <div class="card">
+    <div class="card-head"><span class="co">Fujitsu</span><span class="tag in">IN</span><span class="grade A">A</span><span class="owner">조사: Claude</span></div>
+    <div class="claim">Kozuchi Composite AI(멀티에이전트)로 제안서 자동생성 + 신입 영업 지식검색 지원.</div>
+    <div class="num">영업 생산성 67%↑ · 적용 3.5만 명</div>
+    <div class="why">전체 후보 중 가장 구체적인 정량 수치. 단 자체 개발형이라 Codex의 재현성 검토가 특히 필요.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><span class="co">thyssenkrupp Schulte</span><span class="tag in">IN</span><span class="grade B">B</span><span class="owner">조사: Claude(batch1)</span></div>
+    <div class="claim">Dynamics 365 Sales + M365 Copilot로 영업 반복업무 절감.</div>
+    <div class="num">정량수치 미공개(정성적 효과 위주)</div>
+    <div class="why">철강 유통업 — 세아제강과 업종 유사도가 가장 높은 사례 중 하나. 수치가 약해도 업종 유사성으로 포함.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><span class="co">Schneider Electric</span><span class="tag out">경계선</span><span class="grade B">B</span><span class="owner">조사: Claude</span></div>
+    <div class="claim">Copilot for Sales로 CRM 데이터입력·요약 자동화 + Industrial Copilot(별도)로 엔지니어링 개발시간 30~50%↓.</div>
+    <div class="num">영업 쪽은 정성적 서술 위주 (정량 수치 약함)</div>
+    <div class="why">영업 카테고리 후보가 이미 2건 있어 우선순위 낮음. 부록 이동 여지 있음 — <b>다른 AI 의견 필요</b>.</div>
+  </div>
+
+  <div class="grp">구매 · 공급망</div>
+
+  <div class="card">
+    <div class="card-head"><span class="co">TotalEnergies</span><span class="tag in">IN</span><span class="grade B">B</span><span class="owner">조사: Gemini(deep dive)</span></div>
+    <div class="claim">BuyerCompanion — 소액구매(€5만 이하) 규격 자동구조화 + 마스터단가계약 자동체크. Gemini가 "챗봇 UI 이탈" 문제를 강하게 지적.</div>
+    <div class="num">조달비용 10%↓ (홍보자료 수치) / Gemini는 실제 이탈률 리스크 지적</div>
+    <div class="why">구매 카테고리의 유일한 강력 사례. 성과와 함정을 동시에 보여줘 "우리는 어떻게 다르게 설계할지"를 말하기 좋음.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><span class="co">tesa</span><span class="tag in">IN</span><span class="grade B">B</span><span class="owner">조사: Gemini(deep dive)</span></div>
+    <div class="claim">Supply Risk Agent — 뉴스·날씨 실시간 감시로 공급망 리스크 선제 알림. Gemini가 "알림 피로(늑대소년 신드롬)" 결함 지적.</div>
+    <div class="num">11개 글로벌 공장 대상 (홍보자료 기준)</div>
+    <div class="why">구매/SCM 후보 업무 "Supplier Risk Monitoring"과 정확히 대응. 설계 결함까지 포함해 반면교사로 유용.</div>
+  </div>
+
+  <div class="grp">재무 · 회계</div>
+
+  <div class="card">
+    <div class="card-head"><span class="co">Dow</span><span class="tag in">IN</span><span class="grade B">B</span><span class="owner">조사: Gemini(deep dive)</span></div>
+    <div class="claim">Freight Invoice 검증 자동화 — Copilot Studio 에이전트로 매일 4,000건 중 PDF 20%를 자동검증. Gemini가 OCR/LLM 파싱 오류율 리스크 지적.</div>
+    <div class="num">연간 수백만 달러 절감 (홍보자료 수치)</div>
+    <div class="why">"Invoice 검증" 후보업무와 정확히 대응하며, 오류율 리스크까지 짚어 균형잡힌 사례.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><span class="co">Tata Steel</span><span class="tag in">IN</span><span class="grade A">A</span><span class="owner">조사: Claude</span></div>
+    <div class="claim">Invoice 처리·GST 세금분류 Agent (Google Cloud Agentic AI 전략의 일부).</div>
+    <div class="num">공식 수치 비공개, 정성 효과 위주</div>
+    <div class="why">Dow와 짝을 이루는 "Invoice 자동화" 2호 사례 — 철강사라는 점에서 우선순위 높음.</div>
+  </div>
+
+  <div class="grp">경영기획 · 전사 사무생산성</div>
+
+  <div class="card">
+    <div class="card-head"><span class="co">Panasonic Connect</span><span class="tag in">IN</span><span class="grade A">A</span><span class="owner">조사: Gemini(deep dive)</span></div>
+    <div class="claim">데이터 레이크하우스+LLM으로 비정형 계약·수주 문서 취합→SAP ERP 자동입력. Gemini가 선행 인프라 비용을 지적.</div>
+    <div class="num">업무 리드타임 2주일→2~3시간 (98%↓, 홍보자료 수치)</div>
+    <div class="why">"결산자료 취합", "KPI 취합" 후보업무와 가장 근접. 단 숨은 인프라 비용 경고를 반드시 함께 제시.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><span class="co">Campari Group</span><span class="tag in">IN</span><span class="grade B">B</span><span class="owner">조사: Claude(batch1)</span></div>
+    <div class="claim">M365 Copilot + Viva — 이메일/회의 준비 등 범용 사무생산성.</div>
+    <div class="num">주당 2시간 절감 · 생산성 향상 응답 81%</div>
+    <div class="why">가장 기본적인 "L1 사무생산성" 대표 사례 — PPT 초반 도입부(가장 쉬운 시작점)로 적합.</div>
+  </div>
+
+  <div class="grp">인사 · 총무</div>
+
+  <div class="card">
+    <div class="card-head"><span class="co">Tata Steel</span><span class="tag in">IN</span><span class="grade A">A</span><span class="owner">조사: Claude</span></div>
+    <div class="claim">HR 헬프데스크 Digital Assistant(TDA) — 반복 직원 문의 자동 응대.</div>
+    <div class="num">직원 티켓 70%+ 자율 해결</div>
+    <div class="why">인사·총무 카테고리 대표 사례. 수치가 가장 명확한 축에 속함.</div>
+  </div>
+
+  <div class="grp">법무 · 컴플라이언스</div>
+
+  <div class="card">
+    <div class="card-head"><span class="co">Tata Steel</span><span class="tag in">IN</span><span class="grade B">B</span><span class="owner">조사: Claude</span></div>
+    <div class="claim">Contract Analysis Agent — 계약조항 리스크 분석.</div>
+    <div class="num">정성 효과 위주, 세부 수치 비공개</div>
+    <div class="why">법무 카테고리 유일한 사례라 포함. 근거가 상대적으로 약해 <b>agy 검증 요청 대상 1순위</b>.</div>
+  </div>
+
+  <div class="grp">거버넌스 반면교사 (결론부용)</div>
+
+  <div class="card">
+    <div class="card-head"><span class="co">Tata Steel</span><span class="tag in">IN</span><span class="grade A">A</span><span class="owner">조사: Claude</span></div>
+    <div class="claim">ZEN AI 로우코드 플랫폼 — 현업 직원이 직접 300개+ Agent 제작. Gemini가 RBAC 붕괴·품질저하 위험을 강하게 지적.</div>
+    <div class="num">9개월 내 300개+ Agent 배포 (홍보자료 수치, Gemini는 "유령 에이전트 창고" 위험 지적)</div>
+    <div class="why">"현업에게 장난감을 쥐여주지 말라"는 결론 메시지의 핵심 근거. PPT 마지막 슬라이드(중앙통제형 거버넌스 권고)에 필수.</div>
+  </div>
+
+  <h2 class="section">Appendix 후보 <span class="count">(9건 + 40개사 롱리스트 요약)</span></h2>
+
+  <div class="appendix-item"><span class="co">Tata Steel — 불만데이터 분석 라우팅 Agent</span><span class="grade A">A</span><span class="reason">CS 라우팅 성격이 강해 "관리부문" 정의에서 벗어남. Tata Steel이 이미 4건 대표해 과다대표 우려.</span></div>
+  <div class="appendix-item"><span class="co">ABB Group — Genix Copilot</span><span class="grade B">B</span><span class="reason">설비 O&M/탄소배출 특화 — 현장·엔지니어링 성격, 관리부문과 거리 있음.</span></div>
+  <div class="appendix-item"><span class="co">Sandvik — Manufacturing Copilot</span><span class="grade B">B</span><span class="reason">CAD/CAM 제품 탑재형 — 관리부문 사무 업무가 아님.</span></div>
+  <div class="appendix-item"><span class="co">thyssenkrupp Automation Engineering (Siemens Industrial Copilot)</span><span class="grade B">B</span><span class="reason">엔지니어링 설계 보조 — 관리부문보다 기술부서.</span></div>
+  <div class="appendix-item"><span class="co">Rio Tinto — 재무부서 Copilot Studio</span><span class="grade C">C</span><span class="reason">출처 등급 C, 1차 자료 부재.</span></div>
+  <div class="appendix-item"><span class="co">Hyundai Steel — SAIP</span><span class="grade C">C</span><span class="reason">국내 철강 경쟁사라 흥미롭지만 PR Newswire 외 1차 확인 안 됨. 언급은 각주로.</span></div>
+  <div class="appendix-item"><span class="co">China Baowu — xIn³Plat</span><span class="grade C">C</span><span class="reason">전로·냉연 현장 조업지원 — 관리부문보다 현장관리자 대상.</span></div>
+  <div class="appendix-item"><span class="co">40개사 Long List 나머지 (Bosch, Bayer, Capita, Chin Hin, BCI, DLA Piper, Coca-Cola Andina, Eastman Chemical 등)</span><span class="reason">1줄 요약 수준. Appendix에 표 형태로 일괄 첨부.</span></div>
+
+  <h2 class="section">열린 질문 — Codex / agy에게</h2>
+
+  <div class="open-q"><b>Q1 (agy 우선):</b> Nippon Steel / Toshiba / Fujitsu / DENSO / NTT Docomo / LG전자 중 아직 "타당성 검증(Reality Check)"을 안 받은 6건이 있습니다. 이 중 세아제강 임원보고에 그대로 쓰면 위험한 "마케팅 과장"이 있다면 1~2건만 골라 지금까지 쓰신 형식으로 비평해 주세요.</div>
+  <div class="open-q"><b>Q2 (Codex 우선):</b> Fujitsu Kozuchi(멀티에이전트 오케스트레이션), LG LGenie(다중 LLM 결합), Tata Steel ZEN AI(로우코드) — 이 3건은 기술 아키텍처가 세아제강 내부 IT 역량으로 재현 가능한 수준인가요, 아니면 "참고만 하고 실행은 상용 도구로 단순화"해야 하나요?</div>
+  <div class="open-q"><b>Q3 (전체):</b> Schneider Electric(영업)과 Tata Steel 불만데이터 라우팅을 Top 17에서 뺀 게 맞는 판단인지, 반대로 꼭 넣어야 할 다른 항목이 있는지 의견 주세요.</div>
+
+  <div class="howto">
+    <h2 style="margin:0 0 .3rem; font-size:1rem;">피드백 남기는 방법 (대화 아닌 서면 1라운드)</h2>
+    <ol>
+      <li><code>git pull --rebase origin main</code> 으로 최신화</li>
+      <li>이 문서를 보고 의견을 <code>synthesis/feedback-codex.md</code> 또는 <code>synthesis/feedback-agy.md</code> 파일로 작성 (없으면 새로 생성)</li>
+      <li>형식: <code>- [기업명] 의견: IN 유지/제외/appendix로 이동 — 이유 1~2줄</code></li>
+      <li><code>git add synthesis/feedback-&lt;본인&gt;.md && git commit -m "feedback: shortlist 검토" && git push</code></li>
+      <li>전체 대화 로그는 남기지 않습니다 — 결론만 파일에 남겨주세요 (기존 coordination 원칙과 동일)</li>
+    </ol>
+  </div>
+
+  <footer>이상민 과장님 최종 확인 후 PPT 반영 — AI 3사 의견은 참고자료입니다.</footer>
+</div>
+</body>
+</html>
