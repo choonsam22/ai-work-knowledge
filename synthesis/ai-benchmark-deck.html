@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>관리부문, AI로 무엇이 바뀌는가 — 세아제강 AI 생산성 벤치마킹</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* ===========================================
+   TOKENS
+   =========================================== */
+:root{
+  --graphite-950:#121316;
+  --graphite-900:#191b1f;
+  --graphite-800:#212328;
+  --graphite-700:#2b2e34;
+  --line:#383b42;
+  --paper:#ede9df;
+  --paper-dim:#c9c5b9;
+  --sub:#9b968c;
+  --copper:#d97a3f;
+  --copper-dim:#8a5330;
+  --steel:#6f9bb8;
+  --grade-a:#5aab7e;
+  --grade-b:#c9a227;
+  --grade-c:#c05c4d;
+
+  --title-size: clamp(1.8rem, 4.6vw, 3.6rem);
+  --h2-size: clamp(1.3rem, 3.2vw, 2.2rem);
+  --h3-size: clamp(1rem, 2.2vw, 1.4rem);
+  --body-size: clamp(0.85rem, 1.4vw, 1.05rem);
+  --small-size: clamp(0.7rem, 1vw, 0.85rem);
+  --stat-size: clamp(2rem, 6vw, 4.4rem);
+
+  --slide-padding: clamp(1.5rem, 5vw, 5rem);
+  --content-gap: clamp(0.6rem, 2vw, 1.6rem);
+  --sans: -apple-system,BlinkMacSystemFont,"Pretendard Variable",Pretendard,"Segoe UI","Malgun Gothic",sans-serif;
+  --mono: ui-monospace,"SFMono-Regular",Consolas,"Liberation Mono",monospace;
+}
+
+*{box-sizing:border-box;}
+html,body{height:100%; overflow-x:hidden; margin:0;}
+html{scroll-snap-type:y mandatory; scroll-behavior:smooth;}
+body{
+  background:var(--graphite-950); color:var(--paper); font-family:var(--sans);
+  line-height:1.5;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size:64px 64px;
+  background-position:center;
+}
+
+/* ===========================================
+   SLIDE SHELL
+   =========================================== */
+.slide{
+  width:100vw; height:100vh; height:100dvh; overflow:hidden;
+  scroll-snap-align:start; display:flex; flex-direction:column; position:relative;
+}
+.slide-content{
+  flex:1; display:flex; flex-direction:column; justify-content:center;
+  max-height:100%; overflow:hidden; padding:var(--slide-padding);
+  max-width:1400px; margin:0 auto; width:100%;
+}
+.eyebrow{
+  font-family:var(--mono); font-size:var(--small-size); letter-spacing:.14em; text-transform:uppercase;
+  color:var(--steel); margin:0 0 .6em; display:flex; align-items:center; gap:.6em;
+}
+.eyebrow::before{content:""; width:1.6em; height:1px; background:var(--steel); display:inline-block;}
+h1.title{font-size:var(--title-size); font-weight:800; letter-spacing:-.01em; margin:0 0 .3em; text-wrap:balance;}
+h2.head{font-size:var(--h2-size); font-weight:800; letter-spacing:-.01em; margin:0 0 .5em; text-wrap:balance;}
+p.sub{font-size:var(--body-size); color:var(--paper-dim); max-width:56ch; margin:0;}
+.num{font-variant-numeric:tabular-nums;}
+.slide-index{
+  position:absolute; top:var(--slide-padding); right:var(--slide-padding);
+  font-family:var(--mono); font-size:var(--small-size); color:var(--sub); letter-spacing:.08em;
+}
+
+/* ===========================================
+   COMPONENTS
+   =========================================== */
+.stat-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr)); gap:var(--content-gap); margin-top:var(--content-gap);}
+.stat-card{border-top:1px solid var(--line); padding-top:.7em;}
+.stat-card .n{font-size:var(--stat-size); font-weight:800; color:var(--copper); line-height:1;}
+.stat-card .l{font-size:var(--small-size); color:var(--sub); margin-top:.4em;}
+
+.case-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:var(--content-gap); margin-top:var(--content-gap);}
+.case-card{
+  background:var(--graphite-900); border:1px solid var(--line); border-radius:4px;
+  padding:clamp(1rem,2vw,1.6rem); display:flex; flex-direction:column; gap:.5em; min-height:0;
+}
+.case-head{display:flex; align-items:baseline; justify-content:space-between; gap:.6em;}
+.case-co{font-size:var(--h3-size); font-weight:800;}
+.grade{font-family:var(--mono); font-size:var(--small-size); font-weight:700; padding:.1em .5em; border-radius:2px; border:1px solid currentColor; flex-shrink:0;}
+.grade.A{color:var(--grade-a);} .grade.B{color:var(--grade-b);} .grade.C{color:var(--grade-c);}
+.case-claim{font-size:var(--body-size); color:var(--paper); margin:0;}
+.case-num{font-family:var(--mono); font-size:clamp(1.1rem,2vw,1.5rem); color:var(--copper); font-weight:700; font-variant-numeric:tabular-nums;}
+.case-why{font-size:var(--small-size); color:var(--sub); border-left:2px solid var(--steel); padding-left:.6em; margin-top:auto;}
+.flag{font-family:var(--mono); font-size:var(--small-size); color:var(--grade-c);}
+
+.split{display:grid; grid-template-columns:1fr 1fr; gap:var(--content-gap); margin-top:var(--content-gap);}
+.split-panel{background:var(--graphite-900); border:1px solid var(--line); border-radius:4px; padding:clamp(1.2rem,2.4vw,2rem); display:flex; flex-direction:column; gap:.6em;}
+.split-panel.warn{border-color:var(--grade-c);}
+.split-panel .tag{font-family:var(--mono); font-size:var(--small-size); text-transform:uppercase; letter-spacing:.08em;}
+
+.pattern-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); margin-top:var(--content-gap); border:1px solid var(--line);}
+.pattern-cell{background:var(--graphite-950); padding:clamp(.8rem,1.6vw,1.4rem); display:flex; flex-direction:column; gap:.3em; justify-content:center;}
+.pattern-cell .no{font-family:var(--mono); color:var(--copper); font-size:var(--small-size);}
+.pattern-cell .t{font-weight:800; font-size:var(--h3-size);}
+.pattern-cell .d{color:var(--sub); font-size:var(--small-size);}
+
+.bullets{list-style:none; margin:var(--content-gap) 0 0; padding:0; display:flex; flex-direction:column; gap:.7em; max-width:70ch;}
+.bullets li{display:flex; gap:.7em; font-size:var(--body-size);}
+.bullets li::before{content:attr(data-n); font-family:var(--mono); color:var(--copper); font-weight:700; flex-shrink:0;}
+
+.roadmap{display:grid; grid-template-columns:repeat(3,1fr); gap:var(--content-gap); margin-top:var(--content-gap);}
+.rm-step{border-top:2px solid var(--copper); padding-top:.8em; display:flex; flex-direction:column; gap:.4em;}
+.rm-step .no{font-family:var(--mono); font-size:var(--h2-size); color:var(--copper); font-weight:800;}
+.rm-step h3{margin:0; font-size:var(--h3-size);}
+.rm-step p{margin:0; font-size:var(--small-size); color:var(--sub);}
+
+table.map{width:100%; border-collapse:collapse; margin-top:var(--content-gap); font-size:var(--small-size);}
+table.map th{text-align:left; font-family:var(--mono); text-transform:uppercase; letter-spacing:.06em; color:var(--steel); font-weight:600; padding:.5em .8em .5em 0; border-bottom:1px solid var(--line);}
+table.map td{padding:.6em .8em .6em 0; border-bottom:1px solid var(--line); vertical-align:top;}
+table.map td.co{font-weight:700; white-space:nowrap;}
+
+.credit-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr)); gap:var(--content-gap); margin-top:var(--content-gap);}
+.credit-card{border-left:2px solid var(--steel); padding-left:.8em;}
+.credit-card b{display:block; font-size:var(--h3-size);}
+.credit-card span{color:var(--sub); font-size:var(--small-size);}
+
+/* ===========================================
+   PROGRESS / NAV
+   =========================================== */
+.progress{
+  position:fixed; right:clamp(.8rem,2vw,1.6rem); top:50%; transform:translateY(-50%);
+  display:flex; flex-direction:column; gap:10px; z-index:20;
+}
+.progress button{
+  width:8px; height:8px; border-radius:50%; border:1px solid var(--sub); background:transparent;
+  padding:0; cursor:pointer; transition:all .25s ease;
+}
+.progress button.active{background:var(--copper); border-color:var(--copper); height:22px; border-radius:5px;}
+.counter{
+  position:fixed; left:var(--slide-padding); bottom:clamp(1rem,3vw,1.6rem);
+  font-family:var(--mono); font-size:var(--small-size); color:var(--sub); z-index:20; letter-spacing:.06em;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important; transition-duration:.01ms !important;}
+  html{scroll-behavior:auto;}
+}
+@media (max-height:700px){
+  :root{ --slide-padding:clamp(1rem,3vw,2.2rem); --content-gap:clamp(.4rem,1.4vw,1rem); --title-size:clamp(1.4rem,4.2vw,2.6rem); --h2-size:clamp(1.1rem,2.8vw,1.7rem); --stat-size:clamp(1.6rem,5vw,3rem);}
+}
+@media (max-width:680px){
+  .split, .pattern-grid, .roadmap{grid-template-columns:1fr;}
+  .pattern-grid{grid-template-columns:repeat(2,1fr);}
+  .progress{display:none;}
+}
+</style>
+</head>
+<body>
+<main id="deck">
+
+<!-- 1: TITLE -->
+<section class="slide" id="s1">
+  <div class="slide-content">
+    <div class="eyebrow">세아제강 DX팀 · AI 생산성 벤치마킹</div>
+    <h1 class="title">관리부문,<br>AI로 무엇이 바뀌는가</h1>
+    <p class="sub">국내외 17개 핵심 사례로 보는 생성형 AI 도입의 현실과 시사점 — 홍보자료가 아니라, 실제로 재현 가능한 것과 아닌 것을 가려낸다.</p>
+    <p class="sub" style="margin-top:2em; color:var(--sub); font-family:var(--mono); font-size:var(--small-size);">2026.08 · Claude · Codex · Gemini 3-AI 협업 조사</p>
+  </div>
+</section>
+
+<!-- 2: METHOD -->
+<section class="slide" id="s2">
+  <div class="slide-content">
+    <div class="eyebrow">조사 방법</div>
+    <h2 class="head">어떻게 조사했나</h2>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="n num">40</div><div class="l">개사 1차 스크리닝</div></div>
+      <div class="stat-card"><div class="n num">12</div><div class="l">개사 우선 심층조사</div></div>
+      <div class="stat-card"><div class="n num">21</div><div class="l">건 개별 Use Case 문서화</div></div>
+      <div class="stat-card"><div class="n num">3</div><div class="l">단계 출처 신뢰도 A·B·C</div></div>
+    </div>
+    <p class="sub" style="margin-top:var(--content-gap);">홍보자료 수치를 그대로 인용하지 않는다. 별도 AI가 "이 성과가 실제로 재현 가능한가"를 재검증(Reality Check)해 마케팅 과장과 실제 효과를 구분했다.</p>
+  </div>
+</section>
+
+<!-- 3: 8 PATTERNS -->
+<section class="slide" id="s3">
+  <div class="slide-content">
+    <div class="eyebrow">공통 패턴</div>
+    <h2 class="head">40개사에서 반복되는 8가지 업무 패턴</h2>
+    <div class="pattern-grid">
+      <div class="pattern-cell"><span class="no">01</span><span class="t">Search</span><span class="d">사내 문서·규정 검색</span></div>
+      <div class="pattern-cell"><span class="no">02</span><span class="t">Summarize</span><span class="d">회의·메일 요약, 초안 작성</span></div>
+      <div class="pattern-cell"><span class="no">03</span><span class="t">Compare</span><span class="d">견적·계약 조항 대조</span></div>
+      <div class="pattern-cell"><span class="no">04</span><span class="t">Analyze</span><span class="d">데이터 분석·인사이트 도출</span></div>
+      <div class="pattern-cell"><span class="no">05</span><span class="t">Enter</span><span class="d">시스템 입력·업데이트</span></div>
+      <div class="pattern-cell"><span class="no">06</span><span class="t">Monitor</span><span class="d">리스크·이상 징후 감시</span></div>
+      <div class="pattern-cell"><span class="no">07</span><span class="t">Execute</span><span class="d">승인된 업무 자동 실행</span></div>
+      <div class="pattern-cell"><span class="no">08</span><span class="t">Orchestrate</span><span class="d">여러 Agent 조합·운영</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4: GOVERNANCE -->
+<section class="slide" id="s4">
+  <div class="slide-content">
+    <div class="eyebrow">전사 확산 · 운영모델</div>
+    <h2 class="head">"몇 명이 쓰는가"보다 "어떻게 퍼뜨렸는가"</h2>
+    <div class="case-grid">
+      <div class="case-card"><div class="case-head"><span class="case-co">Nippon Steel</span><span class="grade A">A</span></div><div class="case-num">300 → 11,000 라이선스</div><p class="case-claim">챔피언 제도 + 모델 직장 우선배포로 단계적 확산</p><p class="case-why">철강 동종업계 — 가장 설득력 높은 준거</p></div>
+      <div class="case-card"><div class="case-head"><span class="case-co">DENSO</span><span class="grade A">A</span></div><div class="case-num">사무직 3만 명 · 이용률 99%</div><p class="case-claim">300→6,000→30,000명 증거기반 단계적 확산</p><p class="case-why">"도입 후 방치" 없이 실제 정착한 드문 사례</p></div>
+      <div class="case-card"><div class="case-head"><span class="case-co">Toshiba</span><span class="grade A">A</span></div><div class="case-num">월 5.6시간 절감</div><p class="case-claim">개인 생산성 로그를 부서 프로세스 개선으로 승격</p><p class="case-why">총무 설문분석 3개월→1일</p></div>
+      <div class="case-card"><div class="case-head"><span class="case-co">NTT Docomo</span><span class="grade A">A</span></div><div class="case-num">1인당 월 10시간 KPI 달성</div><p class="case-claim">측정 가능한 공통 KPI를 먼저 설계 후 전사 배포</p><p class="case-why">신규 이용자 1.2만 명 포함 MAU 90% 유지</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5: LG vs POSCO -->
+<section class="slide" id="s5">
+  <div class="slide-content">
+    <div class="eyebrow">국내 사례 대비</div>
+    <h2 class="head">같은 목표, 다른 현실성 — LG전자 vs POSCO</h2>
+    <div class="split">
+      <div class="split-panel">
+        <span class="tag" style="color:var(--steel);">LG전자 · LGenie</span>
+        <div class="case-num">생산성 30%↑ <span class="flag" style="color:var(--grade-b);">목표치</span></div>
+        <p class="case-claim">사내 챗봇 → EXAONE 기반 전사 에이전트 플랫폼(개발·영업·SCM·구매·마케팅)으로 고도화 중.</p>
+        <p class="case-why">아직 실측 성과 아님 — 로드맵 참고용으로만 인용해야 함.</p>
+      </div>
+      <div class="split-panel warn">
+        <span class="tag" style="color:var(--grade-c);">POSCO · P-GPT</span>
+        <div class="case-num">37개사 · 2만 명 대상</div>
+        <p class="case-claim">사내 폐쇄형 LLM을 인사·세무·법무와 연계. Gemini 검증 결과 GPU 인프라 비용·환각 리스크 반박.</p>
+        <p class="case-why">"하지 말 것(고가 폐쇄형 인프라)"과 대안(퍼블릭 엔터프라이즈 API)을 함께 보여주는 사례.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6: SALES -->
+<section class="slide" id="s6">
+  <div class="slide-content">
+    <div class="eyebrow">영업</div>
+    <h2 class="head">제안서 작성과 고객정보 정리를 대체하다</h2>
+    <div class="case-grid">
+      <div class="case-card"><div class="case-head"><span class="case-co">Fujitsu</span><span class="grade A">A</span></div><div class="case-num">영업 생산성 67%↑</div><p class="case-claim">멀티에이전트(Kozuchi)가 사내 분산지식을 종합해 제안서 자동생성</p><p class="case-why">적용 3.5만 명 — 전체 후보 중 가장 구체적인 수치</p></div>
+      <div class="case-card"><div class="case-head"><span class="case-co">thyssenkrupp Schulte</span><span class="grade B">B</span></div><div class="case-num">정량수치 비공개</div><p class="case-claim">Dynamics 365 + Copilot로 영업 반복업무 절감</p><p class="case-why">철강 유통업 — 세아제강과 업종 유사도 최고</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7: PROCUREMENT -->
+<section class="slide" id="s7">
+  <div class="slide-content">
+    <div class="eyebrow">구매 · 공급망</div>
+    <h2 class="head">자동화가 만능은 아니다 — 함정까지 포함</h2>
+    <div class="case-grid">
+      <div class="case-card"><div class="case-head"><span class="case-co">TotalEnergies</span><span class="grade B">B</span></div><div class="case-num">조달비용 10%↓</div><p class="case-claim">소액구매(€5만 이하) 자동 규격화 + 단가계약 자동체크</p><p class="case-why"><span class="flag">Gemini 지적 —</span> 챗봇 UI 이탈률 리스크</p></div>
+      <div class="case-card"><div class="case-head"><span class="case-co">tesa</span><span class="grade B">B</span></div><div class="case-num">11개 글로벌 공장 대상</div><p class="case-claim">뉴스·날씨 실시간 감시로 공급망 리스크 선제 알림</p><p class="case-why"><span class="flag">Gemini 지적 —</span> 알림 피로(늑대소년 신드롬)</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8: FINANCE -->
+<section class="slide" id="s8">
+  <div class="slide-content">
+    <div class="eyebrow">재무 · 회계</div>
+    <h2 class="head">Invoice 검증 — 가장 많이 등장하는 유스케이스</h2>
+    <div class="case-grid">
+      <div class="case-card"><div class="case-head"><span class="case-co">Dow</span><span class="grade B">B</span></div><div class="case-num">연 수백만 달러 절감</div><p class="case-claim">일 4,000건 중 비정형 PDF 20%를 Copilot Studio 에이전트로 검증</p><p class="case-why"><span class="flag">Gemini 지적 —</span> OCR·LLM 파싱 오류율 리스크</p></div>
+      <div class="case-card"><div class="case-head"><span class="case-co">Tata Steel</span><span class="grade A">A</span></div><div class="case-num">정성 효과 위주</div><p class="case-claim">Invoice 처리·GST 세금분류 Agent (Agentic AI 전략 일부)</p><p class="case-why">Dow와 짝을 이루는 철강사 Invoice 자동화 사례</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9: PLANNING -->
+<section class="slide" id="s9">
+  <div class="slide-content">
+    <div class="eyebrow">경영기획 · 전사 사무생산성</div>
+    <h2 class="head">가장 기본적인, 그래서 가장 먼저 시작할 수 있는 영역</h2>
+    <div class="case-grid">
+      <div class="case-card"><div class="case-head"><span class="case-co">Panasonic Connect</span><span class="grade A">A</span></div><div class="case-num">2주일 → 2~3시간</div><p class="case-claim">비정형 계약·수주 문서 취합 → SAP ERP 자동입력 (98%↓)</p><p class="case-why"><span class="flag">Gemini 지적 —</span> 선행 인프라 비용 큼</p></div>
+      <div class="case-card"><div class="case-head"><span class="case-co">Campari Group</span><span class="grade B">B</span></div><div class="case-num">주당 2시간 절감</div><p class="case-claim">M365 Copilot + Viva — 이메일·회의 준비 등 범용 사무업무</p><p class="case-why">가장 쉬운 시작점(L1) — 도입부 벤치마크</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10: HR & LEGAL -->
+<section class="slide" id="s10">
+  <div class="slide-content">
+    <div class="eyebrow">인사·총무 / 법무·컴플라이언스</div>
+    <h2 class="head">문의 응대와 계약 리스크 검토</h2>
+    <div class="case-grid">
+      <div class="case-card"><div class="case-head"><span class="case-co">Tata Steel · HR</span><span class="grade A">A</span></div><div class="case-num">직원 문의 70%+ 자율 해결</div><p class="case-claim">HR 헬프데스크 Digital Assistant(TDA)</p><p class="case-why">인사·총무 카테고리 수치가 가장 명확한 사례</p></div>
+      <div class="case-card"><div class="case-head"><span class="case-co">Tata Steel · 법무</span><span class="grade B">B</span></div><div class="case-num">정성 효과 위주</div><p class="case-claim">Contract Analysis Agent — 계약조항 리스크 분석</p><p class="case-why">법무 카테고리 유일 사례 — 근거 상대적으로 약함</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 11: GOVERNANCE WARNING -->
+<section class="slide" id="s11">
+  <div class="slide-content">
+    <div class="eyebrow">거버넌스 반면교사</div>
+    <h2 class="head">현업에게 장난감을 쥐여주지 말 것</h2>
+    <div class="split">
+      <div class="split-panel">
+        <span class="tag" style="color:var(--steel);">Tata Steel · ZEN AI 로우코드</span>
+        <div class="case-num">9개월 · 300개+ Agent</div>
+        <p class="case-claim">현업 직원이 직접 로우코드로 Agent를 조립해 전사 확산.</p>
+      </div>
+      <div class="split-panel warn">
+        <span class="tag" style="color:var(--grade-c);">Gemini의 현실 검증</span>
+        <p class="case-claim">RBAC 권한 붕괴 위험 · 오출력 책임소재 부재 · 방치되는 "유령 에이전트 창고" 우려.</p>
+        <p class="case-why">→ 결론: 현업 자율제작보다 소수 정예 공통 Agent를 중앙에서 관리해야 한다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12: MAPPING TABLE -->
+<section class="slide" id="s12">
+  <div class="slide-content">
+    <div class="eyebrow">세아제강 적용</div>
+    <h2 class="head">관리부문 후보 업무 × 참고 사례</h2>
+    <table class="map">
+      <tr><th>부문</th><th>후보 업무</th><th>참고 사례</th></tr>
+      <tr><td class="co">영업</td><td>고객미팅→시스템 정리, 제안자료 작성</td><td>Fujitsu, thyssenkrupp Schulte</td></tr>
+      <tr><td class="co">구매</td><td>Supplier Risk Monitoring, 견적 비교</td><td>tesa, TotalEnergies</td></tr>
+      <tr><td class="co">재무·회계</td><td>Invoice 검증, 결산자료 취합</td><td>Dow, Tata Steel, Panasonic Connect</td></tr>
+      <tr><td class="co">경영기획</td><td>KPI 취합, 월간 보고</td><td>Toshiba, NTT Docomo</td></tr>
+      <tr><td class="co">인사·총무</td><td>규정·제도 문의 응대</td><td>Tata Steel HR</td></tr>
+      <tr><td class="co">법무</td><td>계약조항 리스크 검토</td><td>Tata Steel 계약분석</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 13: TAKEAWAYS -->
+<section class="slide" id="s13">
+  <div class="slide-content">
+    <div class="eyebrow">종합 시사점</div>
+    <h2 class="head">17개 사례가 공통적으로 말하는 것</h2>
+    <ul class="bullets">
+      <li data-n="01"><span>전사 강제배포보다 챔피언 + 모델 직장 점진적 확산이 검증된 패턴이다.</span></li>
+      <li data-n="02"><span>"1인당 월 n시간"처럼 측정 가능한 공통 KPI를 먼저 설계해야 도입 후 방치를 막는다.</span></li>
+      <li data-n="03"><span>고가 사내 폐쇄형 인프라보다 퍼블릭 엔터프라이즈 API가 ROI 관점에서 우수하다.</span></li>
+      <li data-n="04"><span>현업 자율 Agent 제작(로우코드)은 거버넌스 붕괴 리스크 — 소수 정예 공통 Agent 중앙관리를 권장한다.</span></li>
+      <li data-n="05"><span>발표 수치의 상당수는 "목표치" 또는 홍보자료 수준이다 — 도입 전 자체 파일럿 검증이 필수다.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 14: ROADMAP -->
+<section class="slide" id="s14">
+  <div class="slide-content">
+    <div class="eyebrow">제언</div>
+    <h2 class="head">세아제강이 시작할 3단계</h2>
+    <div class="roadmap">
+      <div class="rm-step"><span class="no">01</span><h3>공통 Agent 파일럿</h3><p>고빈도 취합·검색 업무 2~3종 선정 (Invoice 검증, 규정 문의)</p></div>
+      <div class="rm-step"><span class="no">02</span><h3>KPI 기반 확산</h3><p>챔피언 제도 + 측정 가능한 공통 KPI로 모델 부서부터 확대</p></div>
+      <div class="rm-step"><span class="no">03</span><h3>거버넌스 표준화</h3><p>현업 자율제작 대신 중앙 승인 체계로 소수 정예 Agent 관리</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 15: APPENDIX / CREDITS -->
+<section class="slide" id="s15">
+  <div class="slide-content">
+    <div class="eyebrow">부록 안내</div>
+    <h2 class="head">본문 외 9건 + 40개사 롱리스트는 부록으로</h2>
+    <p class="sub">C등급 근거 부족 사례(Rio Tinto, Hyundai Steel, China Baowu), 현장·엔지니어링 성격이 강한 사례(ABB, Sandvik, thyssenkrupp Automation Engineering)는 부록에 요약 수록.</p>
+    <div class="credit-grid">
+      <div class="credit-card"><b>Claude</b><span>21건 종합, 12개사 Deep Dive 6건, 부문별 큐레이션</span></div>
+      <div class="credit-card"><b>Codex</b><span>LG전자 사례, 목표치·실측치 구분 검증</span></div>
+      <div class="credit-card"><b>Gemini (agy)</b><span>타당성 검증(Reality Check) 5건 — 인프라·리스크 지적</span></div>
+      <div class="credit-card"><b>최종 확인</b><span>이상민 과장 — AI 3사 의견은 참고자료</span></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="progress" id="progress"></div>
+<div class="counter" id="counter">01 / 15</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var progress = document.getElementById('progress');
+  var counter = document.getElementById('counter');
+  var total = slides.length;
+
+  slides.forEach(function(_, i){
+    var b = document.createElement('button');
+    b.setAttribute('aria-label', '슬라이드 ' + (i+1));
+    b.addEventListener('click', function(){ goTo(i); });
+    progress.appendChild(b);
+  });
+  var dots = Array.prototype.slice.call(progress.children);
+
+  var current = 0;
+  function setActive(i){
+    current = i;
+    dots.forEach(function(d, idx){ d.classList.toggle('active', idx === i); });
+    counter.textContent = String(i+1).padStart(2,'0') + ' / ' + total;
+  }
+
+  function goTo(i){
+    i = Math.max(0, Math.min(total - 1, i));
+    slides[i].scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  }
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting && entry.intersectionRatio > 0.6){
+        setActive(slides.indexOf(entry.target));
+      }
+    });
+  }, { threshold: [0.6] });
+  slides.forEach(function(s){ io.observe(s); });
+
+  document.addEventListener('keydown', function(e){
+    if (['ArrowDown','ArrowRight','PageDown',' '].indexOf(e.key) > -1){ e.preventDefault(); goTo(current+1); }
+    else if (['ArrowUp','ArrowLeft','PageUp'].indexOf(e.key) > -1){ e.preventDefault(); goTo(current-1); }
+    else if (e.key === 'Home'){ e.preventDefault(); goTo(0); }
+    else if (e.key === 'End'){ e.preventDefault(); goTo(total-1); }
+  });
+
+  var wheelLocked = false;
+  window.addEventListener('wheel', function(e){
+    if (wheelLocked) return;
+    if (Math.abs(e.deltaY) < 12) return;
+    wheelLocked = true;
+    goTo(current + (e.deltaY > 0 ? 1 : -1));
+    setTimeout(function(){ wheelLocked = false; }, 700);
+  }, { passive: true });
+
+  var touchStartY = null;
+  window.addEventListener('touchstart', function(e){ touchStartY = e.touches[0].clientY; }, { passive: true });
+  window.addEventListener('touchend', function(e){
+    if (touchStartY === null) return;
+    var dy = touchStartY - e.changedTouches[0].clientY;
+    if (Math.abs(dy) > 60){ goTo(current + (dy > 0 ? 1 : -1)); }
+    touchStartY = null;
+  }, { passive: true });
+
+  setActive(0);
+})();
+</script>
+</body>
+</html>
