@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>세아제강 관리부문 AI 벤치마킹 & 추진전략 — 최종본</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{
+  --bg:#14161a; --panel:#1c1e23; --panel2:#22252b; --line:#33363c;
+  --ink:#ece9e2; --sub:#a19c8f; --copper:#e0904f; --steel:#7fa8c9;
+  --a:#5aab7e; --b:#c9a227; --c:#c05c4d;
+  --critique-bg:#2a1e1c; --critique-line:#5a3a34;
+  --note-bg:#1e1a26; --note-line:#4a3a5e;
+  --stage-bg:#1a2420; --stage-line:#3a5a47;
+  --mono:ui-monospace,"SFMono-Regular",Consolas,"Liberation Mono",monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Pretendard Variable",Pretendard,"Segoe UI","Malgun Gothic",sans-serif;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); line-height:1.75; font-size:16px;}
+a{color:var(--copper);}
+.layout{display:grid; grid-template-columns:280px 1fr; min-height:100vh;}
+@media (max-width:900px){ .layout{grid-template-columns:1fr;} .toc{position:static; height:auto;} }
+
+.toc{position:sticky; top:0; height:100vh; overflow-y:auto; background:var(--panel); border-right:1px solid var(--line); padding:1.4rem 1.1rem 3rem;}
+.toc h1{font-size:1.02rem; margin:0 0 .2rem; line-height:1.4;}
+.toc .meta{font-family:var(--mono); font-size:.68rem; color:var(--sub); margin-bottom:1.3rem;}
+.toc-group{margin-bottom:1.1rem;}
+.toc-group .g-title{font-family:var(--mono); text-transform:uppercase; letter-spacing:.06em; font-size:.65rem; color:var(--steel); margin-bottom:.35rem;}
+.toc-group a{display:flex; align-items:center; gap:.4rem; padding:.26rem .4rem; border-radius:4px; color:var(--ink); text-decoration:none; font-size:.83rem;}
+.toc-group a:hover{background:var(--panel2);}
+.toc-group a .g{font-family:var(--mono); font-size:.62rem; font-weight:700; color:var(--sub); width:1.1em; flex-shrink:0;}
+.toc-group a .g.A{color:var(--a);} .toc-group a .g.B{color:var(--b);} .toc-group a .g.C{color:var(--c);}
+
+main{padding:2.6rem clamp(1.2rem,4vw,3.4rem) 6rem; max-width:920px;}
+.page-head{margin-bottom:2.2rem; padding-bottom:1.6rem; border-bottom:1px solid var(--line);}
+.page-head .kicker{font-family:var(--mono); text-transform:uppercase; letter-spacing:.08em; font-size:.72rem; color:var(--copper); margin-bottom:.6rem;}
+.page-head h1{font-size:1.85rem; margin:0 0 .6rem; line-height:1.3;}
+.page-head p{color:var(--sub); font-size:.95rem; max-width:68ch;}
+.page-head .scope{background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:1.1rem 1.4rem; margin-top:1.1rem; font-size:.88rem;}
+.page-head .scope b{color:var(--copper);}
+
+.section-title{font-family:var(--mono); text-transform:uppercase; letter-spacing:.06em; font-size:.82rem; color:var(--steel); margin:3.6rem 0 .3rem; padding-top:1.7rem; border-top:1px solid var(--line);}
+.section-title:first-of-type{margin-top:0; border-top:none; padding-top:0;}
+.section-lead{color:var(--sub); font-size:.92rem; margin:0 0 1.3rem; max-width:68ch;}
+
+h2.h{font-size:1.35rem; margin:2rem 0 .8rem;}
+h3.h3{font-size:1.08rem; margin:1.6rem 0 .6rem; color:var(--ink);}
+
+.case{background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:1.6rem 1.8rem; margin-bottom:1.6rem; scroll-margin-top:1.5rem;}
+.case-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:.6rem; margin-bottom:.3rem;}
+.case-head h2{font-size:1.3rem; margin:0;}
+.tag{font-family:var(--mono); font-size:.7rem; font-weight:700; padding:.15rem .55rem; border-radius:99px; border:1px solid currentColor;}
+.tag.A{color:var(--a);} .tag.B{color:var(--b);} .tag.C{color:var(--c);}
+.tag.owner{color:var(--sub); border-color:var(--line);}
+.case-sub{color:var(--sub); font-size:.87rem; margin:0 0 1.1rem; font-style:italic;}
+h3.sub{font-family:var(--mono); text-transform:uppercase; letter-spacing:.05em; font-size:.75rem; color:var(--steel); margin:1.6rem 0 .6rem;}
+.case p{margin:.6rem 0;}
+.case ul, .case ol{margin:.5rem 0; padding-left:1.3rem;}
+.case li{margin-bottom:.4rem;}
+
+.scale-row{display:flex; flex-wrap:wrap; gap:1.3rem; background:var(--panel2); border:1px solid var(--line); border-radius:8px; padding:.9rem 1.2rem; margin:.7rem 0 1rem;}
+.scale-row div{font-size:.83rem;}
+.scale-row b{display:block; font-family:var(--mono); color:var(--copper); font-size:1.02rem; font-variant-numeric:tabular-nums;}
+
+.evidence{display:flex; flex-wrap:wrap; gap:1.4rem; margin:.8rem 0 1.1rem; padding:.8rem 0; border-top:1px dashed var(--line); border-bottom:1px dashed var(--line);}
+.evidence .m{font-family:var(--mono); color:var(--copper); font-weight:700; font-size:1.05rem; font-variant-numeric:tabular-nums;}
+.evidence .m span{display:block; font-family:var(--sans); color:var(--sub); font-weight:400; font-size:.74rem; margin-top:.2rem;}
+
+.critical{background:var(--critique-bg); border:1px solid var(--critique-line); border-radius:8px; padding:1.2rem 1.4rem; margin:1rem 0;}
+.critical .label{font-family:var(--mono); font-size:.7rem; text-transform:uppercase; letter-spacing:.06em; color:#e88a7a; margin-bottom:.6rem;}
+.critical p, .critical li{margin:.5rem 0;}
+.critical b{color:#f0b8a8;}
+
+.note{background:var(--note-bg); border:1px dashed var(--note-line); border-radius:8px; padding:1rem 1.3rem; margin-top:1.1rem;}
+.note .label{font-family:var(--mono); font-size:.7rem; text-transform:uppercase; letter-spacing:.06em; color:#c9a8e8; margin-bottom:.4rem;}
+.note p{margin:0; color:var(--sub); font-size:.85rem; font-style:italic;}
+
+.sources{margin-top:1.2rem; padding-top:1rem; border-top:1px solid var(--line); font-size:.85rem;}
+.sources a{display:inline-block; margin:.2rem .6rem .2rem 0;}
+.sources a::before{content:"↗ ";}
+
+.principle{background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:1.2rem 1.5rem; margin-bottom:1rem;}
+.principle .num{font-family:var(--mono); color:var(--copper); font-weight:700; font-size:.85rem;}
+.principle h4{margin:.3rem 0 .5rem; font-size:1.05rem;}
+.principle p{margin:.3rem 0; color:var(--ink); font-size:.92rem;}
+.principle .basis{color:var(--sub); font-size:.82rem; margin-top:.5rem;}
+.principle .basis a{font-size:.82rem;}
+
+.flow{display:flex; flex-wrap:wrap; gap:0; align-items:stretch; margin:1.6rem 0 2rem;}
+.flow .stage{flex:1 1 200px; background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:1.2rem 1.3rem; position:relative; min-width:200px;}
+.flow .stage.now{border-color:var(--sub); opacity:.75;}
+.flow .stage.s1{border-color:var(--steel);}
+.flow .stage.s2{border-color:var(--copper);}
+.flow .stage.goal{background:var(--stage-bg); border-color:var(--stage-line);}
+.flow .stage .tag2{font-family:var(--mono); font-size:.66rem; text-transform:uppercase; letter-spacing:.05em; color:var(--sub); margin-bottom:.5rem;}
+.flow .stage.s1 .tag2{color:var(--steel);} .flow .stage.s2 .tag2{color:var(--copper);} .flow .stage.goal .tag2{color:#7fc9a0;}
+.flow .stage h4{margin:0 0 .5rem; font-size:1.02rem;}
+.flow .stage p{margin:0; font-size:.82rem; color:var(--sub);}
+.flow .arrow{display:flex; align-items:center; justify-content:center; padding:0 .4rem; color:var(--sub); font-size:1.3rem; flex:0 0 auto;}
+@media (max-width:760px){ .flow{flex-direction:column;} .flow .arrow{transform:rotate(90deg); padding:.3rem 0;} }
+
+.stage-detail{background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:1.4rem 1.6rem; margin-bottom:1.2rem;}
+.stage-detail h3{margin:0 0 .3rem; font-size:1.1rem;}
+.stage-detail .stage-sub{color:var(--sub); font-size:.85rem; margin-bottom:1rem;}
+.func-row{display:grid; grid-template-columns:1fr; gap:.8rem; margin-top:.8rem;}
+.func-row .f{background:var(--panel2); border:1px solid var(--line); border-radius:6px; padding:.9rem 1.1rem;}
+.func-row .f .fname{font-family:var(--mono); font-size:.72rem; color:var(--steel); text-transform:uppercase; letter-spacing:.04em; margin-bottom:.35rem;}
+.func-row .f p{margin:.2rem 0; font-size:.88rem;}
+.func-row .f .basis{color:var(--sub); font-size:.78rem;}
+
+.goal-box{background:var(--stage-bg); border:1px solid var(--stage-line); border-radius:8px; padding:1.6rem 1.8rem;}
+.goal-box .goal-main{font-size:1.15rem; font-weight:600; color:#a8d8bc; margin-bottom:.8rem;}
+.goal-box p{margin:.5rem 0; font-size:.92rem;}
+.goal-box .not{color:#e88a7a; font-size:.85rem; margin-top:.9rem; padding-top:.9rem; border-top:1px dashed var(--critique-line);}
+
+footer{color:var(--sub); font-size:.8rem; text-align:center; padding-top:2rem; border-top:1px solid var(--line); margin-top:3rem;}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav class="toc">
+  <h1>세아제강 관리부문<br>AI 벤치마킹 & 추진전략</h1>
+  <div class="meta">최종본 · Claude 작성<br>2026-08-12</div>
+
+  <div class="toc-group">
+    <div class="g-title">개요</div>
+    <a href="#why">왜 지금 벤치마킹인가</a>
+    <a href="#method">조사방법 · 등급기준</a>
+  </div>
+  <div class="toc-group">
+    <div class="g-title">재무 · 회계</div>
+    <a href="#dow"><span class="g B">B</span>Dow</a>
+    <a href="#tata-invoice"><span class="g A">A</span>Tata Steel</a>
+    <a href="#poloplast"><span class="g B">B</span>Poloplast</a>
+  </div>
+  <div class="toc-group">
+    <div class="g-title">경영기획 · 지식관리</div>
+    <a href="#panasonic"><span class="g A">A</span>Panasonic Connect</a>
+    <a href="#sabanci"><span class="g B">B</span>Sabancı Holding</a>
+    <a href="#posco"><span class="g B">B</span>POSCO</a>
+    <a href="#lg"><span class="g A">A</span>LG전자</a>
+  </div>
+  <div class="toc-group">
+    <div class="g-title">영업 · 구매</div>
+    <a href="#fujitsu"><span class="g A">A</span>Fujitsu</a>
+    <a href="#tesa"><span class="g B">B</span>tesa</a>
+  </div>
+  <div class="toc-group">
+    <div class="g-title">국내 철강 참고</div>
+    <a href="#hyundai"><span class="g C">C</span>Hyundai Steel</a>
+  </div>
+  <div class="toc-group">
+    <div class="g-title">그래서, 세아제강은</div>
+    <a href="#principles">10개 사례가 말하는 5원칙</a>
+    <a href="#strategy">추진전략: 3단계</a>
+    <a href="#goal">Goal</a>
+  </div>
+</nav>
+
+<main>
+  <div class="page-head">
+    <div class="kicker">DX팀 · AI 생산성 벤치마킹 · 최종본</div>
+    <h1>세아제강 관리부문 AI 벤치마킹 & 추진전략</h1>
+    <p>40여 개 롱리스트에서 압축한 핵심 10개 사례를 근거·비판적 검증·원문 출처까지 갖춰 정리하고,
+    이를 바탕으로 세아제강이 실제로 걸어갈 추진 경로를 제시한다. 사례를 더 찾는 단계는 끝났다 —
+    지금부터는 이미 확보한 근거를 얼마나 깊이 읽고, 우리 조직에 얼마나 정직하게 적용하느냐의
+    문제다.</p>
+    <div class="scope"><b>대상 범위</b> — 이 문서의 "세아제강"은 강관 제조·판매 본체(매출 약
+    1.8조원, 포항·군산·순천·창원 4개 공장)를 가리키며, 세아제강지주와는 별개 법인이다. 이번
+    조사와 추진전략은 세아제강 본사 관리·사무직 업무를 대상으로 한다.</div>
+  </div>
+
+  <!-- ============ 왜 지금 ============ -->
+  <div class="section-title" id="why">왜 지금 벤치마킹인가</div>
+  <p>이번 조사에서 나온 가장 정직한 신호 두 개가 있다. 하나는 LG전자다 — AX플랫폼팀장이 공개
+  발표에서 "지난해 96개의 AI 에이전트를 만들었지만 지금 쓰이는 건 46개뿐"이라고 스스로 밝혔다
+  (<a href="#lg">생존율 48%, 자세히 보기 →</a>). 다른 하나는 POSCO다 — 사내 AI 플랫폼 P-GPT를
+  1.0에서 2.1로, 다시 2026년 하반기 3.0으로 3년째 계속 뜯어고치고 있다
+  (<a href="#posco">버전 변천사 →</a>). 두 회사 모두 "AI를 도입했다"에서 끝나지 않고, 도입한
+  뒤에 뭐가 살아남고 뭐가 방치되는지를 계속 확인하며 고쳐나가는 단계에 있다.</p>
+  <p>즉 지금은 "AI 에이전트를 쓸지 말지"를 고를 시점이 아니라, <b>"어떻게 하면 우리도 저 실패를
+  줄이며 자리잡게 할 것인가"</b>를 고민할 시점이라는 뜻이다. 세아제강 관리부문은 아직 개인이
+  각자 ChatGPT·Gemini에 물어보는 수준에 머물러 있다 — 나쁜 게 아니라, 이게 출발점이라는 뜻이다.
+  이 문서는 그 출발점에서 다음 단계로 넘어가기 위해, 남들이 이미 겪은 시행착오를 먼저 읽어두는
+  작업이다.</p>
+
+  <div class="section-title" id="method">조사방법 · 등급기준</div>
+  <p>40여 개 사례 롱리스트(재무·회계, 경영기획, 영업, 구매, 공급망, 전사 플랫폼 운영 전반)에서
+  ① 1차 출처(기업 공식 발표·기술 인터뷰) 존재 여부, ② 정량적 성과 수치의 원인이 AI만의 효과인지
+  아니면 별도 자동화·디지털화 효과와 섞여 있는지 구분 가능한 정도, ③ 세아제강 관리부문·사무직과의
+  업무 성격 유사성 세 가지 기준으로 걸러 핵심 10개를 남겼다.</p>
+  <p>등급은 <span class="tag A">A</span> 1차 출처 + 구체적 정량 근거 + 세아제강과 업무 성격이
+  가까움, <span class="tag B">B</span> 1차 출처는 있으나 정량 근거가 부분적이거나 업종·규모
+  차이가 큼, <span class="tag C">C</span> 공급업체 보도자료 재인용 위주로 독립 검증이 안 됨으로
+  나눴다. 모든 사례에 <b>"비판적으로 읽으면"</b> 항목을 넣어, 발표된 성과 뒤에 가려진 전제조건과
+  한계를 함께 표시했다 — 성공사례만 골라 보여주는 벤치마킹은 실제 도입 단계에서 오히려 위험하기
+  때문이다.</p>
+
+  <!-- ============ 재무회계 ============ -->
+  <div class="section-title">재무 · 회계</div>
+  <p class="section-lead">세 사례 모두 "완전 자동화"가 아니라 "AI가 의심스러운 건을 골라주면
+  사람이 최종 판단한다"는 구조로 수렴한다.</p>
+
+  <div class="case" id="dow">
+    <div class="case-head"><h2>Dow</h2><span class="tag B">B</span><span class="tag owner">Gemini 검증</span></div>
+    <p class="case-sub">Invoice 자동 검증 — "48시간 구축"과 "내년 초 확산" 사이의 진실</p>
+
+    <h3 class="sub">규모와 문제</h3>
+    <p>Dow는 매일 최대 4,000건의 글로벌 출하 인보이스를 처리하는데, 이 중 시스템(EDI) 연동이 안
+    되는 20%(연간 10만 건 이상)는 형식이 제각각인 PDF로 들어온다. 물류팀은 20페이지짜리 인보이스를
+    수동으로 검토하며 중복·과다 청구를 잡아내야 했다.</p>
+
+    <h3 class="sub">무엇을 했는가</h3>
+    <p>Copilot Studio로 이메일에 첨부된 PDF 송장을 자동 감시·추출하는 1차 Agent와, 추출된 데이터를
+    자연어로 "대화하며" 파고들 수 있는 2차 Agent(Freight Agent)를 나눠 만들었다. 파일럿에서는
+    8개월치 4만 3천 건의 배송 데이터를 처리했고, 실제로 <b>표준 요금 5,000달러 대비 30,000달러가
+    청구된 사례를 적발</b>했다.</p>
+
+    <div class="evidence">
+      <div class="m">48시간<span>파일럿 최초 구축 시간</span></div>
+      <div class="m">43,000건<span>파일럿 처리 데이터(8개월치)</span></div>
+      <div class="m">"내년 초"<span>전사 확산 예정 시점(원문 표현)</span></div>
+    </div>
+
+    <div class="critical">
+      <div class="label">비판적으로 읽으면</div>
+      <p><b>같은 자료 안에 "48시간 구축"과 "전사 확산은 내년 초"가 함께 있다</b> — 파일럿과
+      실제 프로덕션 사이에 최소 수개월의 시차가 있다는 뜻이다. 정확도·오탐률(false positive
+      rate)은 어디에도 공개되지 않았다. "수 초 내 이상 탐지"는 속도 얘기일 뿐, 탐지된 것 중
+      진짜 오류의 비율은 알 수 없다. 즉 <b>"AI가 자동으로 검증한다"가 아니라 "AI가 의심스러운
+      건을 골라주면 사람이 최종 판단한다"</b>는 게 실제 작동 방식에 가깝다.</p>
+    </div>
+
+    <div class="note"><div class="label">메모</div><p>(세아제강 적용 방안 — 직접 작성)</p></div>
+    <div class="sources">
+      <a href="https://www.microsoft.com/en/customers/story/19829-dow-microsoft-365-copilot" target="_blank" rel="noopener">Microsoft 공식 고객 사례</a>
+      <a href="https://www.microsoft.com/en-us/worklab/ai-impact-at-dow-copilot-identifies-millions-in-cost-savings" target="_blank" rel="noopener">Microsoft WorkLab 상세분석</a>
+    </div>
+  </div>
+
+  <div class="case" id="tata-invoice">
+    <div class="case-head"><h2>Tata Steel</h2><span class="tag A">A</span><span class="tag owner">Claude</span></div>
+    <p class="case-sub">Invoice 처리 + GST 세금분류 — 철강사의 Dow식 사례</p>
+    <p>Google Cloud와 협력한 전사 Agentic AI 전략의 일부로, Back-office 전담 Agent 군이 Invoice
+    처리(자동 데이터 추출·검증)와 GST(인도 재화용역세) 공제/불공제 분류를 자동 수행한다.</p>
+    <div class="critical">
+      <div class="label">비판적으로 읽으면</div>
+      <p>공식 자료는 "Invoice 처리와 세금분류를 Agent가 수행한다"는 정성적 설명뿐, <b>처리 건수,
+      정확도, 시간 절감폭 등 구체적 수치가 전혀 공개되지 않았다.</b> Dow와 짝지어 "Invoice
+      자동화는 재무 영역의 보편적 첫 적용 대상"이라는 방향성 근거로는 쓸 수 있지만, Tata Steel
+      단독으로는 정량적 벤치마크 자료로 인용하기 어렵다. GST라는 인도 특유의 세제 구조에
+      최적화된 시스템이라, 한국 세법 체계로 그대로 옮기기도 어렵다.</p>
+    </div>
+    <div class="note"><div class="label">메모</div><p>(세아제강 적용 방안 — 직접 작성)</p></div>
+    <div class="sources">
+      <a href="https://www.tatasteel.com/newsroom/press-releases/india/2026/tata-steel-partners-with-google-cloud-to-deploy-a-unified-agentic-ai-across-its-global-value-chain/" target="_blank" rel="noopener">Tata Steel 공식 뉴스룸</a>
+    </div>
+  </div>
+
+  <div class="case" id="poloplast">
+    <div class="case-head"><h2>Poloplast</h2><span class="tag B">B</span><span class="tag owner">Claude(신규)</span></div>
+    <p class="case-sub">70년 된 오스트리아 배관 제조사가 낡은 ERP를 걷어내고 예산 프로세스를 다시 짠 이야기</p>
+
+    <h3 class="sub">규모와 문제</h3>
+    <div class="scale-row">
+      <div><b>50~999명</b>중견 제조기업(오스트리아)</div>
+      <div><b>70년</b>업력 — 유럽 최고급 플라스틱 파이프 시스템 제조사</div>
+    </div>
+    <p>Poloplast는 구식 AS/400 ERP를 쓰고 있었다. 문제는 셋이었다 — ① 시스템 가시성 부족으로
+    예산·전망(forecasting) 수립이 느렸고, ② 이 구식 시스템을 다룰 줄 아는 기술 인력이 은퇴를
+    앞두고 있었으며, ③ 부서별로 데이터가 파편화돼 통합 계획 수립이 불가능했다. 세아제강의
+    "레거시 시스템+숙련인력 은퇴" 조합과 구조적으로 닮아 있다.</p>
+
+    <h3 class="sub">무엇을 했는가</h3>
+    <p>Dynamics 365 Finance(BPP)와 Power Platform, Copilot Studio를 결합해 수요계획과 재무계획을
+    하나의 파이프라인으로 통합했다. 기존에는 부서별 엑셀 수작업으로 진행되던 예산 수립이,
+    이제는 하향식(top-down)과 상향식(bottom-up) 계획 방식을 유연하게 전환할 수 있고, 품목
+    단위의 상세 데이터를 근거로 예산을 짤 수 있게 됐다.</p>
+
+    <div class="evidence">
+      <div class="m">약 1분<span>모든 데이터 입력 후 계획 결과 도출 시간</span></div>
+      <div class="m">9~10h → 5~6h<span>데이터 웨어하우스 생성 시간(약 40%↓)</span></div>
+    </div>
+
+    <div class="critical">
+      <div class="label">비판적으로 읽으면</div>
+      <p>"결과 도출 1분"이 인상적이지만, 이는 <b>"모든 데이터를 입력한 이후"의 계산 시간</b>이다 —
+      데이터를 모으고 정리하는 과정 자체는 별도이며, 그 시간이 구체적으로 어느 정도 걸리는지는
+      공개되지 않았다. 즉 이 사례가 자동화한 것은 "계획 계산" 단계이지, 그 전 단계인 "데이터
+      취합"까지 자동화한 게 아니다. Poloplast 정도 규모(중견기업)에서 나온 성과라 대기업 사례보다
+      세아제강 규모에 더 현실적인 참고치일 수 있지만, 도입 비용이나 프로젝트 기간은 공개되지
+      않았다.</p>
+    </div>
+
+    <div class="note"><div class="label">메모</div><p>(세아제강 적용 방안 — 직접 작성)</p></div>
+    <div class="sources">
+      <a href="https://www.microsoft.com/en/customers/story/26178-poloplast-dynamics-365-finance" target="_blank" rel="noopener">Microsoft 공식 고객 사례</a>
+    </div>
+  </div>
+
+  <!-- ============ 경영기획 ============ -->
+  <div class="section-title">경영기획 · 지식관리</div>
+  <p class="section-lead">네 사례를 관통하는 긴장은 하나다 — 데이터를 먼저 정리한 회사(Panasonic
+  Connect)는 극적인 성과를 냈고, 플랫폼만 깔고 채택은 못 시킨 회사(Sabancı)도 있으며, 플랫폼을
+  계속 고쳐가는 회사(POSCO)와 양산 후 절반을 잃은 회사(LG전자)도 있다. 넷 다 "만들면 쓰인다"는
+  가정이 틀렸다는 걸 각자 다른 방식으로 보여준다.</p>
+
+  <div class="case" id="panasonic">
+    <div class="case-head"><h2>Panasonic Connect</h2><span class="tag A">A</span><span class="tag owner">Gemini 검증</span></div>
+    <p class="case-sub">2주일 걸리던 계약 취합을 2~3시간으로 — 단, 숨은 비용을 반드시 봐야 하는 사례</p>
+    <p>데이터 레이크하우스와 LLM을 결합해, 비정형 계약·수주 문서를 취합하고 SAP ERP에 수동으로
+    입력하던 프로세스를 2주일에서 2~3시간으로 단축했다(리드타임 98% 단축).</p>
+    <div class="critical">
+      <div class="label">비판적으로 읽으면</div>
+      <p>이 압축의 진짜 동력은 LLM이 아니라 <b>Databricks 데이터 레이크하우스 아키텍처에 투입된
+      수십 억 원과 수년의 엔지니어링 리소스</b>다. 자재 코드·단가 기호가 표준화되지 않은 상태에서
+      LLM만 얹으면 "고속 환각 머신"으로 전락할 위험이 있다 — 데이터 표준화가 선행되지 않은
+      조직이 이 숫자만 보고 따라 하면 위험하다.</p>
+    </div>
+    <div class="note"><div class="label">메모</div><p>(세아제강 적용 방안 — 직접 작성)</p></div>
+    <div class="sources">
+      <a href="https://www.databricks.com/customers/panasonic/lakeflow-connect" target="_blank" rel="noopener">Databricks 공식 고객 사례</a>
+    </div>
+  </div>
+
+  <div class="case" id="sabanci">
+    <div class="case-head"><h2>Sabancı Holding</h2><span class="tag B">B</span><span class="tag owner">Claude(신규)</span></div>
+    <p class="case-sub">17개국 · 6만 명 · 은행부터 소재까지 — 그룹 데이터를 하나로 묶은 터키 대기업</p>
+
+    <h3 class="sub">규모와 문제</h3>
+    <div class="scale-row">
+      <div><b>60,000명</b>전 세계 직원</div>
+      <div><b>17개국</b>사업 국가</div>
+      <div><b>은행·에너지·금융·산업재·소재·유통</b>사업 영역</div>
+    </div>
+    <p>Sabancı Holding은 세아그룹처럼 <b>지주사 산하에 성격이 전혀 다른 여러 계열사</b>(은행,
+    에너지, 산업재, 소재 등)를 거느린 복합기업이다. 각 계열사가 서로 다른 형식·도메인의
+    데이터를 만들어내는데, 이를 통합해서 볼 수 있는 플랫폼이 없었다는 것이 출발점 문제였다.</p>
+
+    <h3 class="sub">무엇을 했는가</h3>
+    <p>Microsoft Fabric으로 원시 데이터를 Lakehouse에 모으고, 이를 Warehouse로 가공한 뒤 Power BI
+    대시보드로 시각화하는 파이프라인을 구축했다. 이 위에 Copilot in Fabric을 얹어, <b>전략기획
+    부서가 시장조사 속도를 높이는 데</b> 활용하고 있다 — 즉 최종 목적은 데이터 통합 자체가
+    아니라 "전략 부서가 더 빠르고 넓게 데이터를 근거로 리서치할 수 있게 하는 것"이었다.</p>
+
+    <div class="evidence">
+      <div class="m">4개월<span>Fabric 배포에 걸린 기간</span></div>
+      <div class="m">30%<span>배포 4개월 시점 채택률(adoption)</span></div>
+    </div>
+
+    <div class="critical">
+      <div class="label">비판적으로 읽으면</div>
+      <p>"4개월 만에 배포"는 인상적이지만 <b>채택률이 30%에 그친다는 점도 공식 자료에 함께
+      있다</b> — 시스템을 깔았다고 곧바로 전 직원이 쓰는 게 아니라는 걸 회사 스스로 인정한
+      셈이다. 은행·에너지·소재 계열사가 규제·보안 요건이 전혀 다른데, 이 차이를 어떻게
+      다뤘는지는 설명되지 않는다. "전략기획 부서의 시장조사 가속"이라는 성과도 구체적인
+      시간 단축폭이나 리서치 품질 지표 없이 서술로만 제시된다.</p>
+    </div>
+
+    <div class="note"><div class="label">메모</div><p>(세아제강 적용 방안 — 직접 작성)</p></div>
+    <div class="sources">
+      <a href="https://www.microsoft.com/en/customers/story/24081-sabanci-holding-microsoft-fabric" target="_blank" rel="noopener">Microsoft 공식 고객 사례</a>
+    </div>
+  </div>
+
+  <div class="case" id="posco">
+    <div class="case-head"><h2>POSCO</h2><span class="tag B">B</span><span class="tag owner">Gemini 검증 + Claude 추적조사</span></div>
+    <p class="case-sub">P-GPT 1.0 → 2.1 → 3.0(예정) — 국내 철강 경쟁사의 3년짜리 시행착오 실시간 관찰기</p>
+
+    <h3 class="sub">버전 변천사 (추적조사 결과)</h3>
+    <div class="scale-row">
+      <div><b>1.0</b>단일 ChatGPT 기반, 사내 규정 검색 중심</div>
+      <div><b>2.1(2025.12 출시)</b>ChatGPT+Gemini 3+Claude 멀티 LLM, 사용자 맞춤 에이전트 생성</div>
+      <div><b>3.0(2026 하반기 예정)</b>제조 특화 sLLM + Graph DB 검색 강화</div>
+    </div>
+    <p>2.1은 37개 그룹사·2만여 명이 이용 중이며, <b>사용자가 3,500개 이상의 에이전트를 직접
+    만들었다</b>. 3.0은 지금(2026.08) 기준 아직 출시 전이며, 계획대로면 하반기 중 sLLM(제조
+    특화)과 Graph DB 검색이 추가될 예정이다 — 즉 POSCO의 "폐쇄형 sLLM"에 대한 기존 비판은
+    2.1 시점에는 이미 낡은 지적이 되어 있었고, 3.0에서 sLLM이 다시 등장하는데 이번엔 "제조
+    특화"라는 다른 목적(성능이 아니라 도메인 정확도)으로 재도입된다는 점이 흥미롭다.</p>
+
+    <div class="critical">
+      <div class="label">비판적으로 읽으면</div>
+      <p>"별도 구축 부담 없이"(토큰 과금)라는 말은 곧이곧대로 믿으면 안 된다 — RAG 인프라,
+      3,500개 에이전트를 담는 플랫폼 자체는 누군가(포스코DX) 만들고 유지보수해야 한다. 그리고
+      <b>"3,500개 사용자 에이전트"는 Tata Steel의 Zen AI(300개+)와 본질적으로 같은 거버넌스
+      리스크</b>다 — 누가 무엇을 만들고 있는지, 권한은 통제되는지에 대한 답은 여전히 공개되지
+      않았다. 인프라 문제는 풀었어도 거버넌스 문제는 그대로다.</p>
+    </div>
+
+    <div class="note"><div class="label">메모</div><p>(세아제강 적용 방안 — 직접 작성)</p></div>
+    <div class="sources">
+      <a href="https://newsroom.posco.com/kr/%ED%8F%AC%EC%8A%A4%EC%BD%94dx-%EC%A0%9C%EB%AF%B8%EB%82%98%EC%9D%B43-%EB%93%B1-%EB%A9%80%ED%8B%B0-llm-%ED%83%91%EC%9E%AC%ED%95%9C-%EA%B8%B0%EC%97%85%EC%9A%A9-%EC%97%85%EB%AC%B4-%ED%94%8C%EB%9E%AB/" target="_blank" rel="noopener">포스코DX 공식 뉴스룸 — P-GPT 2.1</a>
+      <a href="https://www.etnews.com/20251230000379" target="_blank" rel="noopener">전자신문 — 37개사·2만명 활용 보도</a>
+    </div>
+  </div>
+
+  <div class="case" id="lg">
+    <div class="case-head"><h2>LG전자</h2><span class="tag A">A</span><span class="tag owner">Codex 최초조사 + Claude 추적조사</span></div>
+    <p class="case-sub">에이전트 96개 중 46개만 살아남았다 — 조사 전체를 통틀어 가장 정직한 실패 인정 사례</p>
+
+    <h3 class="sub">1년 전 목표 vs 지금 확인된 현실</h3>
+    <p>이전 조사(Codex)는 LG전자가 "향후 2~3년 내 전사 생산성 30% 향상"을 목표로 제시했으나
+    실측치가 공개되지 않았다고 지적했다. 이번에 추적조사한 결과, <b>실제 운영 지표가 이제는
+    상당 부분 공개돼 있다</b> — 그리고 그 안에 숫자만큼 중요한 실패 데이터가 섞여 있었다.</p>
+
+    <div class="evidence">
+      <div class="m">35만 건+/월<span>LGenie 질의응답 처리량</span></div>
+      <div class="m">1,200시간+/월<span>회의 통역</span></div>
+      <div class="m">12만 건+/월<span>문서 번역</span></div>
+    </div>
+
+    <h3 class="sub">그런데 — 에이전트 생존율 48%</h3>
+    <p>LG전자 AX플랫폼팀장은 공개 발표에서 <b>"지난해 96개의 AI 에이전트를 개발했지만 현재
+    사용 중인 것은 46개뿐"</b>이라고 직접 밝혔다(현재는 재정비를 거쳐 125개 수준으로 운영,
+    월간 활성 사용자 약 3만 명). 실패 원인으로 회사가 스스로 지목한 것은 <b>"기술 중심
+    접근"</b>이다 — OCR이나 비전 AI 같은 기술에서 출발해 "이 기술로 뭘 할 수 있을까"를 찾는
+    방식으로 만든 에이전트들이 현장에 안착하지 못했다. 반대로 성공한 사례(광고 문구 검토
+    에이전트 — 사내 생산성 효과 2위, 다국어 번역 에이전트 — 부서별 개별 도입 대신 통합
+    운영)는 전부 <b>"현장의 반복 비효율을 먼저 정의한 뒤 AI를 그 자리에 끼워 넣은"</b> 경우였다.</p>
+
+    <div class="critical">
+      <div class="label">비판적으로 읽으면 — 오히려 이례적으로 정직한 사례</div>
+      <p>대부분의 벤치마킹 사례(Tata Steel Zen AI, POSCO 사용자 에이전트)는 "몇 개 만들었다"는
+      생산 숫자만 발표하고 그중 몇 개가 살아남았는지는 밝히지 않는다. LG전자는 이례적으로
+      <b>생존율 자체를 공개했다</b>(48%) — 이는 이번 조사 전체에서 유일하게 "에이전트 양산 이후
+      방치율"을 정량으로 확인할 수 있는 사례다. 다만 이 48%가 LG전자만의 특수한 실패율인지,
+      아니면 Tata Steel·POSCO의 공개 안 된 300~3,500개 에이전트도 비슷한 생존율을 보이고
+      있을지는 추정만 가능하다.</p>
+    </div>
+
+    <div class="note"><div class="label">메모</div><p>(세아제강 적용 방안 — 직접 작성)</p></div>
+    <div class="sources">
+      <a href="https://www.lg.com/global/newsroom/news/corporate/lg-electronics-ceo-sets-strategic-direction-for-profit-driven-growth-prioritizing-speed-and-action/" target="_blank" rel="noopener">LG전자 공식 뉴스룸</a>
+      <a href="https://zdnet.co.kr/view/?no=20260527175217" target="_blank" rel="noopener">ZDNet Korea — 에이전트 절반 소멸 보도</a>
+      <a href="https://www.insight.co.kr/news/565301" target="_blank" rel="noopener">인사이트 — LGenie 운영 현황(35만건/월 등)</a>
+    </div>
+  </div>
+
+  <!-- ============ 영업/구매 ============ -->
+  <div class="section-title">영업 · 구매</div>
+  <p class="section-lead">둘 다 "무엇을 만들었나"보다 "어떻게 확산시켰나"가 더 배울 점이 많은
+  사례다.</p>
+
+  <div class="case" id="fujitsu">
+    <div class="case-head"><h2>Fujitsu</h2><span class="tag A">A</span><span class="tag owner">Claude 추적조사</span></div>
+    <p class="case-sub">"왜 단일 LLM이 아니라 멀티에이전트였나" — 기술 선택의 이유까지 확인</p>
+    <p>Kozuchi Composite AI(Semantic Kernel 기반 멀티에이전트 오케스트레이션)로 사내 분산 지식을
+    검색·종합해 제안서를 자동 생성한다. 영업 생산성 67% 향상, 적용 대상 3.5만 명 이상.</p>
+    <h3 class="sub">추적조사로 새로 확인한 것</h3>
+    <p>담당 엔지니어 Hirotaka Ito는 이 아키텍처를 선택한 이유를 명확히 밝혔다 — <i>"기존의
+    생성형 AI, 대화형 AI, RAG 시스템만으로는 우리 요구를 충족하지 못했다."</i> 즉 단순 검색이나
+    단일 챗봇으로는 안 되고, 여러 전문 Agent가 각자 다른 소스(제품DB, 가격정책, 고객이력)를
+    맡아 처리한 뒤 통합하는 구조가 필요했다는 것이다. 2024년 10월 말 영업 수익성 논의·협상
+    용도로 먼저 출시됐고, 이후 생산관리·법무 등으로 Agent 라인을 확장할 계획이다.</p>
+    <div class="critical">
+      <div class="label">비판적으로 읽으면</div>
+      <p>Fujitsu는 Semantic Kernel(Microsoft의 오케스트레이션 프레임워크)을 자체 엔지니어링
+      역량으로 직접 다뤄 이 구조를 만들었다 — <b>이런 멀티에이전트 오케스트레이션을 처음부터
+      설계·구축하는 것은 상당한 자체 개발 역량을 전제로 한다.</b> 세아제강이 그대로 벤치마킹하려면
+      개발이 아니라 상용 로우코드 도구로 같은 "제안서 자동 생성 + 지식검색" 기능만 축소 구현하는
+      것이 현실적이다.</p>
+    </div>
+    <div class="note"><div class="label">메모</div><p>(세아제강 적용 방안 — 직접 작성)</p></div>
+    <div class="sources">
+      <a href="https://www.microsoft.com/en/customers/story/21885-fujitsu-azure-ai-foundry" target="_blank" rel="noopener">Microsoft 공식 고객 사례</a>
+      <a href="https://devblogs.microsoft.com/semantic-kernel/customer-case-study-fujitsu-kozuchi-ai-agent-powered-by-semantic-kernel/" target="_blank" rel="noopener">Semantic Kernel 기술블로그 — 엔지니어 인터뷰</a>
+    </div>
+  </div>
+
+  <div class="case" id="tesa">
+    <div class="case-head"><h2>tesa</h2><span class="tag B">B</span><span class="tag owner">Claude 추적조사</span></div>
+    <p class="case-sub">"강제 배포"가 아니라 "신청제"로 90% 활성 사용률을 만든 방법</p>
+    <p>공급사 인근 기후 이변, 지정학 위기, 공급업체 부도 등 글로벌 리스크 뉴스를 실시간으로
+    감시하는 'Supply Risk Agent'를 구축해 11개 글로벌 생산 공장의 중단 리스크를 선제 방어했다고
+    발표했다.</p>
+    <h3 class="sub">추적조사로 새로 확인한 것 — 확산 방식이 핵심</h3>
+    <p>tesa(약 5,400명, 11개 생산기지, 100개국 이상에서 사업)는 Copilot을 <b>하향식 강제 배포가
+    아니라 "풀(pull) 방식" — 희망자가 직접 신청하는 방식</b>으로 확산시켰다. 출시 첫 몇 주
+    만에 신청률이 60%를 넘었고, 등록된 사용자의 약 90%가 매일 실제로 사용했다. 이 과정에서
+    Microsoft와의 아이디어 워크숍을 통해 50개 이상의 구체적 활용사례를 발굴했고, 그중 사업
+    임팩트가 크고 빠르게 구현 가능한 9개를 추려 우선 적용했다. Supply Risk Agent는 이 9개 중
+    하나다.</p>
+    <div class="evidence">
+      <div class="m">90%<span>등록 사용자의 일일 실제 사용률</span></div>
+      <div class="m">최대 45분<span>업무 프로세스별 절감 시간</span></div>
+      <div class="m">50개+ → 9개<span>발굴된 활용사례 중 우선 적용 건수</span></div>
+    </div>
+    <div class="critical">
+      <div class="label">비판적으로 읽으면</div>
+      <p>"늑대소년 신드롬"(잦은 오탐으로 알림을 꺼버리게 되는 위험)이라는 근본적 설계 결함
+      지적은 여전히 유효하다 — 활성 사용률 90%가 높다고 해서 Supply Risk Agent의 알림
+      정확도까지 검증된 것은 아니다. 다만 "신청제 + 90% 활성 사용률"이라는 확산 방식 자체는
+      LG전자가 겪은 "만들어놓고 방치되는 문제"를 방지하는 강력한 반증 사례로 볼 수 있다 —
+      강제 배포보다 자발적 신청이 실사용률을 크게 높인다는 증거다.</p>
+    </div>
+    <div class="note"><div class="label">메모</div><p>(세아제강 적용 방안 — 직접 작성)</p></div>
+    <div class="sources">
+      <a href="https://www.microsoft.com/en/customers/story/25507-tesa-se-microsoft-copilot" target="_blank" rel="noopener">Microsoft 공식 고객 사례</a>
+    </div>
+  </div>
+
+  <!-- ============ 국내 철강 참고 ============ -->
+  <div class="section-title">국내 철강 참고</div>
+
+  <div class="case" id="hyundai">
+    <div class="case-head"><h2>Hyundai Steel — SAIP / HIP</h2><span class="tag C">C</span><span class="tag owner">Claude 추적조사</span></div>
+    <p class="case-sub">"제철·정련 분야 최초 LLM 플랫폼 도입"이라는 주장, 얼마나 믿을 수 있나</p>
+
+    <h3 class="sub">추적조사로 밝혀진 것 — PR Newswire보다 나은 출처 확보</h3>
+    <p>S2W(국내 빅데이터·보안 AI 기업)가 2024년 5월 현대제철에 자사 생성형 AI 플랫폼 'SAIP'를
+    공급했다. 현대제철은 이를 사내 지식정보 플랫폼 <b>'HIP(Hyundai-steel Intelligence
+    Platform)'</b>에 적용해, 사내 문서 검색과 경영지원 챗봇 기능을 제공한다. S2W는 철강 산업
+    특화 빅데이터에 온톨로지(ontology) 기법을 적용해 정확도를 높였다고 설명하며, RAG(검색증강
+    생성) 구조에 보안 기능을 결합해 내부 정보유출 위협에 대응했다고 밝혔다. 디지털데일리,
+    보안뉴스, 디지털투데이 등 국내 IT 전문매체 다수가 이 발표를 별도로 보도해, PR Newswire
+    단일 출처보다는 교차 확인이 가능해졌다.</p>
+
+    <div class="critical">
+      <div class="label">비판적으로 읽으면 — 여전히 C등급인 이유</div>
+      <p>보도 대부분이 <b>S2W(공급업체)의 보도자료를 그대로 인용</b>한 것이라, 현대제철이 직접
+      발표한 1차 자료나 정량적 성과 수치(문의 해결률, 검색 정확도, 시간 절감 등)는 여전히
+      확인되지 않는다. "철강·정련 분야 최초의 LLM 플랫폼 도입 사례"라는 주장도 S2W 측 표현이며
+      독립적으로 검증되지 않았다. S2W는 이 레퍼런스를 발판 삼아 금융·화학·ICT 등 타 업종으로
+      확장할 계획이라고 밝혀, 현대제철 사례가 S2W에게는 영업용 대표 사례(showcase)로서의
+      성격이 강하다는 점도 감안해야 한다.</p>
+    </div>
+
+    <div class="note"><div class="label">메모</div><p>(세아제강 적용 방안 — 직접 작성)</p></div>
+    <div class="sources">
+      <a href="https://m.ddaily.co.kr/page/view/2024052109293538584" target="_blank" rel="noopener">디지털데일리</a>
+      <a href="https://m.boannews.com/html/detail.html?tab_type=1&idx=129933" target="_blank" rel="noopener">보안뉴스</a>
+      <a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=518370" target="_blank" rel="noopener">디지털투데이</a>
+      <a href="https://www.prnewswire.com/news-releases/s2w-provides-generative-ai-platform-saip-to-hyundai-steel-302149971.html" target="_blank" rel="noopener">PR Newswire(영문 원문)</a>
+    </div>
+  </div>
+
+  <!-- ============ 5원칙 ============ -->
+  <div class="section-title" id="principles">10개 사례가 말하는 5원칙</div>
+  <p class="section-lead">개별 사례의 "비판적으로 읽으면" 항목을 모아 겹치는 패턴을 뽑으면 다섯
+  가지로 수렴한다. 아래는 성과 수치가 아니라, 도입 방식에 대한 원칙이다 — 세아제강이 그대로
+  가져가야 할 부분이다.</p>
+
+  <div class="principle">
+    <div class="num">01</div>
+    <h4>완전자동이 아니라 "걸러주고, 사람이 최종 판단한다"</h4>
+    <p>Dow의 인보이스 검증은 "AI가 자동으로 처리한다"가 아니라 "AI가 의심스러운 건을 골라주면
+    사람이 확인한다"는 구조다. 정확도·오탐률이 공개된 사례가 하나도 없다는 것 자체가, 지금
+    단계의 AI를 "결정권자"가 아니라 "1차 스크리너"로 설계해야 한다는 뜻이다.</p>
+    <div class="basis">근거: <a href="#dow">Dow</a></div>
+  </div>
+
+  <div class="principle">
+    <div class="num">02</div>
+    <h4>AI보다 데이터 표준화가 먼저다</h4>
+    <p>Panasonic Connect의 리드타임 98% 단축은 LLM이 아니라 수년간 투입된 데이터 레이크하우스
+    구축이 진짜 동력이었다. 자재코드·단가체계가 표준화되지 않은 상태에서 LLM만 얹으면 속도만
+    빠른 오답 생성기가 될 위험이 있다.</p>
+    <div class="basis">근거: <a href="#panasonic">Panasonic Connect</a></div>
+  </div>
+
+  <div class="principle">
+    <div class="num">03</div>
+    <h4>강제 배포보다 "신청제"가 실사용률을 만든다</h4>
+    <p>tesa는 하향식 강제 배포 대신 희망자가 직접 신청하는 방식을 택해 등록자의 90%가 매일
+    실제로 쓰는 결과를 냈다. Sabancı Holding은 반대로 플랫폼을 깔았지만 4개월 시점 채택률이
+    30%에 그쳤다 — 시스템을 배포하는 것과 조직이 실제로 쓰는 것은 다른 문제라는 뜻이다.</p>
+    <div class="basis">근거: <a href="#tesa">tesa</a> · <a href="#sabanci">Sabancı Holding</a></div>
+  </div>
+
+  <div class="principle">
+    <div class="num">04</div>
+    <h4>기술이 아니라 현장의 반복 비효율을 먼저 정의해야 살아남는다</h4>
+    <p>LG전자가 만든 96개 에이전트 중 46개만 살아남았다(생존율 48%). 회사가 스스로 지목한
+    실패 원인은 "이 기술로 뭘 할 수 있을까"에서 출발한 기술 중심 접근이었다. 살아남은
+    에이전트는 전부 현장의 반복 비효율을 먼저 정의한 뒤 AI를 그 자리에 끼워 넣은 경우였다.</p>
+    <div class="basis">근거: <a href="#lg">LG전자</a></div>
+  </div>
+
+  <div class="principle">
+    <div class="num">05</div>
+    <h4>사용자가 스스로 에이전트를 만들게 하려면, 거버넌스를 먼저 설계해야 한다</h4>
+    <p>POSCO 2.1에서는 사용자가 3,500개 이상의 에이전트를 직접 만들었고, Tata Steel Zen AI도
+    300개 이상이 만들어졌다. 하지만 누가 무엇을 만들고 있는지, 권한은 어떻게 통제되는지는
+    두 회사 모두 공개하지 않았다. LG전자의 48% 생존율을 겹쳐 보면, 통제 없이 양산된 에이전트가
+    방치될 위험은 실재한다 — "1인 1에이전트" 단계로 가기 전에 반드시 짚어야 할 지점이다.</p>
+    <div class="basis">근거: <a href="#posco">POSCO</a> · <a href="#lg">LG전자</a></div>
+  </div>
+
+  <!-- ============ 추진전략 ============ -->
+  <div class="section-title" id="strategy">추진전략: 3단계</div>
+  <p class="section-lead">위 5원칙을 그대로 반영해, 세아제강 관리부문이 밟아갈 경로를 세 단계로
+  정리한다. 순서를 건너뛰지 않는 것이 핵심이다 — 1단계 없이 2단계로 가면 LG전자의 48% 생존율,
+  POSCO·Tata Steel의 거버넌스 공백을 그대로 반복하게 된다.</p>
+
+  <div class="flow">
+    <div class="stage now">
+      <div class="tag2">현재</div>
+      <h4>개인 도구 사용</h4>
+      <p>개인이 각자 ChatGPT·Gemini에 필요할 때마다 물어보는 수준. 부서·업무에 내재화되지 않음.</p>
+    </div>
+    <div class="arrow">→</div>
+    <div class="stage s1">
+      <div class="tag2">1단계</div>
+      <h4>1팀 1AI</h4>
+      <p>기능별로 눈에 보이는 반복 업무 하나씩 파일럿. 신청제로 확산, 완전자동 기대하지 않음.</p>
+    </div>
+    <div class="arrow">→</div>
+    <div class="stage s2">
+      <div class="tag2">2단계</div>
+      <h4>1인 1에이전트</h4>
+      <p>개인의 업무 이력·판단을 아는 에이전트로 확장. 단, 거버넌스 체계를 먼저 설계.</p>
+    </div>
+    <div class="arrow">→</div>
+    <div class="stage goal">
+      <div class="tag2">Goal</div>
+      <h4>생산성 향상</h4>
+      <p>반복·비효율 업무는 AI가, 사람은 판단·분석·관계 업무에 집중.</p>
+    </div>
+  </div>
+
+  <div class="stage-detail">
+    <h3>1단계 — 1팀 1AI</h3>
+    <p class="stage-sub">각 부서가 자기 업무에 특화된 파일럿 하나씩부터 시작한다. 사례에서
+    확인된 원칙을 그대로 적용한다.</p>
+    <div class="func-row">
+      <div class="f">
+        <div class="fname">재무·회계팀</div>
+        <p>인보이스·정산 이상 건 조기 포착 파일럿부터. Dow·Tata Steel처럼 처음부터 완전자동을
+        기대하지 않고, "AI가 의심 건을 골라주면 사람이 확인"하는 구조로 설계한다.</p>
+        <div class="basis">근거: <a href="#dow">Dow</a> · <a href="#tata-invoice">Tata Steel</a> · <a href="#poloplast">Poloplast</a></div>
+      </div>
+      <div class="f">
+        <div class="fname">경영기획·전략기획</div>
+        <p>사내 지식 검색·시장조사 가속에 활용하되, Panasonic Connect의 교훈대로 데이터 표준화를
+        먼저 정리한다. 플랫폼만 깔고 끝내면 Sabancı Holding처럼 채택률이 낮게 머문다.</p>
+        <div class="basis">근거: <a href="#panasonic">Panasonic Connect</a> · <a href="#sabanci">Sabancı Holding</a> · <a href="#posco">POSCO</a></div>
+      </div>
+      <div class="f">
+        <div class="fname">영업</div>
+        <p>제안서·견적 초안 자동생성. Fujitsu처럼 자체 개발하는 대신, 상용 로우코드 도구로 같은
+        기능을 축소 구현하는 것이 현실적이다.</p>
+        <div class="basis">근거: <a href="#fujitsu">Fujitsu</a></div>
+      </div>
+      <div class="f">
+        <div class="fname">구매·공급망</div>
+        <p>공급 리스크 모니터링 등 반복 감시 업무부터. tesa처럼 강제 배포가 아니라 신청제로
+        확산해 실사용률을 높인다.</p>
+        <div class="basis">근거: <a href="#tesa">tesa</a></div>
+      </div>
+    </div>
+    <p style="margin-top:1.1rem; color:var(--sub); font-size:.88rem;">이 단계의 목표는 "부서마다
+    눈에 보이는 반복 업무 하나씩 걷어내기"다. 전사 통합이나 완성도 높은 시스템이 아니라, 각
+    부서가 자기 업무에서 실제로 시간을 아꼈다고 느끼는 파일럿 하나를 만드는 것이 먼저다.</p>
+  </div>
+
+  <div class="stage-detail">
+    <h3>2단계 — 1인 1에이전트</h3>
+    <p class="stage-sub">1단계 파일럿이 자리잡은 뒤, 에이전트는 부서 공용 도구를 넘어 개인의
+    업무 이력과 판단 스타일을 아는 디지털 동료로 확장된다.</p>
+    <p>POSCO 2.1이 사용자에게 직접 에이전트를 만들 수 있는 로우코드 환경을 열어준 것처럼,
+    세아제강도 구성원 각자가 자기 업무용 에이전트를 손쉽게 만들 수 있는 플랫폼을 검토한다.
+    "AI에게 시킨다"가 아니라 "내 에이전트가 이미 처리해뒀다"가 일상이 되는 단계다.</p>
+    <div class="critical">
+      <div class="label">이 단계로 넘어가기 전에 반드시 짚을 것</div>
+      <p>POSCO(3,500개+)와 Tata Steel Zen AI(300개+) 모두 사용자가 직접 에이전트를 양산하게
+      했지만, 누가 무엇을 만들고 있는지 통제하는 체계는 공개하지 않았다. LG전자의 생존율
+      48%를 겹쳐 보면 결론은 분명하다 — <b>개인화 확산을 열어주기 전에, 권한관리·품질검증·방치
+      에이전트 정리 체계를 먼저 설계해야 한다.</b> 순서를 거꾸로 하면 "각자 흩어져 만들고 아무도
+      안 쓰는" 상태로 끝난다.</p>
+    </div>
+    <div class="basis" style="margin-top:.8rem;">근거: <a href="#posco">POSCO</a> · <a href="#tata-invoice">Tata Steel</a> · <a href="#lg">LG전자</a></div>
+  </div>
+
+  <!-- ============ GOAL ============ -->
+  <div class="section-title" id="goal">Goal</div>
+  <div class="goal-box">
+    <div class="goal-main">세아제강 관리·사무직의 반복·비효율 업무를 AI로 줄이고, 사람은
+    판단·분석·관계 업무에 집중한다.</div>
+    <p>1단계와 2단계를 거쳐 도달하는 목표는 이것 하나다. 부서마다 반복되던 문서작업, 대사,
+    검색, 취합 업무의 상당 부분을 AI가 대신 처리하고, 같은 시간에 사람은 판단이 필요한 일 —
+    이상 건을 실제로 확인하고, 데이터를 해석하고, 고객·현장과 관계를 맺는 일에 쓴다.</p>
+    <p>정량 목표(생산성 향상률, 절감 시간 등)는 임원 보고 단계에서 이상민 과장이 1단계 파일럿
+    결과를 근거로 확정한다. 이 문서가 제시하는 것은 방향과 순서다.</p>
+    <div class="not">이 목표는 "관리인력 증원 없이 그룹사 통합 관리 역량을 확보한다"는 식의
+    조직·인력 운영 목표가 아니다 — 그런 프레이밍은 이번 벤치마킹 근거에서 도출되지 않는다.
+    여기서 말하는 목표는 순수하게 생산성과 업무 품질에 관한 것이다.</div>
+  </div>
+
+  <footer>
+    작성: Claude · 2026-08-12 · 근거 자료: 2026-08-10 심층 재조사(deep-research-v3.html) 기반 ·
+    원본 저장소: <a href="https://github.com/choonsam22/ai-work-knowledge" target="_blank" rel="noopener">choonsam22/ai-work-knowledge</a>
+    (경로: synthesis/claude/)
+  </footer>
+</main>
+</div>
+</body>
+</html>
