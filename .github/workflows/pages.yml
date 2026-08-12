@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - "synthesis/site/**"
+      - "synthesis/claude/2026-08-12-final-strategy.html"
+      - "synthesis/pages/**"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -26,9 +28,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - name: Build separate report URLs
+        shell: bash
+        run: |
+          mkdir -p _site/claude _site/codex
+          cp synthesis/pages/index.html _site/index.html
+          cp synthesis/claude/2026-08-12-final-strategy.html _site/claude/index.html
+          cp synthesis/site/index.html _site/codex/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: synthesis/site
+          path: _site
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
